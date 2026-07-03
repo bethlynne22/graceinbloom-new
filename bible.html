@@ -4,20 +4,58 @@
 <title>Grace in Bloom Bible</title>
 <style>
 html,body{
-margin:0;
-width:100%;
-height:100%;
-overflow:hidden;
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#2b2018;
 }
-body{
-background-image:url('24407CD2-AF7E-4F85-BDA7-87B39BEB6558.png');
-background-position:center;
-background-repeat:no-repeat;
-background-size:contain;
-background-color:#2b2018;
+.bible{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  background-image:url('24407CD2-AF7E-4F85-BDA7-87B39BEB6558.png');
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+}
+.hotspot{
+  position:absolute;
+  display:block;
+  z-index:10;
 }
 </style>
 </head>
+
 <body>
+
+<div class="bible">
+
+  <!-- top buttons -->
+  <a class="hotspot" href="grand-library.html" style="left:8%;top:8%;width:14%;height:7%;" title="Bookshelf"></a>
+  <a class="hotspot" href="index.html" style="left:22%;top:8%;width:6%;height:7%;" title="Home"></a>
+
+  <!-- right tabs -->
+  <a class="hotspot" href="#" style="left:84%;top:26%;width:12%;height:6%;" title="Torah"></a>
+  <a class="hotspot" href="#" style="left:84%;top:33%;width:12%;height:6%;" title="History"></a>
+  <a class="hotspot" href="#" style="left:84%;top:40%;width:12%;height:6%;" title="Poetry"></a>
+  <a class="hotspot" href="#" style="left:84%;top:47%;width:12%;height:6%;" title="Prophets"></a>
+  <a class="hotspot" href="#" style="left:84%;top:55%;width:12%;height:7%;" title="New Testament"></a>
+  <a class="hotspot" href="#" style="left:84%;top:63%;width:12%;height:6%;" title="Gospels"></a>
+  <a class="hotspot" href="#" style="left:84%;top:70%;width:12%;height:6%;" title="Letters"></a>
+  <a class="hotspot" href="#" style="left:84%;top:77%;width:12%;height:6%;" title="Revelation"></a>
+
+  <!-- bottom buttons -->
+  <a class="hotspot" href="#" style="left:19%;top:87%;width:7%;height:10%;" title="Ezra"></a>
+  <a class="hotspot" href="#" style="left:27%;top:87%;width:8%;height:10%;" title="Study Binder"></a>
+  <a class="hotspot" href="#" style="left:36%;top:87%;width:7%;height:10%;" title="Notes"></a>
+  <a class="hotspot" href="#" style="left:44%;top:87%;width:8%;height:10%;" title="Favorites"></a>
+  <a class="hotspot" href="#" style="left:53%;top:87%;width:7%;height:10%;" title="Bookmark"></a>
+  <a class="hotspot" href="#" style="left:61%;top:87%;width:7%;height:10%;" title="Highlight"></a>
+  <a class="hotspot" href="#" style="left:69%;top:87%;width:8%;height:10%;" title="Maps"></a>
+  <a class="hotspot" href="#" style="left:78%;top:87%;width:9%;height:10%;" title="Next Chapter"></a>
+
+</div>
+
 </body>
 </html>
