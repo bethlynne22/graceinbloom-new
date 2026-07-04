@@ -9,7 +9,7 @@ html,body{
   height:100%;
   overflow:hidden;
   background:#2b2018;
-}
+-webkit-tap-highlight-color: transparent;}
 
 .bible{
   position:relative;
@@ -22,6 +22,10 @@ html,body{
 }
 
 .hotspot{
+cursor:pointer;
+-webkit-user-select:none;
+user-select:none;
+touch-action:manipulation;
   position:absolute;
   display:block;
   z-index:100;
@@ -34,7 +38,7 @@ html,body{
   -webkit-tap-highlight-color:transparent;
   background:transparent;
 }
-}
+
 </style>
 </head>
 
