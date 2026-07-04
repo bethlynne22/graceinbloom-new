@@ -9,7 +9,6 @@ html,body{
   height:100%;
   overflow:hidden;
   background:#2b2018;
-  font-family:Georgia,serif;
 }
 
 .bible{
@@ -22,23 +21,12 @@ html,body{
   background-size:100% 100%;
 }
 
-.realBtn{
+.hotspot{
   position:absolute;
-  z-index:50;
-  background:rgba(255,238,210,.9);
-  border:2px solid #c98f7a;
-  color:#4b2f16;
-  text-decoration:none;
-  font-weight:bold;
-  border-radius:22px;
-  padding:8px 14px;
-  box-shadow:0 4px 10px rgba(0,0,0,.25);
-  font-size:15px;
-}
-
-.realBtn:active{
-  transform:scale(.96);
-  background:#fff8ec;
+  display:block;
+  z-index:100;
+  background:transparent;
+  border:none;
 }
 </style>
 </head>
@@ -47,25 +35,20 @@ html,body{
 
 <div class="bible">
 
-<a class="realBtn" href="index.html" style="left:22%;top:8%;">🏡 Home</a>
+  <!-- Bookshelf -->
+  <a class="hotspot" href="grand-library.html"
+     style="left:4%;top:6%;width:17%;height:9%;"
+     title="Bookshelf"></a>
 
-<a class="realBtn" href="grand-library.html" style="left:7%;top:8%;">📚 Bookshelf</a>
+  <!-- Home -->
+  <a class="hotspot" href="index.html"
+     style="left:19%;top:5%;width:9%;height:10%;"
+     title="Home"></a>
 
-<a class="realBtn" href="#" style="right:4%;top:26%;">Torah</a>
-<a class="realBtn" href="#" style="right:4%;top:34%;">History</a>
-<a class="realBtn" href="#" style="right:4%;top:42%;">Poetry</a>
-<a class="realBtn" href="#" style="right:4%;top:50%;">Prophets</a>
-<a class="realBtn" href="#" style="right:4%;top:58%;">New Testament</a>
-<a class="realBtn" href="#" style="right:4%;top:66%;">Gospels</a>
-<a class="realBtn" href="#" style="right:4%;top:74%;">Letters</a>
-
-<a class="realBtn" href="#" style="left:13%;bottom:4%;">🦉 Ezra</a>
-<a class="realBtn" href="#" style="left:25%;bottom:4%;">📚 Study</a>
-<a class="realBtn" href="#" style="left:38%;bottom:4%;">📝 Notes</a>
-<a class="realBtn" href="#" style="left:50%;bottom:4%;">❤️ Save</a>
-<a class="realBtn" href="#" style="left:62%;bottom:4%;">🔖 Mark</a>
-<a class="realBtn" href="#" style="left:74%;bottom:4%;">🗺 Maps</a>
-<a class="realBtn" href="#" style="right:4%;bottom:4%;">Next ▶</a>
+  <!-- Next Chapter -->
+  <a class="hotspot" href="#"
+     style="left:80%;top:84%;width:13%;height:13%;"
+     title="Next Chapter"></a>
 
 </div>
 
