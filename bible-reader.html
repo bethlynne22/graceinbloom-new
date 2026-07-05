@@ -144,7 +144,7 @@ button:hover{
 </select>
 <div class="chapter">
 
-<h2>Genesis 1</h2>
+<h2 id="chapterTitle">Genesis 1</h2>
 
 <p><span class="verse">1</span> In the beginning God created the heavens and the earth.</p>
 
@@ -186,6 +186,16 @@ function updateChapters(){
 }
 
 updateChapters();
+document.getElementById("chapterSelect").onchange = updateTitle;
+
+function updateTitle() {
+    const book = document.getElementById("bookSelect").value;
+    const chapter = document.getElementById("chapterSelect").value;
+
+    document.getElementById("chapterTitle").innerHTML = book + " " + chapter;
+}
+
+updateTitle();
 </script>    
 </body>
 </html>
