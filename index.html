@@ -23,15 +23,11 @@ body {
 }
 
 
-.nav {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 9999;
-}
+<div class="nav">
+<a href="https://www.bible.com/bible/1/GEN.1.KJV" target="_blank">📖 Bible</a>
+  <a href="grand-library.html">📚 Grand Library</a>
+  <a href="garden.html">🌿 Gardens</a>
+</div>
 
 .nav a {
   background: rgba(255,248,230,.95);
@@ -43,7 +39,34 @@ body {
   border: 2px solid #c8a96d;
   box-shadow: 0 4px 8px rgba(0,0,0,.25);
 }
-</style>
+</style>.nav {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.nav-button {
+  text-decoration: none;
+  padding: 13px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff4ec, #f7d7c4, #f4c7a1);
+  color: #6f3f24;
+  font-weight: bold;
+  font-family: Georgia, serif;
+  border: 2px solid #d7a766;
+  box-shadow: 0 4px 10px rgba(99, 57, 24, 0.22);
+}
+
+.nav-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(99, 57, 24, 0.3);
+}
+
+.bible-button {
+  background: linear-gradient(135deg, #fff8ef, #f6d6b8, #e9b36f);
+}
 </head>
 
 <body>
