@@ -6,65 +6,109 @@
 <title>Grace in Bloom Bible Reader</title>
 
 <style>
-body{
+
+body {
     margin:0;
     font-family:Georgia, serif;
-    background:#f7f2e8;
-    color:#4b3b2a;
+    background:
+    linear-gradient(rgba(255,248,230,.92),rgba(255,248,230,.92)),
+    #d8b98a;
+    color:#4b3524;
 }
 
-header{
-    background:#8a6a44;
-    color:white;
-    padding:20px;
+header {
+    background:
+    linear-gradient(135deg,#8b6239,#c79a58,#8b6239);
+    color:#fff8e8;
+    padding:30px;
     text-align:center;
+    border-bottom:8px solid #c79a58;
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
 }
 
-.container{
+header h1 {
+    font-size:38px;
+    margin:0;
+}
+
+header p {
+    font-size:18px;
+}
+
+.container {
     max-width:900px;
-    margin:auto;
+    margin:35px auto;
+    padding:35px;
+    background:#fff8e8;
+    border:4px solid #c79a58;
+    border-radius:25px;
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.18),
+    inset 0 0 30px rgba(200,150,80,.25);
+}
+
+select {
+    padding:12px;
+    font-size:17px;
+    border-radius:12px;
+    border:2px solid #b8873b;
+    background:#fffdf6;
+}
+
+.chapter {
+    margin-top:35px;
+    line-height:2;
+    font-size:22px;
+    background:#fffdf5;
     padding:25px;
+    border-radius:18px;
+    border-left:8px solid #c9875b;
 }
 
-select{
-    padding:10px;
-    font-size:16px;
-    border-radius:8px;
+.chapter h2 {
+    text-align:center;
+    color:#9b642f;
+    font-size:32px;
 }
 
-.chapter{
-    margin-top:25px;
-    line-height:1.9;
-    font-size:20px;
-}
-
-.verse{
-    color:#8a6a44;
+.verse {
+    color:#a56b32;
     font-weight:bold;
 }
 
-button{
-    background:#b58b5c;
+button {
+    background:linear-gradient(135deg,#b8873b,#e8c878,#8b5524);
     color:white;
     border:none;
-    padding:10px 18px;
-    border-radius:8px;
+    padding:14px 22px;
+    border-radius:30px;
     cursor:pointer;
-    margin-top:20px;
+    margin-top:25px;
+    font-family:Georgia,serif;
+    font-weight:bold;
+    box-shadow:0 5px 10px rgba(0,0,0,.25);
 }
-button:hover{
-    background:#9d754b;
-}.home-button {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  padding: 12px 18px;
-  background: linear-gradient(135deg,#b8873b,#e8c878,#8b5524);
-  color: white;
-  text-decoration: none;
-  border-radius: 12px;
-  font-family: Georgia, serif;
-  font-weight: bold;
+
+button:hover {
+    filter:brightness(1.1);
+}
+
+.home-button {
+    position:fixed;
+    top:20px;
+    left:20px;
+    padding:12px 18px;
+    background:linear-gradient(135deg,#b8873b,#e8c878,#8b5524);
+    color:white;
+    text-decoration:none;
+    border-radius:12px;
+    font-family:Georgia,serif;
+    font-weight:bold;
+    box-shadow:0 4px 10px rgba(0,0,0,.35);
+    z-index:100;
+}
+
+</style>
   box-shadow: 0 4px 10px rgba(0,0,0,.35);
   z-index: 100;
 }
