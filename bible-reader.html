@@ -156,6 +156,10 @@ select {
   background: linear-gradient(135deg, #fff7f2, #f7cfc0, #dda06f);
 }
 
+.binder {
+  background: linear-gradient(135deg, #fffaf0, #ead2a3, #c99a51);
+}
+
 .saved-note {
   text-align: center;
   margin-top: 22px;
@@ -199,7 +203,7 @@ select {
 
     <p class="subtitle">
       Choose a book and chapter, then open the real KJV Bible reading online.
-      You can also open your Bible Journal for the same chapter.
+      You can also open your Bible Journal or Study Binder for the same chapter.
     </p>
 
     <div class="controls">
@@ -217,6 +221,7 @@ select {
     <div class="button-row">
       <button class="pretty-button" onclick="openKJV()">📖 Open KJV Chapter</button>
       <button class="pretty-button journal" onclick="openJournal()">📔 Open Journal</button>
+      <button class="pretty-button binder" onclick="openStudyBinder()">📒 Open Study Binder</button>
       <button class="pretty-button secondary" onclick="saveSpot()">🔖 Save My Spot</button>
       <button class="pretty-button secondary" onclick="openSavedSpot()">🌸 Open Saved Spot</button>
     </div>
@@ -288,6 +293,12 @@ function openJournal() {
   const book = encodeURIComponent(bookSelect.value);
   const chapter = encodeURIComponent(chapterSelect.value);
   window.location.href = "bible-journal.html?book=" + book + "&chapter=" + chapter;
+}
+
+function openStudyBinder() {
+  const book = encodeURIComponent(bookSelect.value);
+  const chapter = encodeURIComponent(chapterSelect.value);
+  window.location.href = "study-binder.html?book=" + book + "&chapter=" + chapter;
 }
 
 function saveSpot() {
