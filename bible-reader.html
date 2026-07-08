@@ -3,256 +3,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grace in Bloom Bible Reader</title>
+<title>Blooming in His Garden Bible</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
 
 body {
-    margin:0;
-    font-family:Georgia, serif;
-    background:
-    linear-gradient(rgba(255,248,230,.92),rgba(255,248,230,.92)),
-    #d8b98a;
-    color:#4b3524;
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  color: #4b2d18;
+  background:
+    radial-gradient(circle at top left, rgba(255, 226, 196, 0.55), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(245, 190, 135, 0.45), transparent 35%),
+    linear-gradient(135deg, #fff8ea, #f6dfbf, #d9a85f);
+  overflow-x: hidden;
 }
 
-header {
-    background:
-    linear-gradient(135deg,#8b6239,#c79a58,#8b6239);
-    color:#fff8e8;
-    padding:30px;
-    text-align:center;
-    border-bottom:8px solid #c79a58;
-    box-shadow:0 5px 15px rgba(0,0,0,.25);
-}
-
-header h1 {
-    font-size:38px;
-    margin:0;
-}
-
-header p {
-    font-size:18px;
-}
-
-.container {
-    max-width:900px;
-    margin:35px auto;
-    padding:35px;
-    background:#fff8e8;
-    border:4px solid #c79a58;
-    border-radius:25px;
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.18),
-    inset 0 0 30px rgba(200,150,80,.25);
-}
-
-select {
-    padding:12px;
-    font-size:17px;
-    border-radius:12px;
-    border:2px solid #b8873b;
-    background:#fffdf6;
-}
-
-.chapter {
-    margin-top:35px;
-    line-height:2;
-    font-size:22px;
-    background:#fffdf5;
-    padding:25px;
-    border-radius:18px;
-    border-left:8px solid #c9875b;
-}
-
-.chapter h2 {
-    text-align:center;
-    color:#9b642f;
-    font-size:32px;
-}
-
-.verse {
-    color:#a56b32;
-    font-weight:bold;
-}
-
-button {
-    background:linear-gradient(135deg,#b8873b,#e8c878,#8b5524);
-    color:white;
-    border:none;
-    padding:14px 22px;
-    border-radius:30px;
-    cursor:pointer;
-    margin-top:25px;
-    font-family:Georgia,serif;
-    font-weight:bold;
-    box-shadow:0 5px 10px rgba(0,0,0,.25);
-}
-
-button:hover {
-    filter:brightness(1.1);
+.page {
+  min-height: 100vh;
+  padding: 28px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .home-button {
-    position:fixed;
-    top:20px;
-    left:20px;
-    padding:12px 18px;
-    background:linear-gradient(135deg,#b8873b,#e8c878,#8b5524);
-    color:white;
-    text-decoration:none;
-    border-radius:12px;
-    font-family:Georgia,serif;
-    font-weight:bold;
-    box-shadow:0 4px 10px rgba(0,0,0,.35);
-    z-index:100;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  text-decoration: none;
+  background: linear-gradient(135deg, #eac06b, #a66a2c);
+  color: #fffaf0;
+  padding: 12px 18px;
+  border-radius: 16px;
+  font-weight: bold;
+  box-shadow: 0 5px 14px rgba(55, 28, 8, 0.35);
+  border: 1px solid rgba(255, 235, 180, 0.7);
 }
 
-</style>
-  box-shadow: 0 4px 10px rgba(0,0,0,.35);
-  z-index: 100;
+.bible-card {
+  width: min(920px, 96vw);
+  background: rgba(255, 250, 238, 0.92);
+  border: 3px solid #c99a51;
+  border-radius: 32px;
+  padding: 34px 26px;
+  box-shadow: 0 16px 36px rgba(85, 45, 12, 0.28);
+  position: relative;
+  overflow: hidden;
+}
+
+.bible-card::before {
+  content: "✿  ✿  ✿";
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  color: rgba(168, 102, 45, 0.35);
+  font-size: 26px;
+  letter-spacing: 10px;
+}
+
+.bible-card::after {
+  content: "❀";
+  position: absolute;
+  bottom: 18px;
+  left: 28px;
+  color: rgba(191, 125, 72, 0.35);
+  font-size: 46px;
+}
+
+h1 {
+  text-align: center;
+  margin: 10px 0 8px;
+  color: #9b5f28;
+  font-size: clamp(32px, 5vw, 52px);
+}
+
+.subtitle {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 30px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #6d4324;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  gap: 16px;
+  max-width: 680px;
+  margin: 0 auto 24px;
+}
+
+label {
+  font-weight: bold;
+  color: #74461f;
+  display: block;
+  margin-bottom: 7px;
+}
+
+select {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: 2px solid #c89245;
+  background: #fffaf0;
+  color: #4b2d18;
+  font-size: 17px;
+  font-family: Georgia, serif;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.pretty-button {
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #5c3218;
+  background: linear-gradient(135deg, #fff8ed, #f7d6b8, #eab36d);
+  border: 2px solid #d4a052;
+  box-shadow: 0 6px 14px rgba(75, 38, 12, 0.28);
+}
+
+.pretty-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 18px rgba(75, 38, 12, 0.36);
+}
+
+.secondary {
+  background: linear-gradient(135deg, #fffaf0, #efd9b8, #d7a866);
+}
+
+.saved-note {
+  text-align: center;
+  margin-top: 22px;
+  color: #74461f;
+  font-size: 16px;
+  min-height: 22px;
+}
+
+.small-note {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 14px;
+  color: #7b573a;
+}
+
+@media (max-width: 650px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .home-button {
+    position: static;
+    display: inline-block;
+    margin-bottom: 18px;
+  }
+
+  .page {
+    align-items: flex-start;
+  }
 }
 </style>
-
 </head>
 
 <body>
-<a href="index.html" class="home-button">
-🏡 Return Home
-</a>
-<header>
-<h1>🌸 Grace in Bloom Bible Reader</h1>
-<p>Welcome to the Grand Library</p>
-</header>
 
-<div class="container">
+<a class="home-button" href="index.html">🏡 Return Home</a>
 
-<h2>Book</h2>
+<main class="page">
+  <section class="bible-card">
+    <h1>Blooming in His Garden Bible</h1>
 
-<select id="bookSelect" onchange="updateChapters()">
-<option>Genesis</option>
-<option>Exodus</option>
-<option>Leviticus</option>
-<option>Numbers</option>
+    <p class="subtitle">
+      Choose a book and chapter, then open the real KJV Bible reading online.
+      This page does not use placeholder Scripture.
+    </p>
 
-<option>Ruth</option>
-<option>1 Samuel</option>
-<option>2 Samuel</option>
-<option>1 Kings</option>
-<option>2 Kings</option>
-<option>1 Chronicles</option>
-<option>2 Chronicles</option>
-<option>Ezra</option>
-<option>Nehemiah</option>
-<option>Esther</option>
-<option>Job</option>
-<option>Psalms</option>
-<option>Proverbs</option>
-<option>Ecclesiastes</option>
-<option>Song of Solomon</option>
-<option>Isaiah</option>
-<option>Jeremiah</option>
-<option>Lamentations</option>
-<option>Ezekiel</option>
-<option>Daniel</option>
-<option>Hosea</option>
-<option>Joel</option>
-<option>Amos</option>
-<option>Obadiah</option>
-<option>Jonah</option>
-<option>Micah</option>
-<option>Nahum</option>
-<option>Habakkuk</option>
-<option>Zephaniah</option>
-<option>Haggai</option>
-<option>Zechariah</option>
-<option>Malachi</option>
-<option>Matthew</option>
-<option>Mark</option>
-<option>Luke</option>
-<option>John</option>
-<option>Acts</option>
-<option>Romans</option>
-<option>1 Corinthians</option>
-<option>2 Corinthians</option>
-<option>Galatians</option>
-<option>Ephesians</option>
-<option>Philippians</option>
-<option>Colossians</option>
-<option>1 Thessalonians</option>
-<option>2 Thessalonians</option>
-<option>1 Timothy</option>
-<option>2 Timothy</option>
-<option>Titus</option>
-<option>Philemon</option>
-<option>Hebrews</option>
-<option>James</option>
-<option>1 Peter</option>
-<option>2 Peter</option>
-<option>1 John</option>
-<option>2 John</option>
-<option>3 John</option>
-<option>Jude</option>
-<option>Revelation</option>
-</select>
-<h2>Chapter</h2>
+    <div class="controls">
+      <div>
+        <label for="bookSelect">Book</label>
+        <select id="bookSelect"></select>
+      </div>
 
-<select id="chapterSelect">
-</select>
-<div class="chapter">
+      <div>
+        <label for="chapterSelect">Chapter</label>
+        <select id="chapterSelect"></select>
+      </div>
+    </div>
 
-<h2 id="chapterTitle">Genesis 1</h2>
+    <div class="button-row">
+      <button class="pretty-button" onclick="openKJV()">📖 Open KJV Chapter</button>
+      <button class="pretty-button secondary" onclick="saveSpot()">🔖 Save My Spot</button>
+      <button class="pretty-button secondary" onclick="openSavedSpot()">🌸 Open Saved Spot</button>
+    </div>
 
-<p><span class="verse">1</span> In the beginning God created the heavens and the earth.</p>
+    <div class="saved-note" id="savedNote"></div>
 
-<p><span class="verse">2</span> The earth was formless and empty. Darkness was on the surface of the deep and God's Spirit was hovering over the surface of the waters.</p>
+    <p class="small-note">
+      Your floral Bible pages, study binder, journal, coloring pages, and wildflower designs can be added book by book over time.
+    </p>
+  </section>
+</main>
 
-<p><span class="verse">3</span> God said, "Let there be light," and there was light.</p>
-
-</div>
-
-<button>Bookmark This Chapter</button>
-
-</div>
 <script>
-const chapterCounts = {
-"Genesis":50,"Exodus":40,"Leviticus":27,"Numbers":36,"Deuteronomy":34,
-"Joshua":24,"Judges":21,"Ruth":4,"1 Samuel":31,"2 Samuel":24,
-"1 Kings":22,"2 Kings":25,"1 Chronicles":29,"2 Chronicles":36,
-"Ezra":10,"Nehemiah":13,"Esther":10,"Job":42,"Psalms":150,
-"Proverbs":31,"Ecclesiastes":12,"Song of Solomon":8,"Isaiah":66,
-"Jeremiah":52,"Lamentations":5,"Ezekiel":48,"Daniel":12,
-"Hosea":14,"Joel":3,"Amos":9,"Obadiah":1,"Jonah":4,
-"Micah":7,"Nahum":3,"Habakkuk":3,"Zephaniah":3,"Haggai":2,
-"Zechariah":14,"Malachi":4,"Matthew":28,"Mark":16,"Luke":24,
-"John":21,"Acts":28,"Romans":16,"1 Corinthians":16,
-"2 Corinthians":13,"Galatians":6,"Ephesians":6,"Philippians":4,
-"Colossians":4,"1 Thessalonians":5,"2 Thessalonians":3,
-"1 Timothy":6,"2 Timothy":4,"Titus":3,"Philemon":1,
-"Hebrews":13,"James":5,"1 Peter":5,"2 Peter":3,
-"1 John":5,"2 John":1,"3 John":1,"Jude":1,"Revelation":22
-};
+const books = [
+  ["Genesis", 50], ["Exodus", 40], ["Leviticus", 27], ["Numbers", 36], ["Deuteronomy", 34],
+  ["Joshua", 24], ["Judges", 21], ["Ruth", 4], ["1 Samuel", 31], ["2 Samuel", 24],
+  ["1 Kings", 22], ["2 Kings", 25], ["1 Chronicles", 29], ["2 Chronicles", 36],
+  ["Ezra", 10], ["Nehemiah", 13], ["Esther", 10], ["Job", 42], ["Psalms", 150],
+  ["Proverbs", 31], ["Ecclesiastes", 12], ["Song of Solomon", 8], ["Isaiah", 66],
+  ["Jeremiah", 52], ["Lamentations", 5], ["Ezekiel", 48], ["Daniel", 12], ["Hosea", 14],
+  ["Joel", 3], ["Amos", 9], ["Obadiah", 1], ["Jonah", 4], ["Micah", 7], ["Nahum", 3],
+  ["Habakkuk", 3], ["Zephaniah", 3], ["Haggai", 2], ["Zechariah", 14], ["Malachi", 4],
+  ["Matthew", 28], ["Mark", 16], ["Luke", 24], ["John", 21], ["Acts", 28], ["Romans", 16],
+  ["1 Corinthians", 16], ["2 Corinthians", 13], ["Galatians", 6], ["Ephesians", 6],
+  ["Philippians", 4], ["Colossians", 4], ["1 Thessalonians", 5], ["2 Thessalonians", 3],
+  ["1 Timothy", 6], ["2 Timothy", 4], ["Titus", 3], ["Philemon", 1], ["Hebrews", 13],
+  ["James", 5], ["1 Peter", 5], ["2 Peter", 3], ["1 John", 5], ["2 John", 1],
+  ["3 John", 1], ["Jude", 1], ["Revelation", 22]
+];
 
-function updateChapters(){
- const book=document.getElementById("bookSelect").value;
- const chapter=document.getElementById("chapterSelect");
- chapter.innerHTML="";
- for(let i=1;i<=chapterCounts[book];i++){
-   chapter.innerHTML+=`<option>${i}</option>`;
- }
+const bookSelect = document.getElementById("bookSelect");
+const chapterSelect = document.getElementById("chapterSelect");
+const savedNote = document.getElementById("savedNote");
+
+books.forEach(([book]) => {
+  const option = document.createElement("option");
+  option.value = book;
+  option.textContent = book;
+  bookSelect.appendChild(option);
+});
+
+function updateChapters() {
+  const selectedBook = bookSelect.value;
+  const bookInfo = books.find(([book]) => book === selectedBook);
+  const chapterCount = bookInfo ? bookInfo[1] : 1;
+
+  chapterSelect.innerHTML = "";
+
+  for (let i = 1; i <= chapterCount; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = i;
+    chapterSelect.appendChild(option);
+  }
 }
+
+function getKJVUrl(book, chapter) {
+  const passage = encodeURIComponent(book + " " + chapter);
+  return "https://www.biblegateway.com/passage/?search=" + passage + "&version=KJV";
+}
+
+function openKJV() {
+  const book = bookSelect.value;
+  const chapter = chapterSelect.value;
+  window.open(getKJVUrl(book, chapter), "_blank", "noopener");
+}
+
+function saveSpot() {
+  const book = bookSelect.value;
+  const chapter = chapterSelect.value;
+  localStorage.setItem("bloomingBibleSpot", JSON.stringify({ book, chapter }));
+  savedNote.textContent = "Saved: " + book + " " + chapter;
+}
+
+function openSavedSpot() {
+  const saved = localStorage.getItem("bloomingBibleSpot");
+
+  if (!saved) {
+    savedNote.textContent = "No saved spot yet.";
+    return;
+  }
+
+  const spot = JSON.parse(saved);
+  window.open(getKJVUrl(spot.book, spot.chapter), "_blank", "noopener");
+}
+
+bookSelect.addEventListener("change", updateChapters);
 
 updateChapters();
-document.getElementById("chapterSelect").onchange = updateTitle;
 
-function updateTitle() {
-    const book = document.getElementById("bookSelect").value;
-    const chapter = document.getElementById("chapterSelect").value;
+const saved = localStorage.getItem("bloomingBibleSpot");
+if (saved) {
+  const spot = JSON.parse(saved);
+  const bookExists = books.some(([book]) => book === spot.book);
 
-    document.getElementById("chapterTitle").innerHTML = book + " " + chapter;
+  if (bookExists) {
+    bookSelect.value = spot.book;
+    updateChapters();
+    chapterSelect.value = spot.chapter;
+    savedNote.textContent = "Saved spot: " + spot.book + " " + spot.chapter;
+  }
 }
+</script>
 
-updateTitle();
-</script>    
 </body>
 </html>
