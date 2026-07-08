@@ -152,6 +152,10 @@ select {
   background: linear-gradient(135deg, #fffaf0, #efd9b8, #d7a866);
 }
 
+.journal {
+  background: linear-gradient(135deg, #fff7f2, #f7cfc0, #dda06f);
+}
+
 .saved-note {
   text-align: center;
   margin-top: 22px;
@@ -195,7 +199,7 @@ select {
 
     <p class="subtitle">
       Choose a book and chapter, then open the real KJV Bible reading online.
-      This page does not use placeholder Scripture.
+      You can also open your Bible Journal for the same chapter.
     </p>
 
     <div class="controls">
@@ -212,6 +216,7 @@ select {
 
     <div class="button-row">
       <button class="pretty-button" onclick="openKJV()">📖 Open KJV Chapter</button>
+      <button class="pretty-button journal" onclick="openJournal()">📔 Open Journal</button>
       <button class="pretty-button secondary" onclick="saveSpot()">🔖 Save My Spot</button>
       <button class="pretty-button secondary" onclick="openSavedSpot()">🌸 Open Saved Spot</button>
     </div>
@@ -219,7 +224,7 @@ select {
     <div class="saved-note" id="savedNote"></div>
 
     <p class="small-note">
-      Your floral Bible pages, study binder, journal, coloring pages, and wildflower designs can be added book by book over time.
+      Your floral Bible pages, study binder, coloring pages, and wildflower designs can be added book by book over time.
     </p>
   </section>
 </main>
@@ -277,6 +282,12 @@ function openKJV() {
   const book = bookSelect.value;
   const chapter = chapterSelect.value;
   window.open(getKJVUrl(book, chapter), "_blank", "noopener");
+}
+
+function openJournal() {
+  const book = encodeURIComponent(bookSelect.value);
+  const chapter = encodeURIComponent(chapterSelect.value);
+  window.location.href = "bible-journal.html?book=" + book + "&chapter=" + chapter;
 }
 
 function saveSpot() {
