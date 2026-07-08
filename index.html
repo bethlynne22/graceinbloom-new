@@ -22,7 +22,6 @@ body {
   font-family: Georgia, serif;
 }
 
-/* Soft bottom area for the pretty buttons */
 .nav-wrap {
   position: fixed;
   left: 0;
@@ -33,7 +32,6 @@ body {
   padding: 12px;
 }
 
-/* Floral button row */
 .nav {
   display: flex;
   justify-content: center;
@@ -47,7 +45,6 @@ body {
   backdrop-filter: blur(3px);
 }
 
-/* Pretty heirloom buttons */
 .nav-button {
   position: relative;
   display: inline-flex;
@@ -59,15 +56,13 @@ body {
   font-size: 16px;
   font-weight: bold;
   color: #61381f;
-  background:
-    linear-gradient(135deg, #fffaf0 0%, #f9dfc7 42%, #efbd85 100%);
+  background: linear-gradient(135deg, #fffaf0 0%, #f9dfc7 42%, #efbd85 100%);
   border: 2px solid #d9ad67;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.75),
     0 5px 12px rgba(44, 20, 8, 0.35);
 }
 
-/* Tiny floral shine */
 .nav-button::before {
   content: "✿";
   font-size: 13px;
@@ -75,15 +70,12 @@ body {
   opacity: 0.85;
 }
 
-/* Bible button gets extra gold */
 .bible-button {
-  background:
-    linear-gradient(135deg, #fff8ed 0%, #f7d6b8 35%, #eab36d 100%);
+  background: linear-gradient(135deg, #fff8ed 0%, #f7d6b8 35%, #eab36d 100%);
   border-color: #e0b15d;
   color: #5c3218;
 }
 
-/* Gentle hover */
 .nav-button:hover {
   transform: translateY(-2px);
   box-shadow:
@@ -91,7 +83,6 @@ body {
     0 8px 16px rgba(44, 20, 8, 0.45);
 }
 
-/* Smaller screens */
 @media (max-width: 600px) {
   .nav {
     gap: 10px;
@@ -110,7 +101,7 @@ body {
 
 <div class="nav-wrap">
   <div class="nav">
-    <a class="nav-button bible-button" href="https://www.biblegateway.com/passage/?search=Genesis+1&version=KJV" target="_blank" rel="noopener">📖 Read KJV Bible</a>
+    <a class="nav-button bible-button" href="bible-reader.html">📖 Bible Reader</a>
     <a class="nav-button" href="grand-library.html">📚 Grand Library</a>
     <a class="nav-button" href="garden.html">🌿 Gardens</a>
   </div>
