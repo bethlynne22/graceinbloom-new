@@ -367,10 +367,38 @@ function clearNote() {
   savedNote.textContent = "Cleared note for " + bookSelect.value + " " + chapterSelect.value + ".";
 }
 
+function loadFromPageLink() {
+  const params = new URLSearchParams(window.location.search);
+  const bookFromLink = params.get("book");
+  const chapterFromLink = params.get("chapter");
+
+  if (!bookFromLink || !chapterFromLink) {
+    updateChapters();
+    return;
+  }
+
+  const bookExists = books.some(([book]) => book === bookFromLink);
+
+  if (bookExists) {
+    bookSelect.value = bookFromLink;
+    updateChapters();
+
+    const chapterOption = Array.from(chapterSelect.options).some(option => option.value === chapterFromLink);
+
+    if (chapterOption) {
+      chapterSelect.value = chapterFromLink;
+      loadNote();
+      savedNote.textContent = "Opened journal for " + bookFromLink + " " + chapterFromLink + ".";
+    }
+  } else {
+    updateChapters();
+  }
+}
+
 bookSelect.addEventListener("change", updateChapters);
 chapterSelect.addEventListener("change", loadNote);
 
-updateChapters();
+loadFromPageLink();
 </script>
 
 </body>
