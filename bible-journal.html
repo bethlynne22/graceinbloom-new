@@ -1,1 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible Journal | Blooming in His Garden</title>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  color: #4b2d18;
+  background:
+    radial-gradient(circle at top left, rgba(255, 226, 196, 0.55), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(245, 190, 135, 0.45), transparent 35%),
+    linear-gradient(135deg, #fff8ea, #f6dfbf, #d9a85f);
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 28px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-buttons {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 10;
+}
+
+.top-button {
+  text-decoration: none;
+  background: linear-gradient(135deg, #eac06b, #a66a2c);
+  color: #fffaf0;
+  padding: 11px 16px;
+  border-radius: 16px;
+  font-weight: bold;
+  box-shadow: 0 5px 14px rgba(55, 28, 8, 0.35);
+  border: 1px solid rgba(255, 235, 180, 0.7);
+}
+
+.journal-card {
+  width: min(980px, 96vw);
+  background: rgba(255, 250, 238, 0.94);
+  border: 3px solid #c99a51;
+  border-radius: 32px;
+  padding: 34px 26px;
+  box-shadow: 0 16px 36px rgba(85, 45, 12, 0.28);
+  position: relative;
+  overflow: hidden;
+}
+
+.journal-card::before {
+  content: "✿  ❀  ✿";
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  color: rgba(168, 102, 45, 0.35);
+  font-size: 26px;
+  letter-spacing: 10px;
+}
+
+.journal-card::after {
+  content: "🌿";
+  position: absolute;
+  bottom: 18px;
+  left: 28px;
+  color: rgba(191, 125, 72, 0.35);
+  font-size: 42px;
+}
+
+h1 {
+  text-align: center;
+  margin: 10px 0 8px;
+  color: #9b5f28;
+  font-size: clamp(32px, 5vw, 52px);
+}
+
+.subtitle {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 26px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #6d4324;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  gap: 16px;
+  max-width: 720px;
+  margin: 0 auto 20px;
+}
+
+label {
+  font-weight: bold;
+  color: #74461f;
+  display: block;
+  margin-bottom: 7px;
+}
+
+select {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: 2px solid #c89245;
+  background: #fffaf0;
+  color: #4b2d18;
+  font-size: 17px;
+  font-family: Georgia, serif;
+}
+
+textarea {
+  width: 100%;
+  min-height: 340px;
+  padding: 20px;
+  border-radius: 22px;
+  border: 2px solid #c89245;
+  background:
+    linear-gradient(rgba(255, 250, 240, 0.94), rgba(255, 250, 240, 0.94)),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 31px,
+      rgba(196, 143, 74, 0.18) 32px
+    );
+  color: #4b2d18;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  line-height: 1.75;
+  resize: vertical;
+  box-shadow: inset 0 3px 10px rgba(92, 48, 15, 0.12);
+}
+
+textarea:focus,
+select:focus {
+  outline: 3px solid rgba(224, 177, 93, 0.35);
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.pretty-button {
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #5c3218;
+  background: linear-gradient(135deg, #fff8ed, #f7d6b8, #eab36d);
+  border: 2px solid #d4a052;
+  box-shadow: 0 6px 14px rgba(75, 38, 12, 0.28);
+}
+
+.pretty-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 18px rgba(75, 38, 12, 0.36);
+}
+
+.secondary {
+  background: linear-gradient(135deg, #fffaf0, #efd9b8, #d7a866);
+}
+
+.danger {
+  background: linear-gradient(135deg, #fff4ef, #e9b8a1, #c9825c);
+}
+
+.saved-note {
+  text-align: center;
+  margin-top: 18px;
+  color: #74461f;
+  font-size: 16px;
+  min-height: 24px;
+  font-weight: bold;
+}
+
+.small-note {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: #7b573a;
+}
+
+@media (max-width: 700px) {
+  .page {
+    align-items: flex-start;
+    padding-top: 90px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .top-buttons {
+    position: absolute;
+    flex-wrap: wrap;
+  }
+
+  .top-button {
+    font-size: 14px;
+    padding: 10px 13px;
+  }
+
+  textarea {
+    min-height: 300px;
+    font-size: 17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-buttons">
+  <a class="top-button" href="index.html">🏡 Home</a>
+  <a class="top-button" href="bible-reader.html">📖 Bible Reader</a>
+</div>
+
+<main class="page">
+  <section class="journal-card">
+    <h1>Bible Journal</h1>
+
+    <p class="subtitle">
+      Choose a book and chapter, then write your notes, prayers, questions, and reflections.
+      Your journal saves on this device.
+    </p>
+
+    <div class="controls">
+      <div>
+        <label for="bookSelect">Book</label>
+        <select id="bookSelect"></select>
+      </div>
+
+      <div>
+        <label for="chapterSelect">Chapter</label>
+        <select id="chapterSelect"></select>
+      </div>
+    </div>
+
+    <label for="journalText">My notes</label>
+    <textarea id="journalText" placeholder="Write your Bible notes here..."></textarea>
+
+    <div class="button-row">
+      <button class="pretty-button" onclick="saveNote()">💾 Save Note</button>
+      <button class="pretty-button secondary" onclick="openKJV()">📖 Open KJV Chapter</button>
+      <button class="pretty-button secondary" onclick="copyNote()">🌸 Copy Note</button>
+      <button class="pretty-button danger" onclick="clearNote()">🧹 Clear This Note</button>
+    </div>
+
+    <div class="saved-note" id="savedNote"></div>
+
+    <p class="small-note">
+      Notes are saved by book and chapter on the device you are using.
+    </p>
+  </section>
+</main>
+
+<script>
+const books = [
+  ["Genesis", 50], ["Exodus", 40], ["Leviticus", 27], ["Numbers", 36], ["Deuteronomy", 34],
+  ["Joshua", 24], ["Judges", 21], ["Ruth", 4], ["1 Samuel", 31], ["2 Samuel", 24],
+  ["1 Kings", 22], ["2 Kings", 25], ["1 Chronicles", 29], ["2 Chronicles", 36],
+  ["Ezra", 10], ["Nehemiah", 13], ["Esther", 10], ["Job", 42], ["Psalms", 150],
+  ["Proverbs", 31], ["Ecclesiastes", 12], ["Song of Solomon", 8], ["Isaiah", 66],
+  ["Jeremiah", 52], ["Lamentations", 5], ["Ezekiel", 48], ["Daniel", 12], ["Hosea", 14],
+  ["Joel", 3], ["Amos", 9], ["Obadiah", 1], ["Jonah", 4], ["Micah", 7], ["Nahum", 3],
+  ["Habakkuk", 3], ["Zephaniah", 3], ["Haggai", 2], ["Zechariah", 14], ["Malachi", 4],
+  ["Matthew", 28], ["Mark", 16], ["Luke", 24], ["John", 21], ["Acts", 28], ["Romans", 16],
+  ["1 Corinthians", 16], ["2 Corinthians", 13], ["Galatians", 6], ["Ephesians", 6],
+  ["Philippians", 4], ["Colossians", 4], ["1 Thessalonians", 5], ["2 Thessalonians", 3],
+  ["1 Timothy", 6], ["2 Timothy", 4], ["Titus", 3], ["Philemon", 1], ["Hebrews", 13],
+  ["James", 5], ["1 Peter", 5], ["2 Peter", 3], ["1 John", 5], ["2 John", 1],
+  ["3 John", 1], ["Jude", 1], ["Revelation", 22]
+];
+
+const bookSelect = document.getElementById("bookSelect");
+const chapterSelect = document.getElementById("chapterSelect");
+const journalText = document.getElementById("journalText");
+const savedNote = document.getElementById("savedNote");
+
+books.forEach(([book]) => {
+  const option = document.createElement("option");
+  option.value = book;
+  option.textContent = book;
+  bookSelect.appendChild(option);
+});
+
+function updateChapters() {
+  const selectedBook = bookSelect.value;
+  const bookInfo = books.find(([book]) => book === selectedBook);
+  const chapterCount = bookInfo ? bookInfo[1] : 1;
+
+  chapterSelect.innerHTML = "";
+
+  for (let i = 1; i <= chapterCount; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = i;
+    chapterSelect.appendChild(option);
+  }
+
+  loadNote();
+}
+
+function noteKey() {
+  return "bloomingJournal_" + bookSelect.value + "_" + chapterSelect.value;
+}
+
+function loadNote() {
+  const saved = localStorage.getItem(noteKey());
+  journalText.value = saved || "";
+  savedNote.textContent = saved ? "Loaded saved note for " + bookSelect.value + " " + chapterSelect.value + "." : "";
+}
+
+function saveNote() {
+  localStorage.setItem(noteKey(), journalText.value);
+  savedNote.textContent = "Saved note for " + bookSelect.value + " " + chapterSelect.value + ".";
+}
+
+function getKJVUrl(book, chapter) {
+  const passage = encodeURIComponent(book + " " + chapter);
+  return "https://www.biblegateway.com/passage/?search=" + passage + "&version=KJV";
+}
+
+function openKJV() {
+  window.open(getKJVUrl(bookSelect.value, chapterSelect.value), "_blank", "noopener");
+}
+
+function copyNote() {
+  journalText.select();
+  document.execCommand("copy");
+  savedNote.textContent = "Copied this note.";
+}
+
+function clearNote() {
+  const ok = confirm("Clear the note for " + bookSelect.value + " " + chapterSelect.value + "?");
+  if (!ok) return;
+
+  journalText.value = "";
+  localStorage.removeItem(noteKey());
+  savedNote.textContent = "Cleared note for " + bookSelect.value + " " + chapterSelect.value + ".";
+}
+
+bookSelect.addEventListener("change", updateChapters);
+chapterSelect.addEventListener("change", loadNote);
+
+updateChapters();
+</script>
+
+</body>
+</html>
