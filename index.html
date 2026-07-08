@@ -76,6 +76,12 @@ body {
   color: #5c3218;
 }
 
+.journal-button {
+  background: linear-gradient(135deg, #fff7f2 0%, #f7cfc0 42%, #dda06f 100%);
+  border-color: #d79b67;
+  color: #5f351e;
+}
+
 .nav-button:hover {
   transform: translateY(-2px);
   box-shadow:
@@ -83,7 +89,7 @@ body {
     0 8px 16px rgba(44, 20, 8, 0.45);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .nav {
     gap: 10px;
     padding: 10px;
@@ -102,6 +108,7 @@ body {
 <div class="nav-wrap">
   <div class="nav">
     <a class="nav-button bible-button" href="bible-reader.html">📖 Bible Reader</a>
+    <a class="nav-button journal-button" href="bible-journal.html">📔 Bible Journal</a>
     <a class="nav-button" href="grand-library.html">📚 Grand Library</a>
     <a class="nav-button" href="garden.html">🌿 Gardens</a>
   </div>
