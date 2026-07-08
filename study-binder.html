@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Binder | Blooming in His Garden</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  color: #4b2d18;
+  background:
+    radial-gradient(circle at top left, rgba(255, 226, 196, 0.55), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(245, 190, 135, 0.45), transparent 35%),
+    linear-gradient(135deg, #fff8ea, #f6dfbf, #d9a85f);
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 92px 18px 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.top-buttons {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+
+.top-button {
+  text-decoration: none;
+  background: linear-gradient(135deg, #eac06b, #a66a2c);
+  color: #fffaf0;
+  padding: 11px 16px;
+  border-radius: 16px;
+  font-weight: bold;
+  box-shadow: 0 5px 14px rgba(55, 28, 8, 0.35);
+  border: 1px solid rgba(255, 235, 180, 0.7);
+}
+
+.binder-card {
+  width: min(1050px, 96vw);
+  background: rgba(255, 250, 238, 0.95);
+  border: 3px solid #c99a51;
+  border-radius: 32px;
+  padding: 34px 26px;
+  box-shadow: 0 16px 36px rgba(85, 45, 12, 0.28);
+  position: relative;
+  overflow: hidden;
+}
+
+.binder-card::before {
+  content: "✿  ✦  ❀  ✦  ✿";
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  color: rgba(168, 102, 45, 0.32);
+  font-size: 24px;
+  letter-spacing: 9px;
+}
+
+.binder-card::after {
+  content: "🌿";
+  position: absolute;
+  bottom: 18px;
+  left: 28px;
+  color: rgba(191, 125, 72, 0.35);
+  font-size: 42px;
+}
+
+h1 {
+  text-align: center;
+  margin: 10px 0 8px;
+  color: #9b5f28;
+  font-size: clamp(32px, 5vw, 52px);
+}
+
+.subtitle {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 26px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #6d4324;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  gap: 16px;
+  max-width: 720px;
+  margin: 0 auto 26px;
+}
+
+label {
+  font-weight: bold;
+  color: #74461f;
+  display: block;
+  margin-bottom: 7px;
+}
+
+select {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: 2px solid #c89245;
+  background: #fffaf0;
+  color: #4b2d18;
+  font-size: 17px;
+  font-family: Georgia, serif;
+}
+
+.study-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.study-box {
+  background: rgba(255, 248, 236, 0.92);
+  border: 2px solid rgba(201, 154, 81, 0.75);
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: inset 0 2px 8px rgba(92, 48, 15, 0.08);
+}
+
+.study-box.full {
+  grid-column: 1 / -1;
+}
+
+.study-title {
+  font-size: 20px;
+  color: #9b5f28;
+  margin: 0 0 10px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 160px;
+  padding: 15px;
+  border-radius: 16px;
+  border: 2px solid #d3aa68;
+  background:
+    linear-gradient(rgba(255, 253, 247, 0.95), rgba(255, 253, 247, 0.95)),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 30px,
+      rgba(196, 143, 74, 0.14) 31px
+    );
+  color: #4b2d18;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.7;
+  resize: vertical;
+}
+
+textarea:focus,
+select:focus {
+  outline: 3px solid rgba(224, 177, 93, 0.35);
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.pretty-button {
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #5c3218;
+  background: linear-gradient(135deg, #fff8ed, #f7d6b8, #eab36d);
+  border: 2px solid #d4a052;
+  box-shadow: 0 6px 14px rgba(75, 38, 12, 0.28);
+}
+
+.pretty-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 18px rgba(75, 38, 12, 0.36);
+}
+
+.secondary {
+  background: linear-gradient(135deg, #fffaf0, #efd9b8, #d7a866);
+}
+
+.journal {
+  background: linear-gradient(135deg, #fff7f2, #f7cfc0, #dda06f);
+}
+
+.danger {
+  background: linear-gradient(135deg, #fff4ef, #e9b8a1, #c9825c);
+}
+
+.saved-note {
+  text-align: center;
+  margin-top: 18px;
+  color: #74461f;
+  font-size: 16px;
+  min-height: 24px;
+  font-weight: bold;
+}
+
+.small-note {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: #7b573a;
+}
+
+@media (max-width: 800px) {
+  .study-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .top-buttons {
+    position: absolute;
+  }
+
+  textarea {
+    min-height: 145px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-buttons">
+  <a class="top-button" href="index.html">🏡 Home</a>
+  <a class="top-button" href="bible-reader.html">📖 Bible Reader</a>
+  <a class="top-button" href="bible-journal.html">📔 Bible Journal</a>
+</div>
+
+<main class="page">
+  <section class="binder-card">
+    <h1>Study Binder</h1>
+
+    <p class="subtitle">
+      Choose a book and chapter, then use these study sections to observe, understand, apply, and pray through Scripture.
+      Your study binder saves on this device.
+    </p>
+
+    <div class="controls">
+      <div>
+        <label for="bookSelect">Book</label>
+        <select id="bookSelect"></select>
+      </div>
+
+      <div>
+        <label for="chapterSelect">Chapter</label>
+        <select id="chapterSelect"></select>
+      </div>
+    </div>
+
+    <div class="study-grid">
+      <div class="study-box">
+        <h2 class="study-title">Observation</h2>
+        <textarea id="observation" placeholder="What do I notice in this chapter? Who is here? What happens?"></textarea>
+      </div>
+
+      <div class="study-box">
+        <h2 class="study-title">Meaning</h2>
+        <textarea id="meaning" placeholder="What does this chapter teach? What truth is being shown?"></textarea>
+      </div>
+
+      <div class="study-box">
+        <h2 class="study-title">Questions</h2>
+        <textarea id="questions" placeholder="What do I not understand yet? What do I want to study deeper?"></textarea>
+      </div>
+
+      <div class="study-box">
+        <h2 class="study-title">Application</h2>
+        <textarea id="application" placeholder="How should this shape my heart, choices, faith, or obedience?"></textarea>
+      </div>
+
+      <div class="study-box">
+        <h2 class="study-title">Key Verse</h2>
+        <textarea id="keyVerse" placeholder="Write a verse or phrase that stands out."></textarea>
+      </div>
+
+      <div class="study-box">
+        <h2 class="study-title">Prayer</h2>
+        <textarea id="prayer" placeholder="Write a prayer from this chapter."></textarea>
+      </div>
+
+      <div class="study-box full">
+        <h2 class="study-title">Extra Notes</h2>
+        <textarea id="extraNotes" placeholder="Add cross-references, word meanings, character notes, themes, or anything else you want to remember."></textarea>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button class="pretty-button" onclick="saveStudy()">💾 Save Study</button>
+      <button class="pretty-button secondary" onclick="openKJV()">📖 Open KJV Chapter</button>
+      <button class="pretty-button journal" onclick="openJournal()">📔 Open Journal</button>
+      <button class="pretty-button secondary" onclick="copyStudy()">🌸 Copy Study</button>
+      <button class="pretty-button danger" onclick="clearStudy()">🧹 Clear This Study</button>
+    </div>
+
+    <div class="saved-note" id="savedNote"></div>
+
+    <p class="small-note">
+      Study Binder entries are saved by book and chapter on the device you are using.
+    </p>
+  </section>
+</main>
+
+<script>
+const books = [
+  ["Genesis", 50], ["Exodus", 40], ["Leviticus", 27], ["Numbers", 36], ["Deuteronomy", 34],
+  ["Joshua", 24], ["Judges", 21], ["Ruth", 4], ["1 Samuel", 31], ["2 Samuel", 24],
+  ["1 Kings", 22], ["2 Kings", 25], ["1 Chronicles", 29], ["2 Chronicles", 36],
+  ["Ezra", 10], ["Nehemiah", 13], ["Esther", 10], ["Job", 42], ["Psalms", 150],
+  ["Proverbs", 31], ["Ecclesiastes", 12], ["Song of Solomon", 8], ["Isaiah", 66],
+  ["Jeremiah", 52], ["Lamentations", 5], ["Ezekiel", 48], ["Daniel", 12], ["Hosea", 14],
+  ["Joel", 3], ["Amos", 9], ["Obadiah", 1], ["Jonah", 4], ["Micah", 7], ["Nahum", 3],
+  ["Habakkuk", 3], ["Zephaniah", 3], ["Haggai", 2], ["Zechariah", 14], ["Malachi", 4],
+  ["Matthew", 28], ["Mark", 16], ["Luke", 24], ["John", 21], ["Acts", 28], ["Romans", 16],
+  ["1 Corinthians", 16], ["2 Corinthians", 13], ["Galatians", 6], ["Ephesians", 6],
+  ["Philippians", 4], ["Colossians", 4], ["1 Thessalonians", 5], ["2 Thessalonians", 3],
+  ["1 Timothy", 6], ["2 Timothy", 4], ["Titus", 3], ["Philemon", 1], ["Hebrews", 13],
+  ["James", 5], ["1 Peter", 5], ["2 Peter", 3], ["1 John", 5], ["2 John", 1],
+  ["3 John", 1], ["Jude", 1], ["Revelation", 22]
+];
+
+const fields = ["observation", "meaning", "questions", "application", "keyVerse", "prayer", "extraNotes"];
+
+const bookSelect = document.getElementById("bookSelect");
+const chapterSelect = document.getElementById("chapterSelect");
+const savedNote = document.getElementById("savedNote");
+
+books.forEach(([book]) => {
+  const option = document.createElement("option");
+  option.value = book;
+  option.textContent = book;
+  bookSelect.appendChild(option);
+});
+
+function updateChapters() {
+  const selectedBook = bookSelect.value;
+  const bookInfo = books.find(([book]) => book === selectedBook);
+  const chapterCount = bookInfo ? bookInfo[1] : 1;
+
+  chapterSelect.innerHTML = "";
+
+  for (let i = 1; i <= chapterCount; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = i;
+    chapterSelect.appendChild(option);
+  }
+
+  loadStudy();
+}
+
+function studyKey() {
+  return "bloomingStudy_" + bookSelect.value + "_" + chapterSelect.value;
+}
+
+function getFieldValues() {
+  const data = {};
+  fields.forEach(id => {
+    data[id] = document.getElementById(id).value;
+  });
+  return data;
+}
+
+function setFieldValues(data) {
+  fields.forEach(id => {
+    document.getElementById(id).value = data && data[id] ? data[id] : "";
+  });
+}
+
+function loadStudy() {
+  const saved = localStorage.getItem(studyKey());
+
+  if (saved) {
+    setFieldValues(JSON.parse(saved));
+    savedNote.textContent = "Loaded saved study for " + bookSelect.value + " " + chapterSelect.value + ".";
+  } else {
+    setFieldValues({});
+    savedNote.textContent = "";
+  }
+}
+
+function saveStudy() {
+  localStorage.setItem(studyKey(), JSON.stringify(getFieldValues()));
+  savedNote.textContent = "Saved study for " + bookSelect.value + " " + chapterSelect.value + ".";
+}
+
+function getKJVUrl(book, chapter) {
+  const passage = encodeURIComponent(book + " " + chapter);
+  return "https://www.biblegateway.com/passage/?search=" + passage + "&version=KJV";
+}
+
+function openKJV() {
+  window.open(getKJVUrl(bookSelect.value, chapterSelect.value), "_blank", "noopener");
+}
+
+function openJournal() {
+  const book = encodeURIComponent(bookSelect.value);
+  const chapter = encodeURIComponent(chapterSelect.value);
+  window.location.href = "bible-journal.html?book=" + book + "&chapter=" + chapter;
+}
+
+function copyStudy() {
+  const data = getFieldValues();
+
+  const text =
+    "Study Binder: " + bookSelect.value + " " + chapterSelect.value + "\n\n" +
+    "Observation:\n" + data.observation + "\n\n" +
+    "Meaning:\n" + data.meaning + "\n\n" +
+    "Questions:\n" + data.questions + "\n\n" +
+    "Application:\n" + data.application + "\n\n" +
+    "Key Verse:\n" + data.keyVerse + "\n\n" +
+    "Prayer:\n" + data.prayer + "\n\n" +
+    "Extra Notes:\n" + data.extraNotes;
+
+  navigator.clipboard.writeText(text).then(() => {
+    savedNote.textContent = "Copied this study.";
+  }).catch(() => {
+    savedNote.textContent = "Copy did not work in this browser.";
+  });
+}
+
+function clearStudy() {
+  const ok = confirm("Clear the study for " + bookSelect.value + " " + chapterSelect.value + "?");
+  if (!ok) return;
+
+  setFieldValues({});
+  localStorage.removeItem(studyKey());
+  savedNote.textContent = "Cleared study for " + bookSelect.value + " " + chapterSelect.value + ".";
+}
+
+function loadFromPageLink() {
+  const params = new URLSearchParams(window.location.search);
+  const bookFromLink = params.get("book");
+  const chapterFromLink = params.get("chapter");
+
+  if (!bookFromLink || !chapterFromLink) {
+    updateChapters();
+    return;
+  }
+
+  const bookExists = books.some(([book]) => book === bookFromLink);
+
+  if (bookExists) {
+    bookSelect.value = bookFromLink;
+    updateChapters();
+
+    const chapterOption = Array.from(chapterSelect.options).some(option => option.value === chapterFromLink);
+
+    if (chapterOption) {
+      chapterSelect.value = chapterFromLink;
+      loadStudy();
+      savedNote.textContent = "Opened study binder for " + bookFromLink + " " + chapterFromLink + ".";
+    }
+  } else {
+    updateChapters();
+  }
+}
+
+bookSelect.addEventListener("change", updateChapters);
+chapterSelect.addEventListener("change", loadStudy);
+
+loadFromPageLink();
+</script>
+
+</body>
+</html>
