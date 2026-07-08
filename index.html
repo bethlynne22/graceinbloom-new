@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blooming in His Garden</title>
 
 <style>
@@ -11,96 +11,96 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #120806;
-  font-family: Georgia, "Times New Roman", serif;
 }
 
 body {
-  background-image: url("FADA176D-B481-43C3-89D9-FAFDA7EFF5B1.png");
+  background-image: url('FADA176D-B481-43C3-89D9-FAFDA7EFF5B1.png');
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-color: #120806;
+  font-family: Georgia, serif;
 }
 
-.side-menu {
+/* Soft bottom area for the pretty buttons */
+.nav-wrap {
   position: fixed;
-  right: 2.2vw;
-  top: 4.2vh;
+  left: 0;
+  right: 0;
+  bottom: 24px;
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  z-index: 50;
+  justify-content: center;
+  padding: 12px;
 }
 
-.side-button {
-  width: 132px;
-  min-height: 34px;
+/* Floral button row */
+.nav {
   display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 18px;
+  border-radius: 32px;
+  background: rgba(35, 16, 10, 0.42);
+  border: 1px solid rgba(255, 223, 172, 0.35);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+}
+
+/* Pretty heirloom buttons */
+.nav-button {
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 8px;
-  padding: 4px 10px;
-  box-sizing: border-box;
   text-decoration: none;
-  color: #fff4cf;
-  font-size: 12px;
+  padding: 13px 23px;
+  border-radius: 999px;
+  font-size: 16px;
   font-weight: bold;
-  letter-spacing: .2px;
-  text-shadow: 0 1px 2px #2b1208;
-  border-radius: 8px;
-  border: 2px solid rgba(218, 168, 79, .85);
-  background: linear-gradient(135deg, #3a1d0d, #7a431d 45%, #2b1409);
+  color: #61381f;
+  background:
+    linear-gradient(135deg, #fffaf0 0%, #f9dfc7 42%, #efbd85 100%);
+  border: 2px solid #d9ad67;
   box-shadow:
-    inset 0 1px 3px rgba(255,255,255,.25),
-    inset 0 -3px 5px rgba(0,0,0,.35),
-    0 3px 7px rgba(0,0,0,.45);
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 5px 12px rgba(44, 20, 8, 0.35);
 }
 
-.side-button span.icon {
-  font-size: 17px;
-  width: 22px;
-  text-align: center;
+/* Tiny floral shine */
+.nav-button::before {
+  content: "✿";
+  font-size: 13px;
+  color: #b97847;
+  opacity: 0.85;
 }
 
-.side-button:hover {
-  transform: translateX(-5px);
-  filter: brightness(1.15);
+/* Bible button gets extra gold */
+.bible-button {
+  background:
+    linear-gradient(135deg, #fff8ed 0%, #f7d6b8 35%, #eab36d 100%);
+  border-color: #e0b15d;
+  color: #5c3218;
 }
 
-.bible { background: linear-gradient(135deg,#4a2911,#8b5524,#2d1609); }
-.library { background: linear-gradient(135deg,#5c3412,#a66b24,#321808); }
-.gardens { background: linear-gradient(135deg,#374b1d,#6f8c3b,#243313); }
-.prayer { background: linear-gradient(135deg,#5c3d1c,#9c7434,#31200e); }
-.journal { background: linear-gradient(135deg,#6b3b24,#a86643,#35190f); }
-.groups { background: linear-gradient(135deg,#47522f,#7c8b4a,#29301b); }
-.women { background: linear-gradient(135deg,#71404d,#a96978,#3b2028); }
-.men { background: linear-gradient(135deg,#24495b,#3f7a94,#142936); }
-.kids { background: linear-gradient(135deg,#83601e,#c3993f,#47330f); }
-.hebrew { background: linear-gradient(135deg,#4d415d,#7b6d8d,#2b2535); }
-.greek { background: linear-gradient(135deg,#10596d,#218aa5,#093541); }
-.maps { background: linear-gradient(135deg,#5a4a24,#947a3b,#302713); }
-.encyclopedia { background: linear-gradient(135deg,#374f3e,#6e8c69,#1f2f24); }
-.creation { background: linear-gradient(135deg,#4d592b,#81934a,#2b3218); }
-.memory { background: linear-gradient(135deg,#66436f,#94629e,#35213b); }
-.preferences { background: linear-gradient(135deg,#3c4650,#6d7780,#20262b); }
+/* Gentle hover */
+.nav-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 16px rgba(44, 20, 8, 0.45);
+}
 
-@media (max-width: 900px) {
-  .side-menu {
-    right: 8px;
-    top: 3vh;
-    gap: 4px;
+/* Smaller screens */
+@media (max-width: 600px) {
+  .nav {
+    gap: 10px;
+    padding: 10px;
   }
 
-  .side-button {
-    width: 110px;
-    min-height: 29px;
-    font-size: 10px;
-    padding: 3px 7px;
-  }
-
-  .side-button span.icon {
+  .nav-button {
     font-size: 14px;
-    width: 18px;
+    padding: 11px 16px;
   }
 }
 </style>
@@ -108,24 +108,13 @@ body {
 
 <body>
 
-<nav class="side-menu">
-<a class="side-button bible" href="bible-reader.html"><span class="icon">📖</span> Bible</a>
-<a class="side-button library" href="grand-library.html"><span class="icon">📚</span> Grand Library</a>
-<a class="side-button gardens" href="garden.html"><span class="icon">🌸</span> Gardens</a>
-  <a class="side-button prayer" href="prayer.html"><span class="icon">🙏</span> Prayer</a>
-  <a class="side-button journal" href="journal.html"><span class="icon">📜</span> Journal</a>
-  <a class="side-button groups" href="groups.html"><span class="icon">👥</span> Groups</a>
-  <a class="side-button women" href="women.html"><span class="icon">🌷</span> Women</a>
-  <a class="side-button men" href="men.html"><span class="icon">🛡️</span> Men</a>
-  <a class="side-button kids" href="kids.html"><span class="icon">🧸</span> Kids</a>
-  <a class="side-button hebrew" href="hebrew.html"><span class="icon">✡</span> Hebrew</a>
-  <a class="side-button greek" href="greek.html"><span class="icon">α</span> Greek</a>
-  <a class="side-button maps" href="maps.html"><span class="icon">🗺</span> Maps & Atlas</a>
-  <a class="side-button encyclopedia" href="encyclopedia.html"><span class="icon">🏛</span> Encyclopedia</a>
-  <a class="side-button creation" href="creation.html"><span class="icon">🌳</span> Creation</a>
-  <a class="side-button memory" href="memory.html"><span class="icon">💗</span> Memory Verses</a>
-  <a class="side-button preferences" href="preferences.html"><span class="icon">⚙️</span> Preferences</a>
-</nav>
+<div class="nav-wrap">
+  <div class="nav">
+    <a class="nav-button bible-button" href="https://www.biblegateway.com/passage/?search=Genesis+1&version=KJV" target="_blank" rel="noopener">📖 Read KJV Bible</a>
+    <a class="nav-button" href="grand-library.html">📚 Grand Library</a>
+    <a class="nav-button" href="garden.html">🌿 Gardens</a>
+  </div>
+</div>
 
 </body>
 </html>
