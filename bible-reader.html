@@ -1,341 +1,1023 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blooming in His Garden Bible</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blooming in His Garden Bible Reader</title>
 
 <style>
-* {
-  box-sizing: border-box;
+:root{
+  --cream:#fff7e8;
+  --paper:#fbefd5;
+  --paper-dark:#e8d5a9;
+  --ink:#4a3522;
+  --deep:#3d2b1f;
+  --green:#6f8b62;
+  --sage:#9fb28e;
+  --eucalyptus:#7f9b85;
+  --gold:#c79a42;
+  --rose:#c48776;
+  --peach:#e9b58d;
+  --bronze:#9a6a3d;
+  --shadow:rgba(45,30,15,.28);
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Georgia, serif;
-  color: #4b2d18;
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Georgia, "Times New Roman", serif;
+  color:var(--ink);
   background:
-    radial-gradient(circle at top left, rgba(255, 226, 196, 0.55), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(245, 190, 135, 0.45), transparent 35%),
-    linear-gradient(135deg, #fff8ea, #f6dfbf, #d9a85f);
-  overflow-x: hidden;
+    radial-gradient(circle at 20% 15%, rgba(255,238,202,.65), transparent 28%),
+    linear-gradient(180deg,#dce8d0 0%,#f8eedc 42%,#e3d2ad 100%);
+  overflow-x:hidden;
 }
 
-.page {
-  min-height: 100vh;
-  padding: 28px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Forest background */
+.scene{
+  min-height:100vh;
+  position:relative;
+  padding:28px 84px 38px 28px;
 }
 
-.home-button {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  text-decoration: none;
-  background: linear-gradient(135deg, #eac06b, #a66a2c);
-  color: #fffaf0;
-  padding: 12px 18px;
-  border-radius: 16px;
-  font-weight: bold;
-  box-shadow: 0 5px 14px rgba(55, 28, 8, 0.35);
-  border: 1px solid rgba(255, 235, 180, 0.7);
+.scene::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(90deg, transparent 0 6%, rgba(255,255,255,.58) 6% 7.4%, transparent 7.4% 12%),
+    linear-gradient(90deg, transparent 0 17%, rgba(255,255,255,.46) 17% 18.2%, transparent 18.2% 24%),
+    linear-gradient(90deg, transparent 0 34%, rgba(255,255,255,.52) 34% 35.5%, transparent 35.5% 42%),
+    linear-gradient(90deg, transparent 0 57%, rgba(255,255,255,.48) 57% 58.4%, transparent 58.4% 64%),
+    linear-gradient(90deg, transparent 0 76%, rgba(255,255,255,.56) 76% 77.4%, transparent 77.4% 84%),
+    linear-gradient(180deg, rgba(120,151,105,.38), rgba(255,247,232,.4));
+  opacity:.72;
+  pointer-events:none;
+  z-index:-2;
 }
 
-.bible-card {
-  width: min(920px, 96vw);
-  background: rgba(255, 250, 238, 0.92);
-  border: 3px solid #c99a51;
-  border-radius: 32px;
-  padding: 34px 26px;
-  box-shadow: 0 16px 36px rgba(85, 45, 12, 0.28);
-  position: relative;
-  overflow: hidden;
+.scene::after{
+  content:"";
+  position:fixed;
+  inset:auto 0 0 0;
+  height:34vh;
+  background:
+    radial-gradient(circle at 10% 90%, rgba(225,132,65,.22), transparent 20%),
+    radial-gradient(circle at 82% 84%, rgba(123,155,121,.34), transparent 25%),
+    linear-gradient(180deg, transparent, rgba(98,117,71,.18));
+  pointer-events:none;
+  z-index:-1;
 }
 
-.bible-card::before {
-  content: "✿  ✿  ✿";
-  position: absolute;
-  top: 18px;
-  right: 28px;
-  color: rgba(168, 102, 45, 0.35);
-  font-size: 26px;
-  letter-spacing: 10px;
+.header{
+  max-width:1120px;
+  margin:0 auto 16px;
+  text-align:center;
 }
 
-.bible-card::after {
-  content: "❀";
-  position: absolute;
-  bottom: 18px;
-  left: 28px;
-  color: rgba(191, 125, 72, 0.35);
-  font-size: 46px;
+.header h1{
+  margin:0;
+  font-size:clamp(28px,4vw,48px);
+  color:#5d422b;
+  text-shadow:0 2px 0 rgba(255,255,255,.55);
+  letter-spacing:.5px;
 }
 
-h1 {
-  text-align: center;
-  margin: 10px 0 8px;
-  color: #9b5f28;
-  font-size: clamp(32px, 5vw, 52px);
+.header p{
+  margin:8px 0 0;
+  font-size:16px;
+  color:#684d33;
 }
 
-.subtitle {
-  text-align: center;
-  max-width: 650px;
-  margin: 0 auto 30px;
-  font-size: 18px;
-  line-height: 1.6;
-  color: #6d4324;
+/* Controls */
+.reader-controls{
+  max-width:1120px;
+  margin:0 auto 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  align-items:center;
+  padding:12px;
+  background:rgba(255,248,232,.78);
+  border:1px solid rgba(179,132,61,.35);
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(80,50,20,.12);
+  backdrop-filter:blur(4px);
 }
 
-.controls {
-  display: grid;
-  grid-template-columns: 1fr 160px;
-  gap: 16px;
-  max-width: 680px;
-  margin: 0 auto 24px;
+.control-group{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  background:rgba(255,255,255,.38);
+  border:1px solid rgba(150,110,60,.18);
+  border-radius:999px;
+  padding:8px 10px;
 }
 
-label {
-  font-weight: bold;
-  color: #74461f;
-  display: block;
-  margin-bottom: 7px;
+label{
+  font-size:13px;
+  font-weight:bold;
+  color:#63472f;
 }
 
-select {
-  width: 100%;
-  padding: 13px 14px;
-  border-radius: 14px;
-  border: 2px solid #c89245;
-  background: #fffaf0;
-  color: #4b2d18;
-  font-size: 17px;
-  font-family: Georgia, serif;
+select,
+button{
+  font-family:Georgia, "Times New Roman", serif;
 }
 
-.button-row {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 24px;
+select{
+  border:1px solid rgba(105,78,45,.25);
+  border-radius:999px;
+  padding:7px 10px;
+  background:#fffaf0;
+  color:var(--ink);
 }
 
-.pretty-button {
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 24px;
-  border-radius: 999px;
-  font-family: Georgia, serif;
-  font-size: 16px;
-  font-weight: bold;
-  color: #5c3218;
-  background: linear-gradient(135deg, #fff8ed, #f7d6b8, #eab36d);
-  border: 2px solid #d4a052;
-  box-shadow: 0 6px 14px rgba(75, 38, 12, 0.28);
+.small-btn{
+  border:none;
+  border-radius:999px;
+  padding:7px 11px;
+  background:linear-gradient(180deg,#fff5df,#eed6a7);
+  color:#513820;
+  box-shadow:0 2px 6px rgba(70,40,15,.16);
+  cursor:pointer;
 }
 
-.pretty-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 9px 18px rgba(75, 38, 12, 0.36);
+.small-btn:hover{
+  transform:translateY(-1px);
 }
 
-.secondary {
-  background: linear-gradient(135deg, #fffaf0, #efd9b8, #d7a866);
+/* Open Bible */
+.bible-stage{
+  max-width:1120px;
+  margin:0 auto;
+  position:relative;
 }
 
-.journal {
-  background: linear-gradient(135deg, #fff7f2, #f7cfc0, #dda06f);
+.open-bible{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:620px;
+  background:
+    linear-gradient(90deg, transparent 49.4%, rgba(91,59,31,.25) 49.7%, rgba(255,255,255,.55) 50%, rgba(91,59,31,.22) 50.3%, transparent 50.6%),
+    linear-gradient(180deg,#fff8e9,#f2ddae);
+  border-radius:34px 34px 28px 28px;
+  border:2px solid rgba(154,106,61,.45);
+  box-shadow:
+    0 28px 60px var(--shadow),
+    inset 0 0 36px rgba(126,84,35,.18);
+  overflow:hidden;
 }
 
-.binder {
-  background: linear-gradient(135deg, #fffaf0, #ead2a3, #c99a51);
+.page{
+  position:relative;
+  padding:34px 34px 82px;
 }
 
-.saved-note {
-  text-align: center;
-  margin-top: 22px;
-  color: #74461f;
-  font-size: 16px;
-  min-height: 22px;
+.left-page{
+  background:
+    radial-gradient(circle at 20% 12%, rgba(255,255,255,.72), transparent 28%),
+    linear-gradient(90deg,#fff5dc,#f6dfaf);
 }
 
-.small-note {
-  text-align: center;
-  margin-top: 28px;
-  font-size: 14px;
-  color: #7b573a;
+.right-page{
+  background:
+    radial-gradient(circle at 80% 8%, rgba(255,255,255,.65), transparent 25%),
+    linear-gradient(90deg,#f6dfaf,#fff4da);
 }
 
-@media (max-width: 650px) {
-  .controls {
-    grid-template-columns: 1fr;
+.page::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(180,135,65,.28);
+  border-radius:24px;
+  pointer-events:none;
+}
+
+.page-corner{
+  position:absolute;
+  top:20px;
+  right:24px;
+  font-size:28px;
+  opacity:.7;
+}
+
+.left-page .page-corner{
+  right:auto;
+  left:24px;
+}
+
+.art-card{
+  height:100%;
+  min-height:490px;
+  border-radius:26px;
+  border:2px solid rgba(186,139,71,.45);
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.88), transparent 22%),
+    linear-gradient(180deg, rgba(160,182,140,.5), rgba(249,226,188,.85)),
+    url("");
+  box-shadow:inset 0 0 24px rgba(107,78,44,.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:24px;
+}
+
+.art-inner{
+  background:rgba(255,250,238,.72);
+  border:1px solid rgba(148,103,55,.3);
+  border-radius:22px;
+  padding:24px;
+  max-width:340px;
+}
+
+.art-inner h2{
+  margin:0 0 8px;
+  color:#5b4029;
+}
+
+.art-inner p{
+  margin:0;
+  line-height:1.45;
+}
+
+.scripture-top{
+  text-align:center;
+  margin-bottom:16px;
+}
+
+.scripture-top h2{
+  margin:4px 0 3px;
+  font-size:31px;
+  color:#4d3624;
+}
+
+.scripture-top .translation{
+  font-size:14px;
+  color:#805b34;
+}
+
+.scripture-box{
+  position:relative;
+  z-index:1;
+  max-height:455px;
+  overflow:auto;
+  padding:6px 10px 10px;
+  line-height:1.75;
+  font-size:18px;
+}
+
+.verse{
+  margin:0 0 12px;
+}
+
+.verse-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:23px;
+  height:23px;
+  margin-right:7px;
+  border-radius:50%;
+  font-size:12px;
+  font-weight:bold;
+  color:#fff8e8;
+  background:linear-gradient(180deg,var(--gold),var(--bronze));
+  cursor:pointer;
+}
+
+.verse-num:hover{
+  background:linear-gradient(180deg,var(--rose),var(--bronze));
+}
+
+/* Tool links */
+.tool-links{
+  position:absolute;
+  bottom:24px;
+  left:28px;
+  right:28px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  z-index:2;
+}
+
+.tool-links a{
+  text-decoration:none;
+  color:#52391f;
+  background:rgba(255,250,238,.74);
+  border:1px solid rgba(167,118,56,.35);
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:14px;
+  box-shadow:0 2px 8px rgba(90,55,24,.1);
+}
+
+.tool-links a:hover{
+  background:#fff4d9;
+}
+
+/* Bottom leather ribbons */
+.ribbon-nav{
+  max-width:900px;
+  margin:15px auto 0;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.ribbon-btn{
+  position:relative;
+  border:none;
+  min-width:118px;
+  padding:10px 14px 16px;
+  border-radius:0 0 14px 14px;
+  background:linear-gradient(180deg,#9c6b42,#6f4328);
+  color:#fff5df;
+  font-size:14px;
+  box-shadow:0 8px 18px rgba(65,35,14,.24);
+  cursor:pointer;
+}
+
+.ribbon-btn::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-10px;
+  transform:translateX(-50%);
+  width:0;
+  height:0;
+  border-left:14px solid transparent;
+  border-right:14px solid transparent;
+  border-top:11px solid #6f4328;
+}
+
+.ribbon-btn.bookmark{
+  background:linear-gradient(180deg,#b48746,#7d522a);
+}
+
+.ribbon-btn.next{
+  background:linear-gradient(180deg,#896b58,#5d4030);
+}
+
+.ribbon-btn:hover{
+  transform:translateY(1px);
+}
+
+/* Right side Bible tabs */
+.side-tabs{
+  position:fixed;
+  top:145px;
+  right:10px;
+  z-index:20;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.tab-btn{
+  width:48px;
+  height:48px;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(180deg,#fff4dc,#e2c489);
+  color:#513820;
+  box-shadow:0 6px 16px rgba(55,35,18,.22);
+  cursor:pointer;
+  font-size:22px;
+}
+
+.tab-btn:hover{
+  transform:translateX(-2px);
+}
+
+.book-drawer{
+  position:fixed;
+  top:145px;
+  right:66px;
+  width:290px;
+  max-height:70vh;
+  overflow:auto;
+  background:rgba(255,248,232,.96);
+  border:1px solid rgba(154,106,61,.38);
+  border-radius:22px;
+  box-shadow:0 18px 45px rgba(50,30,15,.25);
+  padding:14px;
+  z-index:21;
+  display:none;
+}
+
+.book-drawer.open{
+  display:block;
+}
+
+.drawer-title{
+  margin:0 0 10px;
+  color:#513820;
+  font-size:20px;
+}
+
+.book-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.book-item{
+  border:none;
+  border-radius:12px;
+  padding:8px;
+  background:#fffaf0;
+  color:#4a3522;
+  cursor:pointer;
+  text-align:left;
+  border:1px solid rgba(160,112,58,.22);
+}
+
+.book-item:hover{
+  background:#f7e5bd;
+}
+
+/* Floral accents */
+.flower-pot{
+  position:fixed;
+  right:18px;
+  bottom:20px;
+  width:78px;
+  height:120px;
+  pointer-events:none;
+  z-index:5;
+}
+
+.flower-pot::before{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:18px;
+  width:44px;
+  height:48px;
+  border-radius:0 0 15px 15px;
+  background:linear-gradient(180deg,rgba(175,218,215,.74),rgba(92,143,142,.75));
+  border:2px solid rgba(255,255,255,.58);
+  box-shadow:inset 0 0 10px rgba(255,255,255,.45);
+}
+
+.flower-pot::after{
+  content:"🌿 🌾 🧡";
+  position:absolute;
+  top:0;
+  left:0;
+  font-size:34px;
+  line-height:1.05;
+}
+
+/* Verse help popup */
+.help-popup{
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(420px,88vw);
+  background:#fff7e6;
+  border:2px solid rgba(180,132,61,.5);
+  border-radius:22px;
+  box-shadow:0 24px 70px rgba(43,28,14,.36);
+  padding:20px;
+  z-index:50;
+  display:none;
+}
+
+.help-popup.open{
+  display:block;
+}
+
+.help-popup h3{
+  margin:0 0 8px;
+}
+
+.help-popup p{
+  margin:0 0 14px;
+  line-height:1.5;
+}
+
+.close-help{
+  border:none;
+  border-radius:999px;
+  padding:8px 12px;
+  background:#7a5330;
+  color:white;
+  cursor:pointer;
+}
+
+/* Mobile */
+@media(max-width:850px){
+  .scene{
+    padding:20px 14px 120px;
   }
 
-  .home-button {
-    position: static;
-    display: inline-block;
-    margin-bottom: 18px;
+  .open-bible{
+    grid-template-columns:1fr;
   }
 
-  .page {
-    align-items: flex-start;
+  .page{
+    padding:26px 22px 86px;
+  }
+
+  .art-card{
+    min-height:300px;
+  }
+
+  .scripture-box{
+    max-height:none;
+  }
+
+  .side-tabs{
+    top:auto;
+    right:10px;
+    bottom:12px;
+    flex-direction:row;
+  }
+
+  .tab-btn{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+  }
+
+  .book-drawer{
+    top:auto;
+    right:10px;
+    left:10px;
+    bottom:70px;
+    width:auto;
+    max-height:55vh;
+  }
+
+  .flower-pot{
+    display:none;
   }
 }
 </style>
 </head>
 
 <body>
+<div class="scene">
 
-<a class="home-button" href="index.html">🏡 Return Home</a>
+  <header class="header">
+    <h1>Blooming in His Garden Bible Reader</h1>
+    <p>Choose a translation, open a book, read, bookmark, study, journal, and grow.</p>
+  </header>
 
-<main class="page">
-  <section class="bible-card">
-    <h1>Blooming in His Garden Bible</h1>
-
-    <p class="subtitle">
-      Choose a book and chapter, then open the real KJV Bible reading online.
-      You can also open your Bible Journal or Study Binder for the same chapter.
-    </p>
-
-    <div class="controls">
-      <div>
-        <label for="bookSelect">Book</label>
-        <select id="bookSelect"></select>
-      </div>
-
-      <div>
-        <label for="chapterSelect">Chapter</label>
-        <select id="chapterSelect"></select>
-      </div>
+  <section class="reader-controls" aria-label="Bible reader controls">
+    <div class="control-group">
+      <label for="translationSelect">Translation</label>
+      <select id="translationSelect">
+        <option value="KJV">KJV</option>
+        <option value="WEB">WEB</option>
+        <option value="HNV">HNV</option>
+        <option value="ASV">ASV</option>
+      </select>
     </div>
 
-    <div class="button-row">
-      <button class="pretty-button" onclick="openKJV()">📖 Open KJV Chapter</button>
-      <button class="pretty-button journal" onclick="openJournal()">📔 Open Journal</button>
-      <button class="pretty-button binder" onclick="openStudyBinder()">📒 Open Study Binder</button>
-      <button class="pretty-button secondary" onclick="saveSpot()">🔖 Save My Spot</button>
-      <button class="pretty-button secondary" onclick="openSavedSpot()">🌸 Open Saved Spot</button>
+    <div class="control-group">
+      <label for="bookSelect">Book</label>
+      <select id="bookSelect"></select>
     </div>
 
-    <div class="saved-note" id="savedNote"></div>
+    <div class="control-group">
+      <label for="chapterSelect">Chapter</label>
+      <select id="chapterSelect"></select>
+    </div>
 
-    <p class="small-note">
-      Your floral Bible pages, study binder, coloring pages, and wildflower designs can be added book by book over time.
-    </p>
+    <div class="control-group">
+      <label for="fontSelect">Font</label>
+      <select id="fontSelect">
+        <option value="Georgia, 'Times New Roman', serif">Georgia</option>
+        <option value="'Times New Roman', serif">Classic Bible</option>
+        <option value="'Trebuchet MS', sans-serif">Easy Read</option>
+        <option value="'Lucida Handwriting', cursive">Gentle Handwriting</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <button class="small-btn" id="fontMinus">A−</button>
+      <button class="small-btn" id="fontPlus">A+</button>
+    </div>
   </section>
-</main>
+
+  <main class="bible-stage">
+    <section class="open-bible" aria-label="Open Bible">
+      <div class="page left-page">
+        <div class="page-corner">🌿</div>
+
+        <div class="art-card">
+          <div class="art-inner">
+            <h2 id="artTitle">Genesis</h2>
+            <p id="artText">
+              Character art and chapter artwork will appear here. This side is reserved for the beautiful Bible story image.
+            </p>
+          </div>
+        </div>
+
+        <div class="tool-links">
+          <a href="study-binder.html">📖 Study Binder</a>
+          <a href="journal.html">✍️ Journal</a>
+          <a href="coloring.html">🎨 Coloring</a>
+        </div>
+      </div>
+
+      <div class="page right-page">
+        <div class="page-corner">🧡</div>
+
+        <div class="scripture-top">
+          <h2 id="chapterTitle">Genesis 1</h2>
+          <div class="translation" id="translationLabel">King James Version</div>
+        </div>
+
+        <article class="scripture-box" id="scriptureBox"></article>
+
+        <div class="tool-links">
+          <a href="study-binder.html">Chapter Study</a>
+          <a href="journal.html">Write Notes</a>
+          <a href="coloring.html">Coloring Page</a>
+        </div>
+      </div>
+    </section>
+
+    <nav class="ribbon-nav" aria-label="Chapter navigation">
+      <button class="ribbon-btn" id="prevBtn">← Previous</button>
+      <button class="ribbon-btn bookmark" id="bookmarkBtn">🔖 Bookmark</button>
+      <button class="ribbon-btn next" id="nextBtn">Next →</button>
+    </nav>
+  </main>
+
+  <aside class="side-tabs" aria-label="Bible section tabs">
+    <button class="tab-btn" data-section="torah" title="Torah">📜</button>
+    <button class="tab-btn" data-section="history" title="History">🏛️</button>
+    <button class="tab-btn" data-section="poetry" title="Poetry">🎵</button>
+    <button class="tab-btn" data-section="prophets" title="Prophets">🔥</button>
+    <button class="tab-btn" data-section="gospels" title="Gospels">🌿</button>
+    <button class="tab-btn" data-section="letters" title="Letters">✉️</button>
+  </aside>
+
+  <aside class="book-drawer" id="bookDrawer">
+    <h2 class="drawer-title" id="drawerTitle">Books</h2>
+    <div class="book-grid" id="bookGrid"></div>
+  </aside>
+
+  <div class="flower-pot" aria-hidden="true"></div>
+
+  <div class="help-popup" id="helpPopup">
+    <h3 id="helpTitle">Verse Help</h3>
+    <p id="helpText">
+      This will become the gentle owl helper area with verse explanation, word meaning, people, places, maps, and study notes.
+    </p>
+    <button class="close-help" id="closeHelp">Close</button>
+  </div>
+
+</div>
 
 <script>
-const books = [
-  ["Genesis", 50], ["Exodus", 40], ["Leviticus", 27], ["Numbers", 36], ["Deuteronomy", 34],
-  ["Joshua", 24], ["Judges", 21], ["Ruth", 4], ["1 Samuel", 31], ["2 Samuel", 24],
-  ["1 Kings", 22], ["2 Kings", 25], ["1 Chronicles", 29], ["2 Chronicles", 36],
-  ["Ezra", 10], ["Nehemiah", 13], ["Esther", 10], ["Job", 42], ["Psalms", 150],
-  ["Proverbs", 31], ["Ecclesiastes", 12], ["Song of Solomon", 8], ["Isaiah", 66],
-  ["Jeremiah", 52], ["Lamentations", 5], ["Ezekiel", 48], ["Daniel", 12], ["Hosea", 14],
-  ["Joel", 3], ["Amos", 9], ["Obadiah", 1], ["Jonah", 4], ["Micah", 7], ["Nahum", 3],
-  ["Habakkuk", 3], ["Zephaniah", 3], ["Haggai", 2], ["Zechariah", 14], ["Malachi", 4],
-  ["Matthew", 28], ["Mark", 16], ["Luke", 24], ["John", 21], ["Acts", 28], ["Romans", 16],
-  ["1 Corinthians", 16], ["2 Corinthians", 13], ["Galatians", 6], ["Ephesians", 6],
-  ["Philippians", 4], ["Colossians", 4], ["1 Thessalonians", 5], ["2 Thessalonians", 3],
-  ["1 Timothy", 6], ["2 Timothy", 4], ["Titus", 3], ["Philemon", 1], ["Hebrews", 13],
-  ["James", 5], ["1 Peter", 5], ["2 Peter", 3], ["1 John", 5], ["2 John", 1],
-  ["3 John", 1], ["Jude", 1], ["Revelation", 22]
-];
+const bibleSections = {
+  torah: {
+    title: "Torah / Books of Moses",
+    books: ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy"]
+  },
+  history: {
+    title: "History",
+    books: ["Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther"]
+  },
+  poetry: {
+    title: "Poetry & Wisdom",
+    books: ["Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon"]
+  },
+  prophets: {
+    title: "Prophets",
+    books: ["Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi"]
+  },
+  gospels: {
+    title: "Gospels & Acts",
+    books: ["Matthew","Mark","Luke","John","Acts"]
+  },
+  letters: {
+    title: "Letters & Revelation",
+    books: ["Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+  }
+};
+
+const chapterCounts = {
+  "Genesis":50,"Exodus":40,"Leviticus":27,"Numbers":36,"Deuteronomy":34,
+  "Joshua":24,"Judges":21,"Ruth":4,"1 Samuel":31,"2 Samuel":24,
+  "1 Kings":22,"2 Kings":25,"1 Chronicles":29,"2 Chronicles":36,"Ezra":10,
+  "Nehemiah":13,"Esther":10,"Job":42,"Psalms":150,"Proverbs":31,
+  "Ecclesiastes":12,"Song of Solomon":8,"Isaiah":66,"Jeremiah":52,
+  "Lamentations":5,"Ezekiel":48,"Daniel":12,"Hosea":14,"Joel":3,
+  "Amos":9,"Obadiah":1,"Jonah":4,"Micah":7,"Nahum":3,
+  "Habakkuk":3,"Zephaniah":3,"Haggai":2,"Zechariah":14,"Malachi":4,
+  "Matthew":28,"Mark":16,"Luke":24,"John":21,"Acts":28,
+  "Romans":16,"1 Corinthians":16,"2 Corinthians":13,"Galatians":6,
+  "Ephesians":6,"Philippians":4,"Colossians":4,"1 Thessalonians":5,
+  "2 Thessalonians":3,"1 Timothy":6,"2 Timothy":4,"Titus":3,
+  "Philemon":1,"Hebrews":13,"James":5,"1 Peter":5,"2 Peter":3,
+  "1 John":5,"2 John":1,"3 John":1,"Jude":1,"Revelation":22
+};
+
+const translationNames = {
+  KJV: "King James Version",
+  WEB: "World English Bible",
+  HNV: "Hebrew Names Version",
+  ASV: "American Standard Version"
+};
+
+const sampleText = {
+  KJV: {
+    "Genesis-1": [
+      "In the beginning God created the heaven and the earth.",
+      "And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.",
+      "And God said, Let there be light: and there was light.",
+      "And God saw the light, that it was good: and God divided the light from the darkness.",
+      "And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day."
+    ]
+  },
+  WEB: {
+    "Genesis-1": [
+      "In the beginning, God created the heavens and the earth.",
+      "The earth was formless and empty. Darkness was on the surface of the deep and God’s Spirit was hovering over the surface of the waters.",
+      "God said, “Let there be light,” and there was light.",
+      "God saw the light, and saw that it was good. God divided the light from the darkness.",
+      "God called the light “day,” and the darkness he called “night.” There was evening and there was morning, the first day."
+    ]
+  },
+  HNV: {
+    "Genesis-1": [
+      "In the beginning God created the heavens and the earth.",
+      "Now the earth was formless and empty. Darkness was on the surface of the deep. God’s Spirit was hovering over the surface of the waters.",
+      "God said, “Let there be light,” and there was light.",
+      "God saw the light, and saw that it was good. God divided the light from the darkness.",
+      "God called the light Day, and the darkness he called Night. There was evening and there was morning, one day."
+    ]
+  },
+  ASV: {
+    "Genesis-1": [
+      "In the beginning God created the heavens and the earth.",
+      "And the earth was waste and void; and darkness was upon the face of the deep: and the Spirit of God moved upon the face of the waters.",
+      "And God said, Let there be light: and there was light.",
+      "And God saw the light, that it was good: and God divided the light from the darkness.",
+      "And God called the light Day, and the darkness he called Night. And there was evening and there was morning, one day."
+    ]
+  }
+};
+
+let currentBook = "Genesis";
+let currentChapter = 1;
+let currentTranslation = "KJV";
+let fontSize = 18;
 
 const bookSelect = document.getElementById("bookSelect");
 const chapterSelect = document.getElementById("chapterSelect");
-const savedNote = document.getElementById("savedNote");
+const translationSelect = document.getElementById("translationSelect");
+const fontSelect = document.getElementById("fontSelect");
+const scriptureBox = document.getElementById("scriptureBox");
+const chapterTitle = document.getElementById("chapterTitle");
+const translationLabel = document.getElementById("translationLabel");
+const artTitle = document.getElementById("artTitle");
+const artText = document.getElementById("artText");
+const bookDrawer = document.getElementById("bookDrawer");
+const drawerTitle = document.getElementById("drawerTitle");
+const bookGrid = document.getElementById("bookGrid");
+const helpPopup = document.getElementById("helpPopup");
+const helpTitle = document.getElementById("helpTitle");
+const helpText = document.getElementById("helpText");
 
-books.forEach(([book]) => {
-  const option = document.createElement("option");
-  option.value = book;
-  option.textContent = book;
-  bookSelect.appendChild(option);
-});
+function getAllBooks(){
+  return Object.values(bibleSections).flatMap(section => section.books);
+}
 
-function updateChapters() {
-  const selectedBook = bookSelect.value;
-  const bookInfo = books.find(([book]) => book === selectedBook);
-  const chapterCount = bookInfo ? bookInfo[1] : 1;
+function fillBookSelect(){
+  bookSelect.innerHTML = "";
+  getAllBooks().forEach(book => {
+    const option = document.createElement("option");
+    option.value = book;
+    option.textContent = book;
+    bookSelect.appendChild(option);
+  });
+  bookSelect.value = currentBook;
+}
 
+function fillChapterSelect(){
   chapterSelect.innerHTML = "";
-
-  for (let i = 1; i <= chapterCount; i++) {
+  const total = chapterCounts[currentBook] || 1;
+  for(let i = 1; i <= total; i++){
     const option = document.createElement("option");
     option.value = i;
     option.textContent = i;
     chapterSelect.appendChild(option);
   }
+  chapterSelect.value = currentChapter;
 }
 
-function getKJVUrl(book, chapter) {
-  const passage = encodeURIComponent(book + " " + chapter);
-  return "https://www.biblegateway.com/passage/?search=" + passage + "&version=KJV";
-}
+function renderScripture(){
+  const key = `${currentBook}-${currentChapter}`;
+  const verses = sampleText[currentTranslation] && sampleText[currentTranslation][key];
 
-function openKJV() {
-  const book = bookSelect.value;
-  const chapter = chapterSelect.value;
-  window.open(getKJVUrl(book, chapter), "_blank", "noopener");
-}
+  chapterTitle.textContent = `${currentBook} ${currentChapter}`;
+  translationLabel.textContent = translationNames[currentTranslation];
+  artTitle.textContent = currentBook;
 
-function openJournal() {
-  const book = encodeURIComponent(bookSelect.value);
-  const chapter = encodeURIComponent(chapterSelect.value);
-  window.location.href = "bible-journal.html?book=" + book + "&chapter=" + chapter;
-}
+  if(currentBook === "Genesis" && currentChapter === 1){
+    artText.textContent = "Genesis 1 artwork will go here: creation light, garden beauty, soft heavenly glow, botanicals, and warm storybook detail.";
+  } else {
+    artText.textContent = "Artwork for this book and chapter will be added as this Bible volume grows.";
+  }
 
-function openStudyBinder() {
-  const book = encodeURIComponent(bookSelect.value);
-  const chapter = encodeURIComponent(chapterSelect.value);
-  window.location.href = "study-binder.html?book=" + book + "&chapter=" + chapter;
-}
+  scriptureBox.style.fontSize = fontSize + "px";
+  scriptureBox.style.fontFamily = fontSelect.value;
 
-function saveSpot() {
-  const book = bookSelect.value;
-  const chapter = chapterSelect.value;
-  localStorage.setItem("bloomingBibleSpot", JSON.stringify({ book, chapter }));
-  savedNote.textContent = "Saved: " + book + " " + chapter;
-}
-
-function openSavedSpot() {
-  const saved = localStorage.getItem("bloomingBibleSpot");
-
-  if (!saved) {
-    savedNote.textContent = "No saved spot yet.";
+  if(!verses){
+    scriptureBox.innerHTML = `
+      <p class="verse">
+        <span class="verse-num">♡</span>
+        This chapter space is ready. Next we will add the full Scripture text volume by volume.
+      </p>
+      <p class="verse">
+        <span class="verse-num">+</span>
+        Current open page: <strong>${currentBook} ${currentChapter}</strong> in <strong>${translationNames[currentTranslation]}</strong>.
+      </p>
+    `;
     return;
   }
 
-  const spot = JSON.parse(saved);
-  window.open(getKJVUrl(spot.book, spot.chapter), "_blank", "noopener");
+  scriptureBox.innerHTML = verses.map((verse, index) => `
+    <p class="verse">
+      <span class="verse-num" data-verse="${index + 1}">${index + 1}</span>
+      ${verse}
+    </p>
+  `).join("");
+
+  document.querySelectorAll(".verse-num").forEach(num => {
+    num.addEventListener("dblclick", () => openVerseHelp(num.dataset.verse));
+    num.addEventListener("click", () => openVerseHelp(num.dataset.verse));
+  });
 }
 
-bookSelect.addEventListener("change", updateChapters);
+function setBook(book){
+  currentBook = book;
+  currentChapter = 1;
+  bookSelect.value = currentBook;
+  fillChapterSelect();
+  renderScripture();
+  bookDrawer.classList.remove("open");
+}
 
-updateChapters();
+function openDrawer(sectionKey){
+  const section = bibleSections[sectionKey];
+  drawerTitle.textContent = section.title;
+  bookGrid.innerHTML = "";
 
-const saved = localStorage.getItem("bloomingBibleSpot");
-if (saved) {
-  const spot = JSON.parse(saved);
-  const bookExists = books.some(([book]) => book === spot.book);
+  section.books.forEach(book => {
+    const btn = document.createElement("button");
+    btn.className = "book-item";
+    btn.textContent = book;
+    btn.addEventListener("click", () => setBook(book));
+    bookGrid.appendChild(btn);
+  });
 
-  if (bookExists) {
-    bookSelect.value = spot.book;
-    updateChapters();
-    chapterSelect.value = spot.chapter;
-    savedNote.textContent = "Saved spot: " + spot.book + " " + spot.chapter;
+  bookDrawer.classList.add("open");
+}
+
+function openVerseHelp(verseNumber){
+  helpTitle.textContent = `${currentBook} ${currentChapter}:${verseNumber} Help`;
+  helpText.textContent = "This is where the gentle owl helper will explain difficult words, Hebrew meaning, people, places, context, and study questions for this verse.";
+  helpPopup.classList.add("open");
+}
+
+function saveBookmark(){
+  const bookmark = {
+    book: currentBook,
+    chapter: currentChapter,
+    translation: currentTranslation
+  };
+  localStorage.setItem("bloomBibleBookmark", JSON.stringify(bookmark));
+  document.getElementById("bookmarkBtn").textContent = "✓ Saved";
+  setTimeout(() => {
+    document.getElementById("bookmarkBtn").textContent = "🔖 Bookmark";
+  }, 1300);
+}
+
+function loadBookmark(){
+  const saved = localStorage.getItem("bloomBibleBookmark");
+  if(!saved) return;
+
+  try{
+    const bookmark = JSON.parse(saved);
+    if(bookmark.book && chapterCounts[bookmark.book]){
+      currentBook = bookmark.book;
+      currentChapter = bookmark.chapter || 1;
+      currentTranslation = bookmark.translation || "KJV";
+    }
+  }catch(error){
+    console.log("No bookmark loaded.");
   }
 }
+
+function goPrevious(){
+  if(currentChapter > 1){
+    currentChapter--;
+  } else {
+    const books = getAllBooks();
+    const index = books.indexOf(currentBook);
+    if(index > 0){
+      currentBook = books[index - 1];
+      currentChapter = chapterCounts[currentBook] || 1;
+    }
+  }
+
+  bookSelect.value = currentBook;
+  fillChapterSelect();
+  chapterSelect.value = currentChapter;
+  renderScripture();
+}
+
+function goNext(){
+  const total = chapterCounts[currentBook] || 1;
+  if(currentChapter < total){
+    currentChapter++;
+  } else {
+    const books = getAllBooks();
+    const index = books.indexOf(currentBook);
+    if(index < books.length - 1){
+      currentBook = books[index + 1];
+      currentChapter = 1;
+    }
+  }
+
+  bookSelect.value = currentBook;
+  fillChapterSelect();
+  chapterSelect.value = currentChapter;
+  renderScripture();
+}
+
+translationSelect.addEventListener("change", () => {
+  currentTranslation = translationSelect.value;
+  renderScripture();
+});
+
+bookSelect.addEventListener("change", () => {
+  currentBook = bookSelect.value;
+  currentChapter = 1;
+  fillChapterSelect();
+  renderScripture();
+});
+
+chapterSelect.addEventListener("change", () => {
+  currentChapter = Number(chapterSelect.value);
+  renderScripture();
+});
+
+fontSelect.addEventListener("change", renderScripture);
+
+document.getElementById("fontMinus").addEventListener("click", () => {
+  fontSize = Math.max(14, fontSize - 1);
+  renderScripture();
+});
+
+document.getElementById("fontPlus").addEventListener("click", () => {
+  fontSize = Math.min(30, fontSize + 1);
+  renderScripture();
+});
+
+document.getElementById("prevBtn").addEventListener("click", goPrevious);
+document.getElementById("nextBtn").addEventListener("click", goNext);
+document.getElementById("bookmarkBtn").addEventListener("click", saveBookmark);
+document.getElementById("closeHelp").addEventListener("click", () => helpPopup.classList.remove("open"));
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => openDrawer(btn.dataset.section));
+});
+
+document.addEventListener("click", event => {
+  const clickedDrawer = bookDrawer.contains(event.target);
+  const clickedTab = event.target.closest(".tab-btn");
+  if(!clickedDrawer && !clickedTab){
+    bookDrawer.classList.remove("open");
+  }
+});
+
+loadBookmark();
+fillBookSelect();
+translationSelect.value = currentTranslation;
+fillChapterSelect();
+renderScripture();
 </script>
 
 </body>
