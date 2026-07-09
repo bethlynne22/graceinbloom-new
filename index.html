@@ -17,87 +17,106 @@ body {
   background-image: url('FADA176D-B481-43C3-89D9-FAFDA7EFF5B1.png');
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   background-color: #120806;
   font-family: Georgia, serif;
 }
 
-/* TEMPORARY click boxes so we can line them up with the tabs drawn in the picture */
-.tab-hotspots {
+/* invisible clickable areas */
+.hotspot {
   position: fixed;
-  right: 6%;
-  top: 22%;
-  width: 220px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 50;
-}
-
-/* These boxes are only pink for testing. We will make them invisible after they line up. */
-.tab-hotspots a {
   display: block;
-  width: 220px;
-  height: 50px;
-  border-radius: 18px;
-  background: rgba(255, 80, 160, 0.28);
-  border: 2px dashed rgba(255, 255, 255, 0.75);
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
   text-decoration: none;
-  text-align: center;
-  line-height: 50px;
-  text-shadow: 0 1px 3px #000;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+  z-index: 50;
+  cursor: pointer;
 }
 
-.tab-hotspots a:hover {
-  background: rgba(255, 80, 160, 0.45);
+/* click the open Bible in the picture */
+.bible-open {
+  left: 39%;
+  top: 78%;
+  width: 13%;
+  height: 10%;
 }
 
-/* Backup bottom links in case the tab boxes need adjusting */
-.backup-nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 18px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  z-index: 40;
-  padding: 8px;
+/* click the garden/tree scene */
+.garden-area {
+  left: 45%;
+  top: 10%;
+  width: 18%;
+  height: 42%;
 }
 
-.backup-nav a {
-  text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #fff8ed, #f7d6b8, #eab36d);
-  color: #5c3218;
-  font-weight: bold;
-  border: 2px solid #d4a052;
-  box-shadow: 0 5px 12px rgba(44, 20, 8, 0.35);
+/* right-side page tabs from the artwork */
+.right-tab {
+  right: 0.5%;
+  width: 13%;
+  height: 7.7%;
 }
 
+.prayer-tab {
+  top: 1.8%;
+}
+
+.journal-tab {
+  top: 12.2%;
+}
+
+.groups-tab {
+  top: 22.3%;
+}
+
+.women-tab {
+  top: 32.4%;
+}
+
+.men-tab {
+  top: 42.4%;
+}
+
+.kids-tab {
+  top: 52.4%;
+}
+
+.hebrew-tab {
+  top: 62.4%;
+}
+
+.greek-tab {
+  top: 72.3%;
+}
+
+.maps-tab {
+  top: 82.2%;
+}
+
+.encyclopedia-tab {
+  top: 91.3%;
+  height: 7%;
+}
+
+/* smaller screens */
 @media (max-width: 800px) {
-  .tab-hotspots {
-    right: 3%;
-    top: 24%;
-    width: 170px;
-    gap: 8px;
+  .right-tab {
+    right: 0.5%;
+    width: 15%;
   }
 
-  .tab-hotspots a {
-    width: 170px;
-    height: 42px;
-    line-height: 42px;
-    font-size: 12px;
+  .bible-open {
+    left: 37%;
+    top: 77%;
+    width: 16%;
+    height: 11%;
   }
 
-  .backup-nav a {
-    font-size: 13px;
-    padding: 9px 12px;
+  .garden-area {
+    left: 42%;
+    top: 9%;
+    width: 22%;
+    height: 42%;
   }
 }
 </style>
@@ -105,21 +124,21 @@ body {
 
 <body>
 
-<div class="tab-hotspots">
-  <a href="bible-reader.html">Bible Reader</a>
-  <a href="bible-journal.html">Bible Journal</a>
-  <a href="study-binder.html">Study Binder</a>
-  <a href="grand-library.html">Grand Library</a>
-  <a href="garden.html">Gardens</a>
-</div>
+<!-- Main picture links -->
+<a class="hotspot bible-open" href="bible-reader.html" aria-label="Bible Reader">Bible Reader</a>
+<a class="hotspot garden-area" href="garden.html" aria-label="Gardens">Gardens</a>
 
-<div class="backup-nav">
-  <a href="bible-reader.html">📖 Bible</a>
-  <a href="bible-journal.html">📔 Journal</a>
-  <a href="study-binder.html">📒 Study</a>
-  <a href="grand-library.html">📚 Library</a>
-  <a href="garden.html">🌿 Gardens</a>
-</div>
+<!-- Right-side artwork tabs -->
+<a class="hotspot right-tab prayer-tab" href="study-binder.html" aria-label="Study Binder">Study Binder</a>
+<a class="hotspot right-tab journal-tab" href="bible-journal.html" aria-label="Bible Journal">Bible Journal</a>
+<a class="hotspot right-tab groups-tab" href="bible-reader.html" aria-label="Bible Reader">Bible Reader</a>
+<a class="hotspot right-tab women-tab" href="bible-reader.html" aria-label="Women">Women</a>
+<a class="hotspot right-tab men-tab" href="bible-reader.html" aria-label="Men">Men</a>
+<a class="hotspot right-tab kids-tab" href="bible-reader.html" aria-label="Kids">Kids</a>
+<a class="hotspot right-tab hebrew-tab" href="bible-reader.html" aria-label="Hebrew">Hebrew</a>
+<a class="hotspot right-tab greek-tab" href="bible-reader.html" aria-label="Greek">Greek</a>
+<a class="hotspot right-tab maps-tab" href="grand-library.html" aria-label="Maps and Atlas">Maps and Atlas</a>
+<a class="hotspot right-tab encyclopedia-tab" href="grand-library.html" aria-label="Grand Library">Grand Library</a>
 
 </body>
 </html>
