@@ -22,88 +22,94 @@ body {
   font-family: Georgia, serif;
 }
 
-.nav-wrap {
+/* Right-side Bible page tabs */
+.page-tabs {
   position: fixed;
-  left: 0;
   right: 0;
-  bottom: 24px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  justify-content: center;
-  padding: 12px;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 20;
 }
 
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding: 12px 18px;
-  border-radius: 32px;
-  background: rgba(35, 16, 10, 0.42);
-  border: 1px solid rgba(255, 223, 172, 0.35);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(3px);
-}
-
-.nav-button {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+/* Each tab */
+.page-tab {
   text-decoration: none;
-  padding: 13px 23px;
-  border-radius: 999px;
-  font-size: 16px;
+  color: #5c3218;
   font-weight: bold;
-  color: #61381f;
-  background: linear-gradient(135deg, #fffaf0 0%, #f9dfc7 42%, #efbd85 100%);
-  border: 2px solid #d9ad67;
+  font-size: 15px;
+  padding: 13px 16px 13px 20px;
+  min-width: 165px;
+  border-radius: 22px 0 0 22px;
+  border: 2px solid #d7a766;
+  border-right: none;
+  background: linear-gradient(135deg, #fffaf0 0%, #f7d6b8 48%, #e9b36f 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    0 5px 12px rgba(44, 20, 8, 0.35);
+    -4px 5px 14px rgba(44, 20, 8, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.nav-button::before {
-  content: "✿";
-  font-size: 13px;
+/* Little flower on each tab */
+.page-tab::before {
+  content: "✿ ";
   color: #b97847;
-  opacity: 0.85;
 }
 
-.bible-button {
-  background: linear-gradient(135deg, #fff8ed 0%, #f7d6b8 35%, #eab36d 100%);
-  border-color: #e0b15d;
-  color: #5c3218;
+/* Special tab colors */
+.bible-tab {
+  background: linear-gradient(135deg, #fff8ed 0%, #f6d6b8 42%, #eab36d 100%);
 }
 
-.journal-button {
+.journal-tab {
   background: linear-gradient(135deg, #fff7f2 0%, #f7cfc0 42%, #dda06f 100%);
-  border-color: #d79b67;
-  color: #5f351e;
 }
 
-.binder-button {
+.study-tab {
   background: linear-gradient(135deg, #fffaf0 0%, #ead2a3 42%, #c99a51 100%);
-  border-color: #c99a51;
-  color: #573415;
 }
 
-.nav-button:hover {
-  transform: translateY(-2px);
+.library-tab {
+  background: linear-gradient(135deg, #fffaf0 0%, #e8d8b8 42%, #b98b50 100%);
+}
+
+.garden-tab {
+  background: linear-gradient(135deg, #fffaf0 0%, #dfe7bd 42%, #a9b66b 100%);
+}
+
+/* Hover movement */
+.page-tab:hover {
+  transform: translateX(-8px);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 8px 16px rgba(44, 20, 8, 0.45);
+    -7px 8px 18px rgba(44, 20, 8, 0.45);
 }
 
+/* Smaller screens */
 @media (max-width: 760px) {
-  .nav {
-    gap: 10px;
-    padding: 10px;
+  .page-tabs {
+    right: 0;
+    top: auto;
+    bottom: 14px;
+    transform: none;
+    left: 0;
+    align-items: center;
+    gap: 8px;
   }
 
-  .nav-button {
-    font-size: 14px;
+  .page-tab {
+    min-width: 190px;
+    text-align: center;
+    border-radius: 999px;
+    border-right: 2px solid #d7a766;
     padding: 11px 16px;
+    font-size: 14px;
+  }
+
+  .page-tab:hover {
+    transform: translateY(-2px);
   }
 }
 </style>
@@ -111,15 +117,13 @@ body {
 
 <body>
 
-<div class="nav-wrap">
-  <div class="nav">
-    <a class="nav-button bible-button" href="bible-reader.html">📖 Bible Reader</a>
-    <a class="nav-button journal-button" href="bible-journal.html">📔 Bible Journal</a>
-    <a class="nav-button binder-button" href="study-binder.html">📒 Study Binder</a>
-    <a class="nav-button" href="grand-library.html">📚 Grand Library</a>
-    <a class="nav-button" href="garden.html">🌿 Gardens</a>
-  </div>
-</div>
+<nav class="page-tabs">
+  <a class="page-tab bible-tab" href="bible-reader.html">📖 Bible Reader</a>
+  <a class="page-tab journal-tab" href="bible-journal.html">📔 Bible Journal</a>
+  <a class="page-tab study-tab" href="study-binder.html">📒 Study Binder</a>
+  <a class="page-tab library-tab" href="grand-library.html">📚 Grand Library</a>
+  <a class="page-tab garden-tab" href="garden.html">🌿 Gardens</a>
+</nav>
 
 </body>
 </html>
