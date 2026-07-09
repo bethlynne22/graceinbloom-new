@@ -4,20 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Blooming in His Garden Bible Reader</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Great+Vibes&family=Parisienne&family=Sacramento&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-<select id="fontSelect">
-  <option value="Georgia, 'Times New Roman', serif">Georgia</option>
-  <option value="'Cormorant Garamond', Georgia, serif">Elegant Bible</option>
-  <option value="'Times New Roman', serif">Classic Bible</option>
-  <option value="'Trebuchet MS', sans-serif">Easy Read</option>
-  <option value="'Dancing Script', cursive">Soft Handwriting</option>
-  <option value="'Parisienne', cursive">Fancy Script</option>
-  <option value="'Great Vibes', cursive">Flowy Script</option>
-  <option value="'Sacramento', cursive">Thin Pretty Script</option>
-</select>
+
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Great+Vibes&family=Parisienne&family=Sacramento&display=swap');
+
 :root{
   --cream:#fff7e8;
   --paper:#fbefd5;
@@ -41,7 +31,7 @@
 body{
   margin:0;
   min-height:100vh;
-  font-family:Georgia, "Times New Roman", serif;
+  font-family:'Cormorant Garamond', Georgia, serif;
   color:var(--ink);
   background:
     radial-gradient(circle at 20% 15%, rgba(255,238,202,.65), transparent 28%),
@@ -49,7 +39,6 @@ body{
   overflow-x:hidden;
 }
 
-/* Forest background */
 .scene{
   min-height:100vh;
   position:relative;
@@ -93,19 +82,20 @@ body{
 
 .header h1{
   margin:0;
-  font-size:clamp(28px,4vw,48px);
+  font-family:'Great Vibes', cursive;
+  font-size:clamp(42px,6vw,78px);
   color:#5d422b;
-  text-shadow:0 2px 0 rgba(255,255,255,.55);
+  text-shadow:0 2px 0 rgba(255,255,255,.6);
   letter-spacing:.5px;
+  font-weight:400;
 }
 
 .header p{
-  margin:8px 0 0;
-  font-size:16px;
+  margin:4px 0 0;
+  font-size:19px;
   color:#684d33;
 }
 
-/* Controls */
 .reader-controls{
   max-width:1120px;
   margin:0 auto 18px;
@@ -133,14 +123,14 @@ body{
 }
 
 label{
-  font-size:13px;
-  font-weight:bold;
+  font-size:14px;
+  font-weight:700;
   color:#63472f;
 }
 
 select,
 button{
-  font-family:Georgia, "Times New Roman", serif;
+  font-family:'Cormorant Garamond', Georgia, serif;
 }
 
 select{
@@ -149,23 +139,25 @@ select{
   padding:7px 10px;
   background:#fffaf0;
   color:var(--ink);
+  font-size:16px;
 }
 
 .small-btn{
   border:none;
   border-radius:999px;
-  padding:7px 11px;
+  padding:7px 12px;
   background:linear-gradient(180deg,#fff5df,#eed6a7);
   color:#513820;
   box-shadow:0 2px 6px rgba(70,40,15,.16);
   cursor:pointer;
+  font-weight:700;
+  font-size:16px;
 }
 
 .small-btn:hover{
   transform:translateY(-1px);
 }
 
-/* Open Bible */
 .bible-stage{
   max-width:1120px;
   margin:0 auto;
@@ -233,8 +225,7 @@ select{
   border:2px solid rgba(186,139,71,.45);
   background:
     radial-gradient(circle at 50% 20%, rgba(255,255,255,.88), transparent 22%),
-    linear-gradient(180deg, rgba(160,182,140,.5), rgba(249,226,188,.85)),
-    url("");
+    linear-gradient(180deg, rgba(160,182,140,.5), rgba(249,226,188,.85));
   box-shadow:inset 0 0 24px rgba(107,78,44,.12);
   display:flex;
   align-items:center;
@@ -254,11 +245,15 @@ select{
 .art-inner h2{
   margin:0 0 8px;
   color:#5b4029;
+  font-family:'Parisienne', cursive;
+  font-size:42px;
+  font-weight:400;
 }
 
 .art-inner p{
   margin:0;
   line-height:1.45;
+  font-size:18px;
 }
 
 .scripture-top{
@@ -268,12 +263,14 @@ select{
 
 .scripture-top h2{
   margin:4px 0 3px;
-  font-size:31px;
+  font-size:42px;
   color:#4d3624;
+  font-family:'Parisienne', cursive;
+  font-weight:400;
 }
 
 .scripture-top .translation{
-  font-size:14px;
+  font-size:16px;
   color:#805b34;
 }
 
@@ -284,7 +281,7 @@ select{
   overflow:auto;
   padding:6px 10px 10px;
   line-height:1.75;
-  font-size:18px;
+  font-size:20px;
 }
 
 .verse{
@@ -304,13 +301,13 @@ select{
   color:#fff8e8;
   background:linear-gradient(180deg,var(--gold),var(--bronze));
   cursor:pointer;
+  font-family:Georgia, serif;
 }
 
 .verse-num:hover{
   background:linear-gradient(180deg,var(--rose),var(--bronze));
 }
 
-/* Tool links */
 .tool-links{
   position:absolute;
   bottom:24px;
@@ -330,7 +327,7 @@ select{
   border:1px solid rgba(167,118,56,.35);
   border-radius:999px;
   padding:8px 12px;
-  font-size:14px;
+  font-size:15px;
   box-shadow:0 2px 8px rgba(90,55,24,.1);
 }
 
@@ -338,7 +335,6 @@ select{
   background:#fff4d9;
 }
 
-/* Bottom leather ribbons */
 .ribbon-nav{
   max-width:900px;
   margin:15px auto 0;
@@ -356,9 +352,10 @@ select{
   border-radius:0 0 14px 14px;
   background:linear-gradient(180deg,#9c6b42,#6f4328);
   color:#fff5df;
-  font-size:14px;
+  font-size:17px;
   box-shadow:0 8px 18px rgba(65,35,14,.24);
   cursor:pointer;
+  font-weight:700;
 }
 
 .ribbon-btn::after{
@@ -386,7 +383,6 @@ select{
   transform:translateY(1px);
 }
 
-/* Right side Bible tabs */
 .side-tabs{
   position:fixed;
   top:145px;
@@ -436,7 +432,9 @@ select{
 .drawer-title{
   margin:0 0 10px;
   color:#513820;
-  font-size:20px;
+  font-size:28px;
+  font-family:'Parisienne', cursive;
+  font-weight:400;
 }
 
 .book-grid{
@@ -454,13 +452,13 @@ select{
   cursor:pointer;
   text-align:left;
   border:1px solid rgba(160,112,58,.22);
+  font-size:16px;
 }
 
 .book-item:hover{
   background:#f7e5bd;
 }
 
-/* Floral accents */
 .flower-pot{
   position:fixed;
   right:18px;
@@ -493,7 +491,6 @@ select{
   line-height:1.05;
 }
 
-/* Verse help popup */
 .help-popup{
   position:fixed;
   left:50%;
@@ -515,11 +512,15 @@ select{
 
 .help-popup h3{
   margin:0 0 8px;
+  font-family:'Parisienne', cursive;
+  font-size:34px;
+  font-weight:400;
 }
 
 .help-popup p{
   margin:0 0 14px;
   line-height:1.5;
+  font-size:18px;
 }
 
 .close-help{
@@ -531,10 +532,13 @@ select{
   cursor:pointer;
 }
 
-/* Mobile */
 @media(max-width:850px){
   .scene{
     padding:20px 14px 120px;
+  }
+
+  .header h1{
+    font-size:48px;
   }
 
   .open-bible{
@@ -614,10 +618,14 @@ select{
     <div class="control-group">
       <label for="fontSelect">Font</label>
       <select id="fontSelect">
+        <option value="'Cormorant Garamond', Georgia, serif">Elegant Bible</option>
         <option value="Georgia, 'Times New Roman', serif">Georgia</option>
         <option value="'Times New Roman', serif">Classic Bible</option>
         <option value="'Trebuchet MS', sans-serif">Easy Read</option>
-        <option value="'Lucida Handwriting', cursive">Gentle Handwriting</option>
+        <option value="'Dancing Script', cursive">Soft Pretty Script</option>
+        <option value="'Parisienne', cursive">Fancy Script</option>
+        <option value="'Great Vibes', cursive">Flowy Script</option>
+        <option value="'Sacramento', cursive">Thin Handwritten Script</option>
       </select>
     </div>
 
@@ -793,7 +801,7 @@ const sampleText = {
 let currentBook = "Genesis";
 let currentChapter = 1;
 let currentTranslation = "KJV";
-let fontSize = 18;
+let fontSize = 20;
 
 const bookSelect = document.getElementById("bookSelect");
 const chapterSelect = document.getElementById("chapterSelect");
@@ -829,12 +837,14 @@ function fillBookSelect(){
 function fillChapterSelect(){
   chapterSelect.innerHTML = "";
   const total = chapterCounts[currentBook] || 1;
+
   for(let i = 1; i <= total; i++){
     const option = document.createElement("option");
     option.value = i;
     option.textContent = i;
     chapterSelect.appendChild(option);
   }
+
   chapterSelect.value = currentChapter;
 }
 
@@ -877,8 +887,8 @@ function renderScripture(){
   `).join("");
 
   document.querySelectorAll(".verse-num").forEach(num => {
-    num.addEventListener("dblclick", () => openVerseHelp(num.dataset.verse));
     num.addEventListener("click", () => openVerseHelp(num.dataset.verse));
+    num.addEventListener("dblclick", () => openVerseHelp(num.dataset.verse));
   });
 }
 
@@ -919,8 +929,10 @@ function saveBookmark(){
     chapter: currentChapter,
     translation: currentTranslation
   };
+
   localStorage.setItem("bloomBibleBookmark", JSON.stringify(bookmark));
   document.getElementById("bookmarkBtn").textContent = "✓ Saved";
+
   setTimeout(() => {
     document.getElementById("bookmarkBtn").textContent = "🔖 Bookmark";
   }, 1300);
@@ -962,6 +974,7 @@ function goPrevious(){
 
 function goNext(){
   const total = chapterCounts[currentBook] || 1;
+
   if(currentChapter < total){
     currentChapter++;
   } else {
@@ -1004,7 +1017,7 @@ document.getElementById("fontMinus").addEventListener("click", () => {
 });
 
 document.getElementById("fontPlus").addEventListener("click", () => {
-  fontSize = Math.min(30, fontSize + 1);
+  fontSize = Math.min(34, fontSize + 1);
   renderScripture();
 });
 
@@ -1020,6 +1033,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 document.addEventListener("click", event => {
   const clickedDrawer = bookDrawer.contains(event.target);
   const clickedTab = event.target.closest(".tab-btn");
+
   if(!clickedDrawer && !clickedTab){
     bookDrawer.classList.remove("open");
   }
