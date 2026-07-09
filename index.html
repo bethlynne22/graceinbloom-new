@@ -10,89 +10,82 @@ html, body {
   margin: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background: #120806;
   font-family: Georgia, serif;
 }
 
-/* Keeps the artwork whole without cropping */
-.scene {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #120806;
-}
-
-.scene-frame {
-  position: relative;
-  width: min(100vw, calc(100vh * 2.14));
-  aspect-ratio: 2.14 / 1;
+body {
   background-image: url('FADA176D-B481-43C3-89D9-FAFDA7EFF5B1.png');
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: contain;
+  color: #fff8ed;
 }
 
-/* Invisible clickable areas */
-.hotspot {
-  position: absolute;
-  display: block;
+/* TEMPORARY SAFE MENU */
+.menu-box {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 9999;
+  background: rgba(18, 8, 6, 0.88);
+  border: 2px solid #e6b66d;
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+}
+
+.menu-title {
+  margin: 0 0 12px;
+  font-size: 22px;
+  color: #ffe2ad;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-buttons a {
   text-decoration: none;
-  background: transparent;
-  color: transparent;
-  font-size: 0;
-  z-index: 50;
-  cursor: pointer;
+  color: #5c3218;
+  background: linear-gradient(135deg, #fff8ed, #f7d6b8, #eab36d);
+  border: 2px solid #d4a052;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: bold;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.35);
 }
 
-/* Open Bible in the family picture */
-.bible-open {
-  left: 41.5%;
-  top: 78%;
-  width: 12%;
-  height: 11%;
+.menu-buttons a:hover {
+  transform: translateY(-2px);
 }
 
-/* Tree / garden area */
-.garden-area {
-  left: 43%;
-  top: 8%;
-  width: 22%;
-  height: 48%;
+.note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #ffe8c5;
+  max-width: 260px;
 }
-
-/* Right-side actual artwork tabs */
-.prayer-tab {
-  left: 87%;
-  top: 1.5%;
-  width: 12.5%;
-  height: 8%;
-}
-
-.journal-tab {
-  left: 87%;
-  top: 11.7%;
-  width: 12.5%;
-  height: 8%;
-}
-
-/* Keep these visible to screen readers only if needed later, but NOT linked now */
 </style>
 </head>
 
 <body>
 
-<div class="scene">
-  <div class="scene-frame">
+<div class="menu-box">
+  <h1 class="menu-title">Blooming Bible Menu</h1>
 
-    <!-- Working links only -->
-    <a class="hotspot bible-open" href="bible-reader.html" aria-label="Bible Reader">Bible Reader</a>
-    <a class="hotspot garden-area" href="garden.html" aria-label="Gardens">Gardens</a>
-    <a class="hotspot prayer-tab" href="study-binder.html" aria-label="Study Binder">Study Binder</a>
-    <a class="hotspot journal-tab" href="bible-journal.html" aria-label="Bible Journal">Bible Journal</a>
+  <div class="menu-buttons">
+    <a href="bible-reader.html">📖 Bible Reader</a>
+    <a href="bible-journal.html">📔 Bible Journal</a>
+    <a href="study-binder.html">📒 Study Binder</a>
+    <a href="grand-library.html">📚 Grand Library</a>
+    <a href="garden.html">🌿 Gardens</a>
+  </div>
 
+  <div class="note">
+    Temporary working menu while we fix the artwork tab links.
   </div>
 </div>
 
