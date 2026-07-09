@@ -17,51 +17,87 @@ body {
   background-image: url('FADA176D-B481-43C3-89D9-FAFDA7EFF5B1.png');
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-color: #120806;
   font-family: Georgia, serif;
 }
 
-/* These are INVISIBLE clickable areas over the tabs already in your picture */
+/* TEMPORARY click boxes so we can line them up with the tabs drawn in the picture */
 .tab-hotspots {
   position: fixed;
-  top: 28%;
-  right: 18%;
-  width: 210px;
+  right: 6%;
+  top: 22%;
+  width: 220px;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 12px;
   z-index: 50;
 }
 
+/* These boxes are only pink for testing. We will make them invisible after they line up. */
 .tab-hotspots a {
   display: block;
-  height: 48px;
-  width: 210px;
+  width: 220px;
+  height: 50px;
+  border-radius: 18px;
+  background: rgba(255, 80, 160, 0.28);
+  border: 2px dashed rgba(255, 255, 255, 0.75);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
   text-decoration: none;
-  background: transparent;
-  color: transparent;
-  font-size: 0;
+  text-align: center;
+  line-height: 50px;
+  text-shadow: 0 1px 3px #000;
 }
 
-/* Temporary helper: turn this on if we need to see where the click boxes are */
-/*
-.tab-hotspots a {
-  background: rgba(255, 0, 0, 0.25);
+.tab-hotspots a:hover {
+  background: rgba(255, 80, 160, 0.45);
 }
-*/
 
-@media (max-width: 760px) {
+/* Backup bottom links in case the tab boxes need adjusting */
+.backup-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  z-index: 40;
+  padding: 8px;
+}
+
+.backup-nav a {
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff8ed, #f7d6b8, #eab36d);
+  color: #5c3218;
+  font-weight: bold;
+  border: 2px solid #d4a052;
+  box-shadow: 0 5px 12px rgba(44, 20, 8, 0.35);
+}
+
+@media (max-width: 800px) {
   .tab-hotspots {
-    top: 32%;
-    right: 4%;
-    width: 160px;
-    gap: 9px;
+    right: 3%;
+    top: 24%;
+    width: 170px;
+    gap: 8px;
   }
 
   .tab-hotspots a {
-    width: 160px;
+    width: 170px;
     height: 42px;
+    line-height: 42px;
+    font-size: 12px;
+  }
+
+  .backup-nav a {
+    font-size: 13px;
+    padding: 9px 12px;
   }
 }
 </style>
@@ -70,11 +106,19 @@ body {
 <body>
 
 <div class="tab-hotspots">
-  <a href="bible-reader.html" aria-label="Bible Reader">Bible Reader</a>
-  <a href="bible-journal.html" aria-label="Bible Journal">Bible Journal</a>
-  <a href="study-binder.html" aria-label="Study Binder">Study Binder</a>
-  <a href="grand-library.html" aria-label="Grand Library">Grand Library</a>
-  <a href="garden.html" aria-label="Gardens">Gardens</a>
+  <a href="bible-reader.html">Bible Reader</a>
+  <a href="bible-journal.html">Bible Journal</a>
+  <a href="study-binder.html">Study Binder</a>
+  <a href="grand-library.html">Grand Library</a>
+  <a href="garden.html">Gardens</a>
+</div>
+
+<div class="backup-nav">
+  <a href="bible-reader.html">📖 Bible</a>
+  <a href="bible-journal.html">📔 Journal</a>
+  <a href="study-binder.html">📒 Study</a>
+  <a href="grand-library.html">📚 Library</a>
+  <a href="garden.html">🌿 Gardens</a>
 </div>
 
 </body>
