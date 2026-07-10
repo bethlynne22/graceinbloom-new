@@ -3,20 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Blooming in His Garden Bible Reader</title>
+<title>Genesis 1 Pretty Picture Page | Blooming in His Garden</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Great+Vibes&family=Handlee&family=Indie+Flower&family=Kalam:wght@300;400;700&family=Parisienne&family=Patrick+Hand&family=Sacramento&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Handlee&display=swap');
 
 :root{
   --ink:#4a3522;
   --gold:#c79a42;
   --rose:#c48776;
   --bronze:#9a6a3d;
-  --shadow:rgba(45,30,15,.28);
+  --cream:#fff7e8;
+  --paper:#fff3d9;
+  --sage:#8fa77c;
+  --eucalyptus:#7f9b85;
+  --peach:#e8b58b;
 }
 
-*{box-sizing:border-box;}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -24,1072 +30,518 @@ body{
   font-family:'Cormorant Garamond', Georgia, serif;
   color:var(--ink);
   background:
-    radial-gradient(circle at 20% 15%, rgba(255,238,202,.65), transparent 28%),
-    linear-gradient(180deg,#dce8d0 0%,#f8eedc 42%,#e3d2ad 100%);
-  overflow-x:hidden;
+    radial-gradient(circle at 18% 12%, rgba(255,238,196,.8), transparent 24%),
+    radial-gradient(circle at 84% 22%, rgba(255,210,170,.45), transparent 24%),
+    linear-gradient(180deg,#dce8d0 0%,#f8eedc 45%,#d9c39b 100%);
 }
 
-.scene{
+.page-wrap{
   min-height:100vh;
+  padding:28px;
   position:relative;
-  padding:28px 84px 38px 28px;
+  overflow:hidden;
 }
 
-.scene::before{
+.page-wrap::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-    linear-gradient(90deg, transparent 0 6%, rgba(255,255,255,.58) 6% 7.4%, transparent 7.4% 12%),
-    linear-gradient(90deg, transparent 0 17%, rgba(255,255,255,.46) 17% 18.2%, transparent 18.2% 24%),
-    linear-gradient(90deg, transparent 0 34%, rgba(255,255,255,.52) 34% 35.5%, transparent 35.5% 42%),
-    linear-gradient(90deg, transparent 0 57%, rgba(255,255,255,.48) 57% 58.4%, transparent 58.4% 64%),
-    linear-gradient(90deg, transparent 0 76%, rgba(255,255,255,.56) 76% 77.4%, transparent 77.4% 84%),
-    linear-gradient(180deg, rgba(120,151,105,.38), rgba(255,247,232,.4));
-  opacity:.72;
+    linear-gradient(90deg, transparent 0 8%, rgba(255,255,255,.55) 8% 9.4%, transparent 9.4% 17%),
+    linear-gradient(90deg, transparent 0 31%, rgba(255,255,255,.45) 31% 32.4%, transparent 32.4% 44%),
+    linear-gradient(90deg, transparent 0 68%, rgba(255,255,255,.5) 68% 69.4%, transparent 69.4% 82%),
+    linear-gradient(180deg, rgba(125,153,109,.2), rgba(255,248,232,.22));
+  opacity:.65;
   pointer-events:none;
   z-index:-2;
 }
 
-.scene::after{
-  content:"";
-  position:fixed;
-  inset:auto 0 0 0;
-  height:34vh;
-  background:
-    radial-gradient(circle at 10% 90%, rgba(225,132,65,.22), transparent 20%),
-    radial-gradient(circle at 82% 84%, rgba(123,155,121,.34), transparent 25%),
-    linear-gradient(180deg, transparent, rgba(98,117,71,.18));
-  pointer-events:none;
-  z-index:-1;
-}
-
-.header{
-  max-width:1120px;
-  margin:0 auto 16px;
-  text-align:center;
-}
-
-.header h1{
-  margin:0;
-  font-family:'Great Vibes', cursive;
-  font-size:clamp(42px,6vw,78px);
-  color:#5d422b;
-  text-shadow:0 2px 0 rgba(255,255,255,.6);
-  font-weight:400;
-}
-
-.header p{
-  margin:4px 0 0;
-  font-size:19px;
-  color:#684d33;
-}
-
-.reader-controls{
-  max-width:1120px;
+.top-bar{
+  max-width:1100px;
   margin:0 auto 18px;
   display:flex;
+  justify-content:space-between;
+  gap:12px;
   flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
   align-items:center;
-  padding:12px;
-  background:rgba(255,248,232,.78);
-  border:1px solid rgba(179,132,61,.35);
-  border-radius:20px;
-  box-shadow:0 10px 25px rgba(80,50,20,.12);
-  backdrop-filter:blur(4px);
 }
 
-.control-group{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  background:rgba(255,255,255,.38);
-  border:1px solid rgba(150,110,60,.18);
+.back-link,
+.reader-link{
+  text-decoration:none;
+  color:#56391f;
+  background:rgba(255,248,232,.82);
+  border:1px solid rgba(155,104,46,.28);
   border-radius:999px;
-  padding:8px 10px;
-}
-
-label{
-  font-size:14px;
+  padding:10px 16px;
+  box-shadow:0 5px 14px rgba(70,45,20,.12);
   font-weight:700;
-  color:#63472f;
 }
 
-select,
-button{
-  font-family:'Cormorant Garamond', Georgia, serif;
-}
-
-select{
-  border:1px solid rgba(105,78,45,.25);
-  border-radius:999px;
-  padding:7px 10px;
-  background:#fffaf0;
-  color:var(--ink);
-  font-size:16px;
-}
-
-.small-btn{
-  border:none;
-  border-radius:999px;
-  padding:7px 12px;
-  background:linear-gradient(180deg,#fff5df,#eed6a7);
-  color:#513820;
-  box-shadow:0 2px 6px rgba(70,40,15,.16);
-  cursor:pointer;
-  font-weight:700;
-  font-size:16px;
-}
-
-.bible-stage{
-  max-width:1120px;
+.story-page{
+  max-width:1100px;
   margin:0 auto;
-  position:relative;
-}
-
-.open-bible{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  min-height:620px;
   background:
-    linear-gradient(90deg, transparent 49.4%, rgba(91,59,31,.25) 49.7%, rgba(255,255,255,.55) 50%, rgba(91,59,31,.22) 50.3%, transparent 50.6%),
-    linear-gradient(180deg,#fff8e9,#f2ddae);
-  border-radius:34px 34px 28px 28px;
-  border:2px solid rgba(154,106,61,.45);
+    radial-gradient(circle at top, rgba(255,255,255,.7), transparent 24%),
+    linear-gradient(180deg,#fff7e8,#f0d8aa);
+  border:2px solid rgba(154,106,61,.42);
+  border-radius:34px;
   box-shadow:
-    0 28px 60px var(--shadow),
-    inset 0 0 36px rgba(126,84,35,.18);
+    0 28px 60px rgba(45,30,15,.28),
+    inset 0 0 36px rgba(126,84,35,.12);
+  padding:26px;
+  position:relative;
   overflow:hidden;
 }
 
-.page{
-  position:relative;
-  padding:34px 34px 82px;
-}
-
-.left-page{
-  background:
-    radial-gradient(circle at 20% 12%, rgba(255,255,255,.72), transparent 28%),
-    linear-gradient(90deg,#fff5dc,#f6dfaf);
-}
-
-.right-page{
-  background:
-    radial-gradient(circle at 80% 8%, rgba(255,255,255,.65), transparent 25%),
-    linear-gradient(90deg,#f6dfaf,#fff4da);
-}
-
-.page::before{
+.story-page::before{
   content:"";
   position:absolute;
-  inset:14px;
-  border:1px solid rgba(180,135,65,.28);
-  border-radius:24px;
+  inset:15px;
+  border:1px solid rgba(186,139,71,.34);
+  border-radius:26px;
   pointer-events:none;
 }
 
-.page-corner{
-  position:absolute;
-  top:20px;
-  right:24px;
-  font-size:28px;
-  opacity:.7;
-}
-
-.left-page .page-corner{
-  right:auto;
-  left:24px;
-}
-
-.art-card{
-  height:100%;
-  min-height:490px;
-  border-radius:26px;
-  border:2px solid rgba(186,139,71,.45);
-  background:
-    radial-gradient(circle at 50% 16%, rgba(255,255,255,.92), transparent 20%),
-    radial-gradient(circle at 18% 74%, rgba(232,149,90,.22), transparent 25%),
-    radial-gradient(circle at 86% 78%, rgba(127,155,133,.25), transparent 24%),
-    linear-gradient(180deg, rgba(160,182,140,.5), rgba(249,226,188,.85));
-  box-shadow:inset 0 0 24px rgba(107,78,44,.12);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.header{
   text-align:center;
-  padding:24px;
+  position:relative;
+  z-index:2;
+  padding:8px 16px 18px;
 }
 
-.art-inner{
-  background:rgba(255,250,238,.76);
-  border:1px solid rgba(148,103,55,.3);
-  border-radius:22px;
-  padding:24px;
-  max-width:390px;
-}
-
-.story-kicker{
+.kicker{
   display:inline-block;
-  margin-bottom:8px;
-  padding:5px 12px;
+  padding:6px 14px;
   border-radius:999px;
-  background:rgba(255,241,203,.8);
+  background:rgba(255,241,203,.9);
   border:1px solid rgba(182,133,58,.35);
   color:#7a5630;
-  font-size:15px;
-  font-weight:700;
+  font-family:'Handlee', cursive;
+  font-size:17px;
 }
 
-.art-inner h2{
-  margin:0 0 8px;
-  color:#5b4029;
-  font-family:'Allura', cursive;
-  font-size:48px;
+h1{
+  margin:8px 0 0;
+  font-family:'Great Vibes', cursive;
+  font-size:clamp(54px,8vw,96px);
+  color:#5d422b;
   font-weight:400;
+  text-shadow:0 2px 0 rgba(255,255,255,.7);
 }
 
-.art-inner p{
-  margin:0;
-  line-height:1.45;
-  font-size:18px;
-}
-
-.day-badges{
-  margin-top:16px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  justify-content:center;
-}
-
-.day-badges span{
-  padding:5px 9px;
-  border-radius:999px;
-  background:rgba(255,255,255,.58);
-  border:1px solid rgba(151,104,52,.25);
-  font-size:14px;
-  color:#6a4928;
-}
-
-.scripture-top{
-  text-align:center;
-  margin-bottom:12px;
-}
-
-.scripture-top h2{
-  margin:4px 0 3px;
-  font-size:46px;
-  color:#4d3624;
-  font-family:'Allura', cursive;
-  font-weight:400;
-}
-
-.scripture-top .translation{
-  font-size:16px;
-  color:#805b34;
-}
-
-.chapter-note{
-  margin:7px auto 0;
-  max-width:430px;
-  font-size:15px;
+.subtitle{
+  margin:4px auto 0;
+  max-width:760px;
+  font-size:21px;
   line-height:1.35;
   color:#6a5036;
 }
 
-.scripture-box{
+.picture-frame{
   position:relative;
-  z-index:1;
-  max-height:455px;
-  overflow:auto;
-  padding:6px 10px 10px;
-  line-height:1.75;
-  font-size:20px;
-}
-
-.verse{
-  margin:0 0 12px;
-}
-
-.verse-num{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:23px;
-  height:23px;
-  margin-right:7px;
-  border-radius:50%;
-  font-size:12px;
-  font-weight:bold;
-  color:#fff8e8;
-  background:linear-gradient(180deg,var(--gold),var(--bronze));
-  cursor:pointer;
-  font-family:Georgia, serif;
-}
-
-.verse-num:hover{
-  background:linear-gradient(180deg,var(--rose),var(--bronze));
-}
-
-.tool-links{
-  position:absolute;
-  bottom:24px;
-  left:28px;
-  right:28px;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:8px;
   z-index:2;
+  margin:10px auto 24px;
+  min-height:560px;
+  border-radius:30px;
+  border:2px solid rgba(180,132,61,.45);
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255,253,230,.98), rgba(255,228,154,.55) 13%, transparent 27%),
+    radial-gradient(circle at 20% 32%, rgba(255,255,255,.8), transparent 18%),
+    linear-gradient(180deg,#9ec4d8 0%,#f3d99c 32%,#9bbf84 62%,#6f945d 100%);
+  box-shadow:
+    inset 0 0 35px rgba(255,255,255,.45),
+    0 15px 36px rgba(80,45,20,.16);
+  overflow:hidden;
 }
 
-.tool-links a{
-  text-decoration:none;
-  color:#52391f;
-  background:rgba(255,250,238,.74);
-  border:1px solid rgba(167,118,56,.35);
-  border-radius:999px;
-  padding:8px 12px;
-  font-size:15px;
-  box-shadow:0 2px 8px rgba(90,55,24,.1);
-}
-
-.ribbon-nav{
-  max-width:900px;
-  margin:15px auto 0;
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  flex-wrap:wrap;
-}
-
-.ribbon-btn{
-  position:relative;
-  border:none;
-  min-width:118px;
-  padding:10px 14px 16px;
-  border-radius:0 0 14px 14px;
-  background:linear-gradient(180deg,#9c6b42,#6f4328);
-  color:#fff5df;
-  font-size:17px;
-  box-shadow:0 8px 18px rgba(65,35,14,.24);
-  cursor:pointer;
-  font-weight:700;
-}
-
-.ribbon-btn::after{
-  content:"";
+.light-glory{
   position:absolute;
+  top:-120px;
   left:50%;
-  bottom:-10px;
   transform:translateX(-50%);
-  width:0;
-  height:0;
-  border-left:14px solid transparent;
-  border-right:14px solid transparent;
-  border-top:11px solid #6f4328;
-}
-
-.ribbon-btn.bookmark{
-  background:linear-gradient(180deg,#b48746,#7d522a);
-}
-
-.ribbon-btn.next{
-  background:linear-gradient(180deg,#896b58,#5d4030);
-}
-
-.side-tabs{
-  position:fixed;
-  top:145px;
-  right:10px;
-  z-index:20;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.tab-btn{
-  width:48px;
-  height:48px;
-  border:none;
-  border-radius:16px;
+  width:560px;
+  height:360px;
   background:
-    radial-gradient(circle at 35% 20%, rgba(255,255,255,.8), transparent 35%),
-    linear-gradient(180deg,#fff4dc,#e2c489);
-  color:#513820;
-  box-shadow:
-    0 6px 16px rgba(55,35,18,.22),
-    inset 0 0 8px rgba(255,255,255,.45);
-  cursor:pointer;
-  font-size:22px;
-  transition:.18s ease;
-  border:1px solid rgba(155,104,46,.22);
+    radial-gradient(circle, rgba(255,255,235,.98) 0%, rgba(255,226,126,.58) 30%, rgba(255,216,133,.22) 56%, transparent 72%);
+  filter:blur(2px);
 }
 
-.tab-btn:hover{
-  transform:translateX(-3px) scale(1.03);
+.cloud{
+  position:absolute;
+  background:rgba(255,255,255,.72);
+  border-radius:999px;
+  filter:blur(.2px);
 }
 
-.tab-btn.active{
-  background:
-    radial-gradient(circle at 35% 20%, rgba(255,255,255,.9), transparent 35%),
-    linear-gradient(180deg,#ffe8b7,#c9974a);
-  box-shadow:
-    0 10px 22px rgba(90,54,18,.32),
-    0 0 0 4px rgba(255,226,166,.56),
-    inset 0 0 10px rgba(255,255,255,.55);
-  transform:translateX(-4px);
+.cloud.one{
+  top:120px;
+  left:80px;
+  width:180px;
+  height:54px;
 }
 
-.book-drawer{
-  position:fixed;
-  top:145px;
-  right:66px;
-  width:310px;
-  max-height:70vh;
-  overflow:auto;
-  background:
-    radial-gradient(circle at top, rgba(255,255,255,.78), transparent 28%),
-    rgba(255,248,232,.97);
-  border:1px solid rgba(154,106,61,.38);
-  border-radius:22px;
-  box-shadow:0 18px 45px rgba(50,30,15,.25);
-  padding:15px;
-  z-index:21;
-  display:none;
+.cloud.two{
+  top:150px;
+  right:95px;
+  width:220px;
+  height:62px;
 }
 
-.book-drawer.open{
-  display:block;
+.cloud.three{
+  top:86px;
+  right:280px;
+  width:130px;
+  height:42px;
+  opacity:.58;
 }
 
-.drawer-title{
-  margin:0 0 10px;
-  color:#513820;
-  font-size:36px;
-  font-family:'Allura', cursive;
-  font-weight:400;
-  text-align:center;
-  text-shadow:0 1px 0 rgba(255,255,255,.7);
-}
-
-.drawer-subtitle{
-  margin:-5px 0 12px;
-  text-align:center;
-  font-family:'Handlee', cursive;
-  color:#7a5a36;
-  font-size:16px;
-}
-
-.book-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-}
-
-.book-item{
-  border:none;
-  border-radius:14px;
-  padding:10px 11px;
-  background:
-    linear-gradient(180deg,rgba(255,252,244,.96),rgba(248,232,195,.92));
-  color:#4a3522;
-  cursor:pointer;
-  text-align:left;
-  border:1px solid rgba(160,112,58,.24);
-  font-family:'Handlee', cursive;
-  font-size:18px;
-  line-height:1.1;
-  letter-spacing:.15px;
-  box-shadow:0 2px 7px rgba(90,55,24,.08);
-  transition:.16s ease;
-}
-
-.book-item:hover{
-  background:#f7e5bd;
-  transform:translateY(-1px);
-}
-
-.book-item.active-book{
-  background:linear-gradient(180deg,#fff1ce,#e4bd72);
-  border-color:rgba(146,88,32,.45);
-  font-weight:700;
-}
-
-.flower-pot{
-  position:fixed;
-  right:18px;
-  bottom:20px;
-  width:78px;
-  height:120px;
+.sun-moon-stars{
+  position:absolute;
+  inset:0;
   pointer-events:none;
-  z-index:5;
 }
 
-.flower-pot::before{
+.sun{
+  position:absolute;
+  right:128px;
+  top:76px;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff6bb,#e8a545);
+  box-shadow:0 0 40px rgba(255,214,120,.8);
+}
+
+.moon{
+  position:absolute;
+  left:126px;
+  top:82px;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:#f9f0d8;
+  box-shadow:inset -14px 0 0 rgba(201,190,168,.45);
+  opacity:.85;
+}
+
+.star{
+  position:absolute;
+  color:#fff7bf;
+  font-size:18px;
+  text-shadow:0 0 9px rgba(255,244,190,.9);
+}
+
+.star.s1{left:220px;top:70px;}
+.star.s2{right:245px;top:64px;}
+.star.s3{right:70px;top:150px;}
+.star.s4{left:58px;top:158px;}
+
+.sea{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:82px;
+  height:170px;
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(255,255,255,.35), transparent 20%),
+    linear-gradient(180deg,#6aa0b5,#3d7994);
+  clip-path:ellipse(70% 42% at 50% 82%);
+}
+
+.land{
+  position:absolute;
+  left:-5%;
+  right:-5%;
+  bottom:-30px;
+  height:210px;
+  background:
+    radial-gradient(circle at 22% 50%, rgba(255,215,140,.22), transparent 18%),
+    linear-gradient(180deg,#9bbb69,#557f44);
+  clip-path:ellipse(70% 55% at 50% 40%);
+}
+
+.hill{
+  position:absolute;
+  bottom:80px;
+  width:360px;
+  height:160px;
+  background:linear-gradient(180deg,#a9c879,#648b4f);
+  border-radius:50% 50% 0 0;
+  opacity:.95;
+}
+
+.hill.left{
+  left:40px;
+}
+
+.hill.right{
+  right:20px;
+  height:190px;
+  width:410px;
+  opacity:.82;
+}
+
+.tree{
+  position:absolute;
+  bottom:118px;
+  width:18px;
+  height:95px;
+  background:#765235;
+  border-radius:10px;
+}
+
+.tree::before{
   content:"";
   position:absolute;
-  bottom:0;
-  left:18px;
-  width:44px;
-  height:48px;
-  border-radius:0 0 15px 15px;
-  background:linear-gradient(180deg,rgba(175,218,215,.74),rgba(92,143,142,.75));
-  border:2px solid rgba(255,255,255,.58);
-}
-
-.flower-pot::after{
-  content:"🌿 🌾 🧡";
-  position:absolute;
-  top:0;
-  left:0;
-  font-size:34px;
-  line-height:1.05;
-}
-
-.help-popup{
-  position:fixed;
   left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  width:min(460px,88vw);
-  background:#fff7e6;
-  border:2px solid rgba(180,132,61,.5);
+  top:-58px;
+  transform:translateX(-50%);
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,230,170,.3), transparent 20%),
+    #6f9a58;
+}
+
+.tree.one{left:150px;}
+.tree.two{right:155px;bottom:130px;}
+.tree.three{left:270px;bottom:104px;transform:scale(.82);}
+.tree.four{right:290px;bottom:112px;transform:scale(.78);}
+
+.flowers{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:34px;
+  text-align:center;
+  font-size:34px;
+  letter-spacing:10px;
+  opacity:.92;
+}
+
+.animals{
+  position:absolute;
+  bottom:84px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(720px,90%);
+  display:flex;
+  justify-content:space-around;
+  align-items:flex-end;
+  font-size:42px;
+  filter:drop-shadow(0 4px 4px rgba(63,40,20,.16));
+}
+
+.birds{
+  position:absolute;
+  top:214px;
+  left:0;
+  right:0;
+  text-align:center;
+  font-size:28px;
+  letter-spacing:28px;
+  opacity:.78;
+}
+
+.caption-card{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  width:min(760px,88%);
+  background:rgba(255,250,238,.82);
+  border:1px solid rgba(145,98,50,.34);
   border-radius:22px;
-  box-shadow:0 24px 70px rgba(43,28,14,.36);
-  padding:20px;
-  z-index:50;
-  display:none;
+  padding:14px 20px;
+  text-align:center;
+  box-shadow:0 8px 22px rgba(50,30,14,.16);
 }
 
-.help-popup.open{
+.caption-card h2{
+  margin:0;
+  font-family:'Allura', cursive;
+  font-size:42px;
+  font-weight:400;
+  color:#573a22;
+}
+
+.caption-card p{
+  margin:0;
+  font-size:18px;
+  line-height:1.3;
+}
+
+.info-grid{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.info-card{
+  background:rgba(255,250,238,.72);
+  border:1px solid rgba(155,104,46,.28);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 8px 20px rgba(70,45,20,.1);
+}
+
+.info-card h3{
+  margin:0 0 6px;
+  font-family:'Allura', cursive;
+  font-size:32px;
+  font-weight:400;
+  color:#573a22;
+}
+
+.info-card p{
+  margin:0;
+  font-size:17px;
+  line-height:1.38;
+}
+
+.verse-strip{
+  position:relative;
+  z-index:2;
+  margin-top:16px;
+  padding:16px;
+  text-align:center;
+  border-radius:24px;
+  background:
+    linear-gradient(180deg,rgba(255,241,203,.78),rgba(255,250,238,.72));
+  border:1px solid rgba(155,104,46,.28);
+}
+
+.verse-strip strong{
   display:block;
-}
-
-.help-popup h3{
-  margin:0 0 8px;
   font-family:'Allura', cursive;
   font-size:38px;
   font-weight:400;
+  color:#573a22;
 }
 
-.help-popup p{
-  margin:0 0 14px;
-  line-height:1.5;
-  font-size:18px;
-}
-
-.close-help{
-  border:none;
-  border-radius:999px;
-  padding:8px 12px;
-  background:#7a5330;
-  color:white;
-  cursor:pointer;
+.verse-strip span{
+  font-size:19px;
 }
 
 @media(max-width:850px){
-  .scene{
-    padding:20px 14px 120px;
+  .page-wrap{
+    padding:16px;
   }
 
-  .header h1{
-    font-size:48px;
+  .story-page{
+    padding:18px;
   }
 
-  .open-bible{
+  .picture-frame{
+    min-height:520px;
+  }
+
+  .info-grid{
     grid-template-columns:1fr;
   }
 
-  .page{
-    padding:26px 22px 86px;
+  .animals{
+    font-size:34px;
   }
 
-  .art-card{
-    min-height:300px;
-  }
-
-  .scripture-box{
-    max-height:none;
-  }
-
-  .side-tabs{
-    top:auto;
-    right:10px;
-    bottom:12px;
-    flex-direction:row;
-  }
-
-  .tab-btn{
-    width:44px;
-    height:44px;
-    border-radius:14px;
-  }
-
-  .book-drawer{
-    top:auto;
-    right:10px;
-    left:10px;
-    bottom:70px;
-    width:auto;
-    max-height:55vh;
-  }
-
-  .flower-pot{
-    display:none;
+  .flowers{
+    font-size:26px;
+    letter-spacing:4px;
   }
 }
 </style>
 </head>
 
 <body>
-<div class="scene">
+<div class="page-wrap">
 
-  <header class="header">
-    <h1>Blooming in His Garden Bible Reader</h1>
-    <p>Choose a translation, open a book, read, bookmark, study, journal, and grow.</p>
-  </header>
+  <nav class="top-bar">
+    <a class="back-link" href="grand-library.html">← Back to Grand Library</a>
+    <a class="reader-link" href="bible-reader.html">Open Bible Reader →</a>
+  </nav>
 
-  <section class="reader-controls" aria-label="Bible reader controls">
-    <div class="control-group">
-      <label for="translationSelect">Translation</label>
-      <select id="translationSelect">
-        <option value="KJV">KJV</option>
-        <option value="WEB">WEB</option>
-        <option value="HNV">HNV</option>
-        <option value="ASV">ASV</option>
-      </select>
-    </div>
+  <main class="story-page">
+    <header class="header">
+      <div class="kicker">Genesis 1 Pretty Picture Page</div>
+      <h1>In the Beginning</h1>
+      <p class="subtitle">
+        God’s creation unfolds in beauty: light, sky, land, seas, plants, stars, creatures, and people made in His image.
+      </p>
+    </header>
 
-    <div class="control-group">
-      <label for="bookSelect">Book</label>
-      <select id="bookSelect"></select>
-    </div>
+    <section class="picture-frame" aria-label="Genesis 1 creation picture">
+      <div class="light-glory"></div>
 
-    <div class="control-group">
-      <label for="chapterSelect">Chapter</label>
-      <select id="chapterSelect"></select>
-    </div>
+      <div class="cloud one"></div>
+      <div class="cloud two"></div>
+      <div class="cloud three"></div>
 
-    <div class="control-group">
-      <label for="fontSelect">Font</label>
-      <select id="fontSelect">
-        <optgroup label="Best for Bible Reading">
-          <option value="'Cormorant Garamond', Georgia, serif">Elegant Bible</option>
-          <option value="Georgia, 'Times New Roman', serif">Georgia</option>
-          <option value="'Times New Roman', serif">Classic Bible</option>
-          <option value="'Trebuchet MS', sans-serif">Easy Read</option>
-        </optgroup>
-
-        <optgroup label="Printed Handwriting">
-          <option value="'Patrick Hand', cursive">Printed Handwriting</option>
-          <option value="'Handlee', cursive">Gentle Handwriting Print</option>
-          <option value="'Kalam', cursive">Notebook Print</option>
-          <option value="'Indie Flower', cursive">Playful Print</option>
-        </optgroup>
-
-        <optgroup label="Journal Handwriting">
-          <option value="'Caveat', cursive">Soft Journal Handwriting</option>
-          <option value="'Dancing Script', cursive">Soft Pretty Script</option>
-          <option value="'Satisfy', cursive">Smooth Journal Script</option>
-        </optgroup>
-
-        <optgroup label="Fancy Script">
-          <option value="'Allura', cursive">Allura</option>
-          <option value="'Alex Brush', cursive">Alex Brush</option>
-          <option value="'Sacramento', cursive">Sacramento</option>
-          <option value="'Parisienne', cursive">Parisienne</option>
-          <option value="'Great Vibes', cursive">Great Vibes</option>
-        </optgroup>
-      </select>
-    </div>
-
-    <div class="control-group">
-      <button class="small-btn" id="fontMinus">A−</button>
-      <button class="small-btn" id="fontPlus">A+</button>
-    </div>
-  </section>
-
-  <main class="bible-stage">
-    <section class="open-bible" aria-label="Open Bible">
-      <div class="page left-page">
-        <div class="page-corner">🌿</div>
-
-        <div class="art-card">
-          <div class="art-inner">
-            <div class="story-kicker" id="artKicker">The Beginning</div>
-            <h2 id="artTitle">Genesis 1</h2>
-            <p id="artText">Creation begins with God’s word, light breaking through darkness, and the world blooming into order and life.</p>
-            <div class="day-badges" id="dayBadges"></div>
-          </div>
-        </div>
-
-        <div class="tool-links">
-          <a href="grand-library.html">🏛️ Library</a>
-          <a href="study-binder.html">📖 Study Binder</a>
-          <a href="journal.html">✍️ Journal</a>
-          <a href="coloring.html">🎨 Coloring</a>
-        </div>
+      <div class="sun-moon-stars">
+        <div class="sun"></div>
+        <div class="moon"></div>
+        <div class="star s1">✦</div>
+        <div class="star s2">✦</div>
+        <div class="star s3">✧</div>
+        <div class="star s4">✧</div>
       </div>
 
-      <div class="page right-page">
-        <div class="page-corner">🧡</div>
+      <div class="birds">⌁ ⌁ ⌁</div>
 
-        <div class="scripture-top">
-          <h2 id="chapterTitle">Genesis 1</h2>
-          <div class="translation" id="translationLabel">King James Version</div>
-          <div class="chapter-note" id="chapterNote"></div>
-        </div>
+      <div class="hill left"></div>
+      <div class="hill right"></div>
+      <div class="sea"></div>
+      <div class="land"></div>
 
-        <article class="scripture-box" id="scriptureBox"></article>
+      <div class="tree one"></div>
+      <div class="tree two"></div>
+      <div class="tree three"></div>
+      <div class="tree four"></div>
 
-        <div class="tool-links">
-          <a href="study-binder.html">Chapter Study</a>
-          <a href="journal.html">Write Notes</a>
-          <a href="coloring.html">Coloring Page</a>
-        </div>
+      <div class="animals" aria-hidden="true">
+        <span>🕊️</span>
+        <span>🐟</span>
+        <span>🦌</span>
+        <span>🐑</span>
+        <span>🐇</span>
+      </div>
+
+      <div class="flowers" aria-hidden="true">
+        🌿 🧡 🌾 🌻 🍎 🌿
+      </div>
+
+      <div class="caption-card">
+        <h2>And God saw that it was good.</h2>
+        <p>No picture of God is shown here — His presence is represented by heavenly light and glory.</p>
       </div>
     </section>
 
-    <nav class="ribbon-nav" aria-label="Chapter navigation">
-      <button class="ribbon-btn" id="prevBtn">← Previous</button>
-      <button class="ribbon-btn bookmark" id="bookmarkBtn">🔖 Bookmark</button>
-      <button class="ribbon-btn next" id="nextBtn">Next →</button>
-    </nav>
+    <section class="info-grid">
+      <article class="info-card">
+        <h3>What Happens</h3>
+        <p>God creates the heavens and the earth, brings light from darkness, orders the world, fills it with life, and makes people in His image.</p>
+      </article>
+
+      <article class="info-card">
+        <h3>Look For</h3>
+        <p>Light, sky, land, seas, plants, sun, moon, stars, birds, sea creatures, animals, and the repeated phrase that creation is good.</p>
+      </article>
+
+      <article class="info-card">
+        <h3>Remember</h3>
+        <p>Genesis 1 teaches that creation is not random or forgotten. God speaks, orders, blesses, and calls His creation very good.</p>
+      </article>
+    </section>
+
+    <section class="verse-strip">
+      <strong>Genesis 1:1</strong>
+      <span>“In the beginning God created the heaven and the earth.”</span>
+    </section>
   </main>
 
-  <aside class="side-tabs" aria-label="Bible section tabs">
-    <button class="tab-btn" data-section="torah" title="Torah">📜</button>
-    <button class="tab-btn" data-section="history" title="History">🏛️</button>
-    <button class="tab-btn" data-section="poetry" title="Poetry">🎵</button>
-    <button class="tab-btn" data-section="prophets" title="Prophets">🔥</button>
-    <button class="tab-btn" data-section="gospels" title="Gospels">🌿</button>
-    <button class="tab-btn" data-section="letters" title="Letters">✉️</button>
-  </aside>
-
-  <aside class="book-drawer" id="bookDrawer">
-    <h2 class="drawer-title" id="drawerTitle">Books</h2>
-    <div class="drawer-subtitle">Choose a book</div>
-    <div class="book-grid" id="bookGrid"></div>
-  </aside>
-
-  <div class="flower-pot" aria-hidden="true"></div>
-
-  <div class="help-popup" id="helpPopup">
-    <h3 id="helpTitle">Verse Help</h3>
-    <p id="helpText">This is where the gentle owl helper explains difficult words, people, places, and meaning.</p>
-    <button class="close-help" id="closeHelp">Close</button>
-  </div>
-
 </div>
-
-<script src="bible-data.js"></script>
-
-<script>
-let currentBook = "Genesis";
-let currentChapter = 1;
-let currentTranslation = "KJV";
-let fontSize = 20;
-
-const bookSelect = document.getElementById("bookSelect");
-const chapterSelect = document.getElementById("chapterSelect");
-const translationSelect = document.getElementById("translationSelect");
-const fontSelect = document.getElementById("fontSelect");
-const scriptureBox = document.getElementById("scriptureBox");
-const chapterTitle = document.getElementById("chapterTitle");
-const translationLabel = document.getElementById("translationLabel");
-const chapterNote = document.getElementById("chapterNote");
-const artKicker = document.getElementById("artKicker");
-const artTitle = document.getElementById("artTitle");
-const artText = document.getElementById("artText");
-const dayBadges = document.getElementById("dayBadges");
-const bookDrawer = document.getElementById("bookDrawer");
-const drawerTitle = document.getElementById("drawerTitle");
-const bookGrid = document.getElementById("bookGrid");
-const helpPopup = document.getElementById("helpPopup");
-const helpTitle = document.getElementById("helpTitle");
-const helpText = document.getElementById("helpText");
-
-function getAllBooks(){
-  return Object.values(window.BIBLE_SECTIONS).flatMap(section => section.books);
-}
-
-function fillBookSelect(){
-  bookSelect.innerHTML = "";
-
-  getAllBooks().forEach(book => {
-    const option = document.createElement("option");
-    option.value = book;
-    option.textContent = book;
-    bookSelect.appendChild(option);
-  });
-
-  bookSelect.value = currentBook;
-}
-
-function fillChapterSelect(){
-  chapterSelect.innerHTML = "";
-  const total = window.CHAPTER_COUNTS[currentBook] || 1;
-
-  for(let i = 1; i <= total; i++){
-    const option = document.createElement("option");
-    option.value = i;
-    option.textContent = i;
-    chapterSelect.appendChild(option);
-  }
-
-  chapterSelect.value = currentChapter;
-}
-
-function closeDrawer(){
-  bookDrawer.classList.remove("open");
-
-  document.querySelectorAll(".tab-btn").forEach(tab => {
-    tab.classList.remove("active");
-  });
-}
-
-function updateArtwork(){
-  const key = `${currentBook}-${currentChapter}`;
-  const art = window.CHAPTER_ART[key];
-
-  if(art){
-    artKicker.textContent = art.kicker;
-    artTitle.textContent = art.title;
-    artText.textContent = art.text;
-    chapterNote.textContent = art.note;
-    dayBadges.innerHTML = art.badges.map(badge => `<span>${badge}</span>`).join("");
-  } else {
-    artKicker.textContent = "Coming Chapter";
-    artTitle.textContent = `${currentBook} ${currentChapter}`;
-    artText.textContent = "This page is ready. Next we will add the Scripture, chapter study, journal notes, and artwork for this chapter.";
-    chapterNote.textContent = "This chapter space is prepared and waiting for its full Bible text and study helps.";
-    dayBadges.innerHTML = `
-      <span>Study</span>
-      <span>Journal</span>
-      <span>Color</span>
-      <span>Pray</span>
-    `;
-  }
-}
-
-function renderScripture(){
-  const key = `${currentBook}-${currentChapter}`;
-  const verses = window.BIBLE_TEXT[currentTranslation] && window.BIBLE_TEXT[currentTranslation][key];
-
-  chapterTitle.textContent = `${currentBook} ${currentChapter}`;
-  translationLabel.textContent = window.TRANSLATION_NAMES[currentTranslation] || currentTranslation;
-  scriptureBox.style.fontSize = fontSize + "px";
-  scriptureBox.style.fontFamily = fontSelect.value;
-
-  updateArtwork();
-
-  if(!verses){
-    scriptureBox.innerHTML = `
-      <p class="verse">
-        <span class="verse-num">♡</span>
-        This chapter space is ready. Now we can add full Scripture in <strong>bible-data.js</strong> instead of rebuilding this page.
-      </p>
-      <p class="verse">
-        <span class="verse-num">+</span>
-        Current open page: <strong>${currentBook} ${currentChapter}</strong> in <strong>${window.TRANSLATION_NAMES[currentTranslation] || currentTranslation}</strong>.
-      </p>
-    `;
-    return;
-  }
-
-  scriptureBox.innerHTML = verses.map((verse, index) => `
-    <p class="verse">
-      <span class="verse-num" data-verse="${index + 1}">${index + 1}</span>
-      ${verse}
-    </p>
-  `).join("");
-
-  document.querySelectorAll(".verse-num").forEach(num => {
-    num.addEventListener("click", () => openVerseHelp(num.dataset.verse));
-    num.addEventListener("dblclick", () => openVerseHelp(num.dataset.verse));
-  });
-}
-
-function setBook(book){
-  currentBook = book;
-  currentChapter = 1;
-  bookSelect.value = currentBook;
-  fillChapterSelect();
-  renderScripture();
-  closeDrawer();
-}
-
-function openDrawer(sectionKey){
-  const section = window.BIBLE_SECTIONS[sectionKey];
-  drawerTitle.textContent = section.title;
-  bookGrid.innerHTML = "";
-
-  document.querySelectorAll(".tab-btn").forEach(tab => {
-    tab.classList.toggle("active", tab.dataset.section === sectionKey);
-  });
-
-  section.books.forEach(book => {
-    const btn = document.createElement("button");
-    btn.className = "book-item";
-
-    if(book === currentBook){
-      btn.classList.add("active-book");
-    }
-
-    btn.textContent = book;
-    btn.addEventListener("click", () => setBook(book));
-    bookGrid.appendChild(btn);
-  });
-
-  bookDrawer.classList.add("open");
-}
-
-function openVerseHelp(verseNumber){
-  const key = `${currentBook}-${currentChapter}`;
-  const help = window.VERSE_HELP[key] && window.VERSE_HELP[key][verseNumber];
-
-  helpTitle.textContent = `${currentBook} ${currentChapter}:${verseNumber} Help`;
-  helpText.textContent = help || "This is where the gentle owl helper will explain difficult words, Hebrew meaning, people, places, context, and study questions for this verse.";
-  helpPopup.classList.add("open");
-}
-
-function saveBookmark(){
-  const bookmark = {
-    book: currentBook,
-    chapter: currentChapter,
-    translation: currentTranslation,
-    font: fontSelect.value,
-    fontSize: fontSize
-  };
-
-  localStorage.setItem("bloomBibleBookmark", JSON.stringify(bookmark));
-  document.getElementById("bookmarkBtn").textContent = "✓ Saved";
-
-  setTimeout(() => {
-    document.getElementById("bookmarkBtn").textContent = "🔖 Bookmark";
-  }, 1300);
-}
-
-function loadBookmark(){
-  const saved = localStorage.getItem("bloomBibleBookmark");
-  if(!saved) return;
-
-  try{
-    const bookmark = JSON.parse(saved);
-
-    if(bookmark.book && window.CHAPTER_COUNTS[bookmark.book]){
-      currentBook = bookmark.book;
-      currentChapter = bookmark.chapter || 1;
-      currentTranslation = bookmark.translation || "KJV";
-      fontSize = bookmark.fontSize || 20;
-
-      if(bookmark.font){
-        fontSelect.value = bookmark.font;
-      }
-    }
-  }catch(error){
-    console.log("No bookmark loaded.");
-  }
-}
-
-function goPrevious(){
-  if(currentChapter > 1){
-    currentChapter--;
-  } else {
-    const books = getAllBooks();
-    const index = books.indexOf(currentBook);
-
-    if(index > 0){
-      currentBook = books[index - 1];
-      currentChapter = window.CHAPTER_COUNTS[currentBook] || 1;
-    }
-  }
-
-  bookSelect.value = currentBook;
-  fillChapterSelect();
-  chapterSelect.value = currentChapter;
-  renderScripture();
-}
-
-function goNext(){
-  const total = window.CHAPTER_COUNTS[currentBook] || 1;
-
-  if(currentChapter < total){
-    currentChapter++;
-  } else {
-    const books = getAllBooks();
-    const index = books.indexOf(currentBook);
-
-    if(index < books.length - 1){
-      currentBook = books[index + 1];
-      currentChapter = 1;
-    }
-  }
-
-  bookSelect.value = currentBook;
-  fillChapterSelect();
-  chapterSelect.value = currentChapter;
-  renderScripture();
-}
-
-translationSelect.addEventListener("change", () => {
-  currentTranslation = translationSelect.value;
-  renderScripture();
-});
-
-bookSelect.addEventListener("change", () => {
-  currentBook = bookSelect.value;
-  currentChapter = 1;
-  fillChapterSelect();
-  renderScripture();
-});
-
-chapterSelect.addEventListener("change", () => {
-  currentChapter = Number(chapterSelect.value);
-  renderScripture();
-});
-
-fontSelect.addEventListener("change", renderScripture);
-
-document.getElementById("fontMinus").addEventListener("click", () => {
-  fontSize = Math.max(14, fontSize - 1);
-  renderScripture();
-});
-
-document.getElementById("fontPlus").addEventListener("click", () => {
-  fontSize = Math.min(34, fontSize + 1);
-  renderScripture();
-});
-
-document.getElementById("prevBtn").addEventListener("click", goPrevious);
-document.getElementById("nextBtn").addEventListener("click", goNext);
-document.getElementById("bookmarkBtn").addEventListener("click", saveBookmark);
-document.getElementById("closeHelp").addEventListener("click", () => helpPopup.classList.remove("open"));
-
-document.querySelectorAll(".tab-btn").forEach(btn => {
-  btn.addEventListener("click", () => openDrawer(btn.dataset.section));
-});
-
-document.addEventListener("click", event => {
-  const clickedDrawer = bookDrawer.contains(event.target);
-  const clickedTab = event.target.closest(".tab-btn");
-
-  if(!clickedDrawer && !clickedTab){
-    closeDrawer();
-  }
-});
-
-fillBookSelect();
-fillChapterSelect();
-loadBookmark();
-translationSelect.value = currentTranslation;
-bookSelect.value = currentBook;
-fillChapterSelect();
-chapterSelect.value = currentChapter;
-renderScripture();
-</script>
-
 </body>
 </html>
