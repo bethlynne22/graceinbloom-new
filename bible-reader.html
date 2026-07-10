@@ -422,6 +422,7 @@ select{
   transform:translateY(1px);
 }
 
+/* RIGHT SIDE TABS — polished */
 .side-tabs{
   position:fixed;
   top:145px;
@@ -437,29 +438,52 @@ select{
   height:48px;
   border:none;
   border-radius:16px;
-  background:linear-gradient(180deg,#fff4dc,#e2c489);
+  background:
+    radial-gradient(circle at 35% 20%, rgba(255,255,255,.8), transparent 35%),
+    linear-gradient(180deg,#fff4dc,#e2c489);
   color:#513820;
-  box-shadow:0 6px 16px rgba(55,35,18,.22);
+  box-shadow:
+    0 6px 16px rgba(55,35,18,.22),
+    inset 0 0 8px rgba(255,255,255,.45);
   cursor:pointer;
   font-size:22px;
+  transition:.18s ease;
+  border:1px solid rgba(155,104,46,.22);
 }
 
 .tab-btn:hover{
-  transform:translateX(-2px);
+  transform:translateX(-3px) scale(1.03);
+  box-shadow:
+    0 9px 20px rgba(55,35,18,.28),
+    0 0 0 3px rgba(255,238,197,.55),
+    inset 0 0 8px rgba(255,255,255,.55);
+}
+
+.tab-btn.active{
+  background:
+    radial-gradient(circle at 35% 20%, rgba(255,255,255,.9), transparent 35%),
+    linear-gradient(180deg,#ffe8b7,#c9974a);
+  box-shadow:
+    0 10px 22px rgba(90,54,18,.32),
+    0 0 0 4px rgba(255,226,166,.56),
+    inset 0 0 10px rgba(255,255,255,.55);
+  transform:translateX(-4px);
 }
 
 .book-drawer{
   position:fixed;
   top:145px;
   right:66px;
-  width:290px;
+  width:310px;
   max-height:70vh;
   overflow:auto;
-  background:rgba(255,248,232,.96);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.78), transparent 28%),
+    rgba(255,248,232,.97);
   border:1px solid rgba(154,106,61,.38);
   border-radius:22px;
   box-shadow:0 18px 45px rgba(50,30,15,.25);
-  padding:14px;
+  padding:15px;
   z-index:21;
   display:none;
 }
@@ -471,31 +495,59 @@ select{
 .drawer-title{
   margin:0 0 10px;
   color:#513820;
-  font-size:34px;
+  font-size:36px;
   font-family:'Allura', cursive;
   font-weight:400;
+  text-align:center;
+  text-shadow:0 1px 0 rgba(255,255,255,.7);
+}
+
+.drawer-subtitle{
+  margin:-5px 0 12px;
+  text-align:center;
+  font-family:'Handlee', cursive;
+  color:#7a5a36;
+  font-size:16px;
 }
 
 .book-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:7px;
+  gap:8px;
 }
 
 .book-item{
   border:none;
-  border-radius:12px;
-  padding:8px;
-  background:#fffaf0;
+  border-radius:14px;
+  padding:10px 11px;
+  background:
+    linear-gradient(180deg,rgba(255,252,244,.96),rgba(248,232,195,.92));
   color:#4a3522;
   cursor:pointer;
   text-align:left;
-  border:1px solid rgba(160,112,58,.22);
-  font-size:16px;
+  border:1px solid rgba(160,112,58,.24);
+  font-family:'Handlee', cursive;
+  font-size:18px;
+  line-height:1.1;
+  letter-spacing:.15px;
+  box-shadow:0 2px 7px rgba(90,55,24,.08);
+  transition:.16s ease;
 }
 
 .book-item:hover{
   background:#f7e5bd;
+  transform:translateY(-1px);
+  box-shadow:0 5px 11px rgba(90,55,24,.13);
+}
+
+.book-item.active-book{
+  background:
+    linear-gradient(180deg,#fff1ce,#e4bd72);
+  border-color:rgba(146,88,32,.45);
+  box-shadow:
+    0 5px 12px rgba(90,55,24,.18),
+    inset 0 0 0 1px rgba(255,255,255,.5);
+  font-weight:700;
 }
 
 .flower-pot{
@@ -773,6 +825,7 @@ select{
 
   <aside class="book-drawer" id="bookDrawer">
     <h2 class="drawer-title" id="drawerTitle">Books</h2>
+    <div class="drawer-subtitle">Choose a book</div>
     <div class="book-grid" id="bookGrid"></div>
   </aside>
 
@@ -1215,6 +1268,13 @@ function fillChapterSelect(){
   chapterSelect.value = currentChapter;
 }
 
+function closeDrawer(){
+  bookDrawer.classList.remove("open");
+  document.querySelectorAll(".tab-btn").forEach(tab => {
+    tab.classList.remove("active");
+  });
+}
+
 function updateArtwork(){
   if(currentBook === "Genesis" && currentChapter === 1){
     artKicker.textContent = "The Beginning";
@@ -1302,7 +1362,7 @@ function setBook(book){
   bookSelect.value = currentBook;
   fillChapterSelect();
   renderScripture();
-  bookDrawer.classList.remove("open");
+  closeDrawer();
 }
 
 function openDrawer(sectionKey){
@@ -1310,9 +1370,16 @@ function openDrawer(sectionKey){
   drawerTitle.textContent = section.title;
   bookGrid.innerHTML = "";
 
+  document.querySelectorAll(".tab-btn").forEach(tab => {
+    tab.classList.toggle("active", tab.dataset.section === sectionKey);
+  });
+
   section.books.forEach(book => {
     const btn = document.createElement("button");
     btn.className = "book-item";
+    if(book === currentBook){
+      btn.classList.add("active-book");
+    }
     btn.textContent = book;
     btn.addEventListener("click", () => setBook(book));
     bookGrid.appendChild(btn);
@@ -1455,7 +1522,7 @@ document.addEventListener("click", event => {
   const clickedTab = event.target.closest(".tab-btn");
 
   if(!clickedDrawer && !clickedTab){
-    bookDrawer.classList.remove("open");
+    closeDrawer();
   }
 });
 
