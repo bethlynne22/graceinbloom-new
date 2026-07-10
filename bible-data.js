@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blooming in His Garden Bible Reader</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Great+Vibes&family=Handlee&family=Indie+Flower&family=Kalam:wght@300;400;700&family=Parisienne&family=Patrick+Hand&family=Sacramento&family=Satisfy&display=swap');
+
+:root{
+  --cream:#fff7e8;
+  --paper:#fbefd5;
+  --paper-dark:#e8d5a9;
+  --ink:#4a3522;
+  --deep:#3d2b1f;
+  --green:#6f8b62;
+  --sage:#9fb28e;
+  --eucalyptus:#7f9b85;
+  --gold:#c79a42;
+  --rose:#c48776;
+  --peach:#e9b58d;
+  --bronze:#9a6a3d;
+  --shadow:rgba(45,30,15,.28);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Cormorant Garamond', Georgia, serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255,238,202,.65), transparent 28%),
+    linear-gradient(180deg,#dce8d0 0%,#f8eedc 42%,#e3d2ad 100%);
+  overflow-x:hidden;
+}
+
+.scene{
+  min-height:100vh;
+  position:relative;
+  padding:28px 84px 38px 28px;
+}
+
+.scene::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(90deg, transparent 0 6%, rgba(255,255,255,.58) 6% 7.4%, transparent 7.4% 12%),
+    linear-gradient(90deg, transparent 0 17%, rgba(255,255,255,.46) 17% 18.2%, transparent 18.2% 24%),
+    linear-gradient(90deg, transparent 0 34%, rgba(255,255,255,.52) 34% 35.5%, transparent 35.5% 42%),
+    linear-gradient(90deg, transparent 0 57%, rgba(255,255,255,.48) 57% 58.4%, transparent 58.4% 64%),
+    linear-gradient(90deg, transparent 0 76%, rgba(255,255,255,.56) 76% 77.4%, transparent 77.4% 84%),
+    linear-gradient(180deg, rgba(120,151,105,.38), rgba(255,247,232,.4));
+  opacity:.72;
+  pointer-events:none;
+  z-index:-2;
+}
+
+.scene::after{
+  content:"";
+  position:fixed;
+  inset:auto 0 0 0;
+  height:34vh;
+  background:
+    radial-gradient(circle at 10% 90%, rgba(225,132,65,.22), transparent 20%),
+    radial-gradient(circle at 82% 84%, rgba(123,155,121,.34), transparent 25%),
+    linear-gradient(180deg, transparent, rgba(98,117,71,.18));
+  pointer-events:none;
+  z-index:-1;
+}
+
+.header{
+  max-width:1120px;
+  margin:0 auto 16px;
+  text-align:center;
+}
+
+.header h1{
+  margin:0;
+  font-family:'Great Vibes', cursive;
+  font-size:clamp(42px,6vw,78px);
+  color:#5d422b;
+  text-shadow:0 2px 0 rgba(255,255,255,.6);
+  letter-spacing:.5px;
+  font-weight:400;
+}
+
+.header p{
+  margin:4px 0 0;
+  font-size:19px;
+  color:#684d33;
+}
+
+.reader-controls{
+  max-width:1120px;
+  margin:0 auto 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  align-items:center;
+  padding:12px;
+  background:rgba(255,248,232,.78);
+  border:1px solid rgba(179,132,61,.35);
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(80,50,20,.12);
+  backdrop-filter:blur(4px);
+}
+
+.control-group{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  background:rgba(255,255,255,.38);
+  border:1px solid rgba(150,110,60,.18);
+  border-radius:999px;
+  padding:8px 10px;
+}
+
+label{
+  font-size:14px;
+  font-weight:700;
+  color:#63472f;
+}
+
+select,
+button{
+  font-family:'Cormorant Garamond', Georgia, serif;
+}
+
+select{
+  border:1px solid rgba(105,78,45,.25);
+  border-radius:999px;
+  padding:7px 10px;
+  background:#fffaf0;
+  color:var(--ink);
+  font-size:16px;
+}
+
+.small-btn{
+  border:none;
+  border-radius:999px;
+  padding:7px 12px;
+  background:linear-gradient(180deg,#fff5df,#eed6a7);
+  color:#513820;
+  box-shadow:0 2px 6px rgba(70,40,15,.16);
+  cursor:pointer;
+  font-weight:700;
+  font-size:16px;
+}
+
+.small-btn:hover{
+  transform:translateY(-1px);
+}
+
+.bible-stage{
+  max-width:1120px;
+  margin:0 auto;
+  position:relative;
+}
+
+.open-bible{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:620px;
+  background:
+    linear-gradient(90deg, transparent 49.4%, rgba(91,59,31,.25) 49.7%, rgba(255,255,255,.55) 50%, rgba(91,59,31,.22) 50.3%, transparent 50.6%),
+    linear-gradient(180deg,#fff8e9,#f2ddae);
+  border-radius:34px 34px 28px 28px;
+  border:2px solid rgba(154,106,61,.45);
+  box-shadow:
+    0 28px 60px var(--shadow),
+    inset 0 0 36px rgba(126,84,35,.18);
+  overflow:hidden;
+}
+
+.page{
+  position:relative;
+  padding:34px 34px 82px;
+}
+
+.left-page{
+  background:
+    radial-gradient(circle at 20% 12%, rgba(255,255,255,.72), transparent 28%),
+    linear-gradient(90deg,#fff5dc,#f6dfaf);
+}
+
+.right-page{
+  background:
+    radial-gradient(circle at 80% 8%, rgba(255,255,255,.65), transparent 25%),
+    linear-gradient(90deg,#f6dfaf,#fff4da);
+}
+
+.page::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(180,135,65,.28);
+  border-radius:24px;
+  pointer-events:none;
+}
+
+.page-corner{
+  position:absolute;
+  top:20px;
+  right:24px;
+  font-size:28px;
+  opacity:.7;
+}
+
+.left-page .page-corner{
+  right:auto;
+  left:24px;
+}
+
+.art-card{
+  height:100%;
+  min-height:490px;
+  border-radius:26px;
+  border:2px solid rgba(186,139,71,.45);
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255,255,255,.92), transparent 20%),
+    radial-gradient(circle at 18% 74%, rgba(232,149,90,.22), transparent 25%),
+    radial-gradient(circle at 86% 78%, rgba(127,155,133,.25), transparent 24%),
+    linear-gradient(180deg, rgba(160,182,140,.5), rgba(249,226,188,.85));
+  box-shadow:inset 0 0 24px rgba(107,78,44,.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:24px;
+}
+
+.art-inner{
+  background:rgba(255,250,238,.76);
+  border:1px solid rgba(148,103,55,.3);
+  border-radius:22px;
+  padding:24px;
+  max-width:390px;
+}
+
+.story-kicker{
+  display:inline-block;
+  margin-bottom:8px;
+  padding:5px 12px;
+  border-radius:999px;
+  background:rgba(255,241,203,.8);
+  border:1px solid rgba(182,133,58,.35);
+  color:#7a5630;
+  font-size:15px;
+  font-weight:700;
+}
+
+.art-inner h2{
+  margin:0 0 8px;
+  color:#5b4029;
+  font-family:'Allura', cursive;
+  font-size:48px;
+  font-weight:400;
+}
+
+.art-inner p{
+  margin:0;
+  line-height:1.45;
+  font-size:18px;
+}
+
+.day-badges{
+  margin-top:16px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  justify-content:center;
+}
+
+.day-badges span{
+  padding:5px 9px;
+  border-radius:999px;
+  background:rgba(255,255,255,.58);
+  border:1px solid rgba(151,104,52,.25);
+  font-size:14px;
+  color:#6a4928;
+}
+
+.scripture-top{
+  text-align:center;
+  margin-bottom:12px;
+}
+
+.scripture-top h2{
+  margin:4px 0 3px;
+  font-size:46px;
+  color:#4d3624;
+  font-family:'Allura', cursive;
+  font-weight:400;
+}
+
+.scripture-top .translation{
+  font-size:16px;
+  color:#805b34;
+}
+
+.chapter-note{
+  margin:7px auto 0;
+  max-width:430px;
+  font-size:15px;
+  line-height:1.35;
+  color:#6a5036;
+}
+
+.scripture-box{
+  position:relative;
+  z-index:1;
+  max-height:455px;
+  overflow:auto;
+  padding:6px 10px 10px;
+  line-height:1.75;
+  font-size:20px;
+}
+
+.verse{
+  margin:0 0 12px;
+}
+
+.verse-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:23px;
+  height:23px;
+  margin-right:7px;
+  border-radius:50%;
+  font-size:12px;
+  font-weight:bold;
+  color:#fff8e8;
+  background:linear-gradient(180deg,var(--gold),var(--bronze));
+  cursor:pointer;
+  font-family:Georgia, serif;
+}
+
+.verse-num:hover{
+  background:linear-gradient(180deg,var(--rose),var(--bronze));
+}
+
+.tool-links{
+  position:absolute;
+  bottom:24px;
+  left:28px;
+  right:28px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  z-index:2;
+}
+
+.tool-links a{
+  text-decoration:none;
+  color:#52391f;
+  background:rgba(255,250,238,.74);
+  border:1px solid rgba(167,118,56,.35);
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:15px;
+  box-shadow:0 2px 8px rgba(90,55,24,.1);
+}
+
+.tool-links a:hover{
+  background:#fff4d9;
+}
+
+.ribbon-nav{
+  max-width:900px;
+  margin:15px auto 0;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.ribbon-btn{
+  position:relative;
+  border:none;
+  min-width:118px;
+  padding:10px 14px 16px;
+  border-radius:0 0 14px 14px;
+  background:linear-gradient(180deg,#9c6b42,#6f4328);
+  color:#fff5df;
+  font-size:17px;
+  box-shadow:0 8px 18px rgba(65,35,14,.24);
+  cursor:pointer;
+  font-weight:700;
+}
+
+.ribbon-btn::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-10px;
+  transform:translateX(-50%);
+  width:0;
+  height:0;
+  border-left:14px solid transparent;
+  border-right:14px solid transparent;
+  border-top:11px solid #6f4328;
+}
+
+.ribbon-btn.bookmark{
+  background:linear-gradient(180deg,#b48746,#7d522a);
+}
+
+.ribbon-btn.next{
+  background:linear-gradient(180deg,#896b58,#5d4030);
+}
+
+.ribbon-btn:hover{
+  transform:translateY(1px);
+}
+
+/* RIGHT SIDE TABS — polished */
+.side-tabs{
+  position:fixed;
+  top:145px;
+  right:10px;
+  z-index:20;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.tab-btn{
+  width:48px;
+  height:48px;
+  border:none;
+  border-radius:16px;
+  background:
+    radial-gradient(circle at 35% 20%, rgba(255,255,255,.8), transparent 35%),
+    linear-gradient(180deg,#fff4dc,#e2c489);
+  color:#513820;
+  box-shadow:
+    0 6px 16px rgba(55,35,18,.22),
+    inset 0 0 8px rgba(255,255,255,.45);
+  cursor:pointer;
+  font-size:22px;
+  transition:.18s ease;
+  border:1px solid rgba(155,104,46,.22);
+}
+
+.tab-btn:hover{
+  transform:translateX(-3px) scale(1.03);
+  box-shadow:
+    0 9px 20px rgba(55,35,18,.28),
+    0 0 0 3px rgba(255,238,197,.55),
+    inset 0 0 8px rgba(255,255,255,.55);
+}
+
+.tab-btn.active{
+  background:
+    radial-gradient(circle at 35% 20%, rgba(255,255,255,.9), transparent 35%),
+    linear-gradient(180deg,#ffe8b7,#c9974a);
+  box-shadow:
+    0 10px 22px rgba(90,54,18,.32),
+    0 0 0 4px rgba(255,226,166,.56),
+    inset 0 0 10px rgba(255,255,255,.55);
+  transform:translateX(-4px);
+}
+
+.book-drawer{
+  position:fixed;
+  top:145px;
+  right:66px;
+  width:310px;
+  max-height:70vh;
+  overflow:auto;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.78), transparent 28%),
+    rgba(255,248,232,.97);
+  border:1px solid rgba(154,106,61,.38);
+  border-radius:22px;
+  box-shadow:0 18px 45px rgba(50,30,15,.25);
+  padding:15px;
+  z-index:21;
+  display:none;
+}
+
+.book-drawer.open{
+  display:block;
+}
+
+.drawer-title{
+  margin:0 0 10px;
+  color:#513820;
+  font-size:36px;
+  font-family:'Allura', cursive;
+  font-weight:400;
+  text-align:center;
+  text-shadow:0 1px 0 rgba(255,255,255,.7);
+}
+
+.drawer-subtitle{
+  margin:-5px 0 12px;
+  text-align:center;
+  font-family:'Handlee', cursive;
+  color:#7a5a36;
+  font-size:16px;
+}
+
+.book-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.book-item{
+  border:none;
+  border-radius:14px;
+  padding:10px 11px;
+  background:
+    linear-gradient(180deg,rgba(255,252,244,.96),rgba(248,232,195,.92));
+  color:#4a3522;
+  cursor:pointer;
+  text-align:left;
+  border:1px solid rgba(160,112,58,.24);
+  font-family:'Handlee', cursive;
+  font-size:18px;
+  line-height:1.1;
+  letter-spacing:.15px;
+  box-shadow:0 2px 7px rgba(90,55,24,.08);
+  transition:.16s ease;
+}
+
+.book-item:hover{
+  background:#f7e5bd;
+  transform:translateY(-1px);
+  box-shadow:0 5px 11px rgba(90,55,24,.13);
+}
+
+.book-item.active-book{
+  background:
+    linear-gradient(180deg,#fff1ce,#e4bd72);
+  border-color:rgba(146,88,32,.45);
+  box-shadow:
+    0 5px 12px rgba(90,55,24,.18),
+    inset 0 0 0 1px rgba(255,255,255,.5);
+  font-weight:700;
+}
+
+.flower-pot{
+  position:fixed;
+  right:18px;
+  bottom:20px;
+  width:78px;
+  height:120px;
+  pointer-events:none;
+  z-index:5;
+}
+
+.flower-pot::before{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:18px;
+  width:44px;
+  height:48px;
+  border-radius:0 0 15px 15px;
+  background:linear-gradient(180deg,rgba(175,218,215,.74),rgba(92,143,142,.75));
+  border:2px solid rgba(255,255,255,.58);
+  box-shadow:inset 0 0 10px rgba(255,255,255,.45);
+}
+
+.flower-pot::after{
+  content:"🌿 🌾 🧡";
+  position:absolute;
+  top:0;
+  left:0;
+  font-size:34px;
+  line-height:1.05;
+}
+
+.help-popup{
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(460px,88vw);
+  background:#fff7e6;
+  border:2px solid rgba(180,132,61,.5);
+  border-radius:22px;
+  box-shadow:0 24px 70px rgba(43,28,14,.36);
+  padding:20px;
+  z-index:50;
+  display:none;
+}
+
+.help-popup.open{
+  display:block;
+}
+
+.help-popup h3{
+  margin:0 0 8px;
+  font-family:'Allura', cursive;
+  font-size:38px;
+  font-weight:400;
+}
+
+.help-popup p{
+  margin:0 0 14px;
+  line-height:1.5;
+  font-size:18px;
+}
+
+.close-help{
+  border:none;
+  border-radius:999px;
+  padding:8px 12px;
+  background:#7a5330;
+  color:white;
+  cursor:pointer;
+}
+
+@media(max-width:850px){
+  .scene{
+    padding:20px 14px 120px;
+  }
+
+  .header h1{
+    font-size:48px;
+  }
+
+  .open-bible{
+    grid-template-columns:1fr;
+  }
+
+  .page{
+    padding:26px 22px 86px;
+  }
+
+  .art-card{
+    min-height:300px;
+  }
+
+  .scripture-box{
+    max-height:none;
+  }
+
+  .side-tabs{
+    top:auto;
+    right:10px;
+    bottom:12px;
+    flex-direction:row;
+  }
+
+  .tab-btn{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+  }
+
+  .book-drawer{
+    top:auto;
+    right:10px;
+    left:10px;
+    bottom:70px;
+    width:auto;
+    max-height:55vh;
+  }
+
+  .flower-pot{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="scene">
+
+  <header class="header">
+    <h1>Blooming in His Garden Bible Reader</h1>
+    <p>Choose a translation, open a book, read, bookmark, study, journal, and grow.</p>
+  </header>
+
+  <section class="reader-controls" aria-label="Bible reader controls">
+    <div class="control-group">
+      <label for="translationSelect">Translation</label>
+      <select id="translationSelect">
+        <option value="KJV">KJV</option>
+        <option value="WEB">WEB</option>
+        <option value="HNV">HNV</option>
+        <option value="ASV">ASV</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="bookSelect">Book</label>
+      <select id="bookSelect"></select>
+    </div>
+
+    <div class="control-group">
+      <label for="chapterSelect">Chapter</label>
+      <select id="chapterSelect"></select>
+    </div>
+
+    <div class="control-group">
+      <label for="fontSelect">Font</label>
+      <select id="fontSelect">
+        <optgroup label="Best for Bible Reading">
+          <option value="'Cormorant Garamond', Georgia, serif">Elegant Bible</option>
+          <option value="Georgia, 'Times New Roman', serif">Georgia</option>
+          <option value="'Times New Roman', serif">Classic Bible</option>
+          <option value="'Trebuchet MS', sans-serif">Easy Read</option>
+        </optgroup>
+
+        <optgroup label="Printed Handwriting">
+          <option value="'Patrick Hand', cursive">Printed Handwriting</option>
+          <option value="'Handlee', cursive">Gentle Handwriting Print</option>
+          <option value="'Kalam', cursive">Notebook Print</option>
+          <option value="'Indie Flower', cursive">Playful Print</option>
+        </optgroup>
+
+        <optgroup label="Journal Handwriting">
+          <option value="'Caveat', cursive">Soft Journal Handwriting</option>
+          <option value="'Dancing Script', cursive">Soft Pretty Script</option>
+          <option value="'Satisfy', cursive">Smooth Journal Script</option>
+        </optgroup>
+
+        <optgroup label="Fancy Script">
+          <option value="'Allura', cursive">Allura</option>
+          <option value="'Alex Brush', cursive">Alex Brush</option>
+          <option value="'Sacramento', cursive">Sacramento</option>
+          <option value="'Parisienne', cursive">Parisienne</option>
+          <option value="'Great Vibes', cursive">Great Vibes</option>
+        </optgroup>
+
+        <optgroup label="Premium Fonts Later">
+          <option disabled>Daisy Girl Script - upload font file later</option>
+          <option disabled>Amoretti - upload font file later</option>
+          <option disabled>Pink Champagne - upload font file later</option>
+          <option disabled>Bravingthon - upload font file later</option>
+          <option disabled>Welinside - upload font file later</option>
+          <option disabled>Block Heads - upload font file later</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <button class="small-btn" id="fontMinus">A−</button>
+      <button class="small-btn" id="fontPlus">A+</button>
+    </div>
+  </section>
+
+  <main class="bible-stage">
+    <section class="open-bible" aria-label="Open Bible">
+      <div class="page left-page">
+        <div class="page-corner">🌿</div>
+
+        <div class="art-card">
+          <div class="art-inner">
+            <div class="story-kicker" id="artKicker">The Beginning</div>
+            <h2 id="artTitle">Genesis 1</h2>
+            <p id="artText">
+              Creation begins with God’s word, light breaking through darkness, and the world blooming into order and life.
+            </p>
+            <div class="day-badges" id="dayBadges">
+              <span>Light</span>
+              <span>Sky</span>
+              <span>Land</span>
+              <span>Plants</span>
+              <span>Lights</span>
+              <span>Creatures</span>
+              <span>People</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-links">
+          <a href="grand-library.html">🏛️ Library</a>
+          <a href="study-binder.html">📖 Study Binder</a>
+          <a href="journal.html">✍️ Journal</a>
+          <a href="coloring.html">🎨 Coloring</a>
+        </div>
+      </div>
+
+      <div class="page right-page">
+        <div class="page-corner">🧡</div>
+
+        <div class="scripture-top">
+          <h2 id="chapterTitle">Genesis 1</h2>
+          <div class="translation" id="translationLabel">King James Version</div>
+          <div class="chapter-note" id="chapterNote">
+            Creation: light, sky, land, seas, plants, sun, moon, stars, sea creatures, birds, animals, and people made in God’s image.
+          </div>
+        </div>
+
+        <article class="scripture-box" id="scriptureBox"></article>
+
+        <div class="tool-links">
+          <a href="study-binder.html">Chapter Study</a>
+          <a href="journal.html">Write Notes</a>
+          <a href="coloring.html">Coloring Page</a>
+        </div>
+      </div>
+    </section>
+
+    <nav class="ribbon-nav" aria-label="Chapter navigation">
+      <button class="ribbon-btn" id="prevBtn">← Previous</button>
+      <button class="ribbon-btn bookmark" id="bookmarkBtn">🔖 Bookmark</button>
+      <button class="ribbon-btn next" id="nextBtn">Next →</button>
+    </nav>
+  </main>
+
+  <aside class="side-tabs" aria-label="Bible section tabs">
+    <button class="tab-btn" data-section="torah" title="Torah">📜</button>
+    <button class="tab-btn" data-section="history" title="History">🏛️</button>
+    <button class="tab-btn" data-section="poetry" title="Poetry">🎵</button>
+    <button class="tab-btn" data-section="prophets" title="Prophets">🔥</button>
+    <button class="tab-btn" data-section="gospels" title="Gospels">🌿</button>
+    <button class="tab-btn" data-section="letters" title="Letters">✉️</button>
+  </aside>
+
+  <aside class="book-drawer" id="bookDrawer">
+    <h2 class="drawer-title" id="drawerTitle">Books</h2>
+    <div class="drawer-subtitle">Choose a book</div>
+    <div class="book-grid" id="bookGrid"></div>
+  </aside>
+
+  <div class="flower-pot" aria-hidden="true"></div>
+
+  <div class="help-popup" id="helpPopup">
+    <h3 id="helpTitle">Verse Help</h3>
+    <p id="helpText">
+      This is where the gentle owl helper explains difficult words, people, places, and meaning.
+    </p>
+    <button class="close-help" id="closeHelp">Close</button>
+  </div>
+
+</div>
+
+<script>
+const bibleSections = {
+  torah: {
+    title: "Torah / Books of Moses",
+    books: ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy"]
+  },
+  history: {
+    title: "History",
+    books: ["Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther"]
+  },
+  poetry: {
+    title: "Poetry & Wisdom",
+    books: ["Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon"]
+  },
+  prophets: {
+    title: "Prophets",
+    books: ["Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi"]
+  },
+  gospels: {
+    title: "Gospels & Acts",
+    books: ["Matthew","Mark","Luke","John","Acts"]
+  },
+  letters: {
+    title: "Letters & Revelation",
+    books: ["Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+  }
+};
+
+const chapterCounts = {
+  "Genesis":50,"Exodus":40,"Leviticus":27,"Numbers":36,"Deuteronomy":34,
+  "Joshua":24,"Judges":21,"Ruth":4,"1 Samuel":31,"2 Samuel":24,
+  "1 Kings":22,"2 Kings":25,"1 Chronicles":29,"2 Chronicles":36,"Ezra":10,
+  "Nehemiah":13,"Esther":10,"Job":42,"Psalms":150,"Proverbs":31,
+  "Ecclesiastes":12,"Song of Solomon":8,"Isaiah":66,"Jeremiah":52,
+  "Lamentations":5,"Ezekiel":48,"Daniel":12,"Hosea":14,"Joel":3,
+  "Amos":9,"Obadiah":1,"Jonah":4,"Micah":7,"Nahum":3,
+  "Habakkuk":3,"Zephaniah":3,"Haggai":2,"Zechariah":14,"Malachi":4,
+  "Matthew":28,"Mark":16,"Luke":24,"John":21,"Acts":28,
+  "Romans":16,"1 Corinthians":16,"2 Corinthians":13,"Galatians":6,
+  "Ephesians":6,"Philippians":4,"Colossians":4,"1 Thessalonians":5,
+  "2 Thessalonians":3,"1 Timothy":6,"2 Timothy":4,"Titus":3,
+  "Philemon":1,"Hebrews":13,"James":5,"1 Peter":5,"2 Peter":3,
+  "1 John":5,"2 John":1,"3 John":1,"Jude":1,"Revelation":22
+};
+
+const translationNames = {
+  KJV: "King James Version",
+  WEB: "World English Bible",
+  HNV: "Hebrew Names Version",
+  ASV: "American Standard Version"
+};
+
+const bibleText = {
+  KJV: {
+    "Genesis-1": [
+      "In the beginning God created the heaven and the earth.",
+      "And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.",
+      "And God said, Let there be light: and there was light.",
+      "And God saw the light, that it was good: and God divided the light from the darkness.",
+      "And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day.",
+      "And God said, Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.",
+      "And God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament: and it was so.",
+      "And God called the firmament Heaven. And the evening and the morning were the second day.",
+      "And God said, Let the waters under the heaven be gathered together unto one place, and let the dry land appear: and it was so.",
+      "And God called the dry land Earth; and the gathering together of the waters called he Seas: and God saw that it was good.",
+      "And God said, Let the earth bring forth grass, the herb yielding seed, and the fruit tree yielding fruit after his kind, whose seed is in itself, upon the earth: and it was so.",
+      "And the earth brought forth grass, and herb yielding seed after his kind, and the tree yielding fruit, whose seed was in itself, after his kind: and God saw that it was good.",
+      "And the evening and the morning were the third day.",
+      "And God said, Let there be lights in the firmament of the heaven to divide the day from the night; and let them be for signs, and for seasons, and for days, and years:",
+      "And let them be for lights in the firmament of the heaven to give light upon the earth: and it was so.",
+      "And God made two great lights; the greater light to rule the day, and the lesser light to rule the night: he made the stars also.",
+      "And God set them in the firmament of the heaven to give light upon the earth,",
+      "And to rule over the day and over the night, and to divide the light from the darkness: and God saw that it was good.",
+      "And the evening and the morning were the fourth day.",
+      "And God said, Let the waters bring forth abundantly the moving creature that hath life, and fowl that may fly above the earth in the open firmament of heaven.",
+      "And God created great whales, and every living creature that moveth, which the waters brought forth abundantly, after their kind, and every winged fowl after his kind: and God saw that it was good.",
+      "And God blessed them, saying, Be fruitful, and multiply, and fill the waters in the seas, and let fowl multiply in the earth.",
+      "And the evening and the morning were the fifth day.",
+      "And God said, Let the earth bring forth the living creature after his kind, cattle, and creeping thing, and beast of the earth after his kind: and it was so.",
+      "And God made the beast of the earth after his kind, and cattle after their kind, and every thing that creepeth upon the earth after his kind: and God saw that it was good.",
+      "And God said, Let us make man in our image, after our likeness: and let them have dominion over the fish of the sea, and over the fowl of the air, and over the cattle, and over all the earth, and over every creeping thing that creepeth upon the earth.",
+      "So God created man in his own image, in the image of God created he him; male and female created he them.",
+      "And God blessed them, and God said unto them, Be fruitful, and multiply, and replenish the earth, and subdue it: and have dominion over the fish of the sea, and over the fowl of the air, and over every living thing that moveth upon the earth.",
+      "And God said, Behold, I have given you every herb bearing seed, which is upon the face of all the earth, and every tree, in the which is the fruit of a tree yielding seed; to you it shall be for meat.",
+      "And to every beast of the earth, and to every fowl of the air, and to every thing that creepeth upon the earth, wherein there is life, I have given every green herb for meat: and it was so.",
+      "And God saw every thing that he had made, and, behold, it was very good. And the evening and the morning were the sixth day."
+    ],
+
+    "Genesis-2": [
+      "Thus the heavens and the earth were finished, and all the host of them.",
+      "And on the seventh day God ended his work which he had made; and he rested on the seventh day from all his work which he had made.",
+      "And God blessed the seventh day, and sanctified it: because that in it he had rested from all his work which God created and made.",
+      "These are the generations of the heavens and of the earth when they were created, in the day that the LORD God made the earth and the heavens,",
+      "And every plant of the field before it was in the earth, and every herb of the field before it grew: for the LORD God had not caused it to rain upon the earth, and there was not a man to till the ground.",
+      "But there went up a mist from the earth, and watered the whole face of the ground.",
+      "And the LORD God formed man of the dust of the ground, and breathed into his nostrils the breath of life; and man became a living soul.",
+      "And the LORD God planted a garden eastward in Eden; and there he put the man whom he had formed.",
+      "And out of the ground made the LORD God to grow every tree that is pleasant to the sight, and good for food; the tree of life also in the midst of the garden, and the tree of knowledge of good and evil.",
+      "And a river went out of Eden to water the garden; and from thence it was parted, and became into four heads.",
+      "The name of the first is Pison: that is it which compasseth the whole land of Havilah, where there is gold;",
+      "And the gold of that land is good: there is bdellium and the onyx stone.",
+      "And the name of the second river is Gihon: the same is it that compasseth the whole land of Ethiopia.",
+      "And the name of the third river is Hiddekel: that is it which goeth toward the east of Assyria. And the fourth river is Euphrates.",
+      "And the LORD God took the man, and put him into the garden of Eden to dress it and to keep it.",
+      "And the LORD God commanded the man, saying, Of every tree of the garden thou mayest freely eat:",
+      "But of the tree of the knowledge of good and evil, thou shalt not eat of it: for in the day that thou eatest thereof thou shalt surely die.",
+      "And the LORD God said, It is not good that the man should be alone; I will make him an help meet for him.",
+      "And out of the ground the LORD God formed every beast of the field, and every fowl of the air; and brought them unto Adam to see what he would call them: and whatsoever Adam called every living creature, that was the name thereof.",
+      "And Adam gave names to all cattle, and to the fowl of the air, and to every beast of the field; but for Adam there was not found an help meet for him.",
+      "And the LORD God caused a deep sleep to fall upon Adam, and he slept: and he took one of his ribs, and closed up the flesh instead thereof;",
+      "And the rib, which the LORD God had taken from man, made he a woman, and brought her unto the man.",
+      "And Adam said, This is now bone of my bones, and flesh of my flesh: she shall be called Woman, because she was taken out of Man.",
+      "Therefore shall a man leave his father and his mother, and shall cleave unto his wife: and they shall be one flesh.",
+      "And they were both naked, the man and his wife, and were not ashamed."
+    ]
+  },
+
+  WEB: {
+    "Genesis-1": [
+      "In the beginning, God created the heavens and the earth.",
+      "The earth was formless and empty. Darkness was on the surface of the deep and God’s Spirit was hovering over the surface of the waters.",
+      "God said, “Let there be light,” and there was light.",
+      "God saw the light, and saw that it was good. God divided the light from the darkness.",
+      "God called the light “day,” and the darkness he called “night.” There was evening and there was morning, the first day.",
+      "God said, “Let there be an expanse in the middle of the waters, and let it divide the waters from the waters.”",
+      "God made the expanse, and divided the waters which were under the expanse from the waters which were above the expanse; and it was so.",
+      "God called the expanse “sky.” There was evening and there was morning, a second day.",
+      "God said, “Let the waters under the sky be gathered together to one place, and let the dry land appear;” and it was so.",
+      "God called the dry land “earth,” and the gathering together of the waters he called “seas.” God saw that it was good.",
+      "God said, “Let the earth yield grass, herbs yielding seeds, and fruit trees bearing fruit after their kind, with their seeds in it, on the earth;” and it was so.",
+      "The earth yielded grass, herbs yielding seed after their kind, and trees bearing fruit, with their seeds in it, after their kind; and God saw that it was good.",
+      "There was evening and there was morning, a third day.",
+      "God said, “Let there be lights in the expanse of the sky to divide the day from the night; and let them be for signs to mark seasons, days, and years;",
+      "and let them be for lights in the expanse of the sky to give light on the earth;” and it was so.",
+      "God made the two great lights: the greater light to rule the day, and the lesser light to rule the night. He also made the stars.",
+      "God set them in the expanse of the sky to give light to the earth,",
+      "and to rule over the day and over the night, and to divide the light from the darkness. God saw that it was good.",
+      "There was evening and there was morning, a fourth day.",
+      "God said, “Let the waters abound with living creatures, and let birds fly above the earth in the open expanse of the sky.”",
+      "God created the large sea creatures and every living creature that moves, with which the waters swarmed, after their kind, and every winged bird after its kind. God saw that it was good.",
+      "God blessed them, saying, “Be fruitful, and multiply, and fill the waters in the seas, and let birds multiply on the earth.”",
+      "There was evening and there was morning, a fifth day.",
+      "God said, “Let the earth produce living creatures after their kind, livestock, creeping things, and animals of the earth after their kind;” and it was so.",
+      "God made the animals of the earth after their kind, and the livestock after their kind, and everything that creeps on the ground after its kind. God saw that it was good.",
+      "God said, “Let’s make man in our image, after our likeness. Let them have dominion over the fish of the sea, over the birds of the sky, over the livestock, over all the earth, and over every creeping thing that creeps on the earth.”",
+      "God created man in his own image. In God’s image he created him; male and female he created them.",
+      "God blessed them. God said to them, “Be fruitful, multiply, fill the earth, and subdue it. Have dominion over the fish of the sea, over the birds of the sky, and over every living thing that moves on the earth.”",
+      "God said, “Behold, I have given you every herb yielding seed, which is on the surface of all the earth, and every tree which bears fruit yielding seed. It will be your food.",
+      "To every animal of the earth, and to every bird of the sky, and to everything that creeps on the earth, in which there is life, I have given every green herb for food;” and it was so.",
+      "God saw everything that he had made, and behold, it was very good. There was evening and there was morning, a sixth day."
+    ],
+
+    "Genesis-2": [
+      "The heavens, the earth, and all their vast array were finished.",
+      "On the seventh day God finished his work which he had done; and he rested on the seventh day from all his work which he had done.",
+      "God blessed the seventh day, and made it holy, because he rested in it from all his work of creation which he had done.",
+      "This is the history of the generations of the heavens and of the earth when they were created, in the day that Yahweh God made the earth and the heavens.",
+      "No plant of the field was yet in the earth, and no herb of the field had yet sprung up; for Yahweh God had not caused it to rain on the earth. There was not a man to till the ground,",
+      "but a mist went up from the earth, and watered the whole surface of the ground.",
+      "Yahweh God formed man from the dust of the ground, and breathed into his nostrils the breath of life; and man became a living soul.",
+      "Yahweh God planted a garden eastward, in Eden, and there he put the man whom he had formed.",
+      "Out of the ground Yahweh God made every tree to grow that is pleasant to the sight, and good for food, including the tree of life in the middle of the garden and the tree of the knowledge of good and evil.",
+      "A river went out of Eden to water the garden; and from there it was parted, and became the source of four rivers.",
+      "The name of the first is Pishon: it flows through the whole land of Havilah, where there is gold;",
+      "and the gold of that land is good. Bdellium and onyx stone are also there.",
+      "The name of the second river is Gihon. It is the same river that flows through the whole land of Cush.",
+      "The name of the third river is Hiddekel. This is the one which flows in front of Assyria. The fourth river is the Euphrates.",
+      "Yahweh God took the man, and put him into the garden of Eden to cultivate and keep it.",
+      "Yahweh God commanded the man, saying, “You may freely eat of every tree of the garden;",
+      "but you shall not eat of the tree of the knowledge of good and evil; for in the day that you eat of it, you will surely die.”",
+      "Yahweh God said, “It is not good for the man to be alone. I will make him a helper comparable to him.”",
+      "Out of the ground Yahweh God formed every animal of the field, and every bird of the sky, and brought them to the man to see what he would call them. Whatever the man called every living creature became its name.",
+      "The man gave names to all livestock, and to the birds of the sky, and to every animal of the field; but for man there was not found a helper comparable to him.",
+      "Yahweh God caused the man to fall into a deep sleep. As the man slept, he took one of his ribs, and closed up the flesh in its place.",
+      "Yahweh God made a woman from the rib which he had taken from the man, and brought her to the man.",
+      "The man said, “This is now bone of my bones, and flesh of my flesh. She will be called ‘woman,’ because she was taken out of Man.”",
+      "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh.",
+      "The man and his wife were both naked, and they were not ashamed."
+    ]
+  },
+
+  HNV: {
+    "Genesis-1": [
+      "In the beginning God created the heavens and the earth.",
+      "Now the earth was formless and empty. Darkness was on the surface of the deep. God’s Spirit was hovering over the surface of the waters.",
+      "God said, “Let there be light,” and there was light.",
+      "God saw the light, and saw that it was good. God divided the light from the darkness.",
+      "God called the light Day, and the darkness he called Night. There was evening and there was morning, one day.",
+      "God said, “Let there be an expanse in the midst of the waters, and let it divide the waters from the waters.”",
+      "God made the expanse, and divided the waters which were under the expanse from the waters which were above the expanse; and it was so.",
+      "God called the expanse Sky. There was evening and there was morning, a second day.",
+      "God said, “Let the waters under the sky be gathered together to one place, and let the dry land appear;” and it was so.",
+      "God called the dry land Earth, and the gathering together of the waters he called Seas. God saw that it was good.",
+      "God said, “Let the earth yield grass, herbs yielding seed, and fruit trees bearing fruit after their kind, with their seed in them, on the earth;” and it was so.",
+      "The earth yielded grass, herbs yielding seed after their kind, and trees bearing fruit, with their seed in them, after their kind. God saw that it was good.",
+      "There was evening and there was morning, a third day.",
+      "God said, “Let there be lights in the expanse of sky to divide the day from the night; and let them be for signs, and for seasons, and for days and years;",
+      "and let them be for lights in the expanse of sky to give light on the earth;” and it was so.",
+      "God made the two great lights: the greater light to rule the day, and the lesser light to rule the night. He also made the stars.",
+      "God set them in the expanse of sky to give light to the earth,",
+      "and to rule over the day and over the night, and to divide the light from the darkness. God saw that it was good.",
+      "There was evening and there was morning, a fourth day.",
+      "God said, “Let the waters abound with living creatures, and let birds fly above the earth in the open expanse of sky.”",
+      "God created the great sea creatures, and every living creature that moves, with which the waters swarmed, after their kind, and every winged bird after its kind. God saw that it was good.",
+      "God blessed them, saying, “Be fruitful, and multiply, and fill the waters in the seas, and let birds multiply on the earth.”",
+      "There was evening and there was morning, a fifth day.",
+      "God said, “Let the earth produce living creatures after their kind, livestock, creeping things, and animals of the earth after their kind;” and it was so.",
+      "God made the animals of the earth after their kind, and the livestock after their kind, and everything that creeps on the ground after its kind. God saw that it was good.",
+      "God said, “Let’s make man in our image, after our likeness. Let them have dominion over the fish of the sea, over the birds of the sky, over the livestock, over all the earth, and over every creeping thing that creeps on the earth.”",
+      "God created man in his own image. In God’s image he created him; male and female he created them.",
+      "God blessed them. God said to them, “Be fruitful, multiply, fill the earth, and subdue it. Have dominion over the fish of the sea, over the birds of the sky, and over every living thing that moves on the earth.”",
+      "God said, “Behold, I have given you every herb yielding seed, which is on the surface of all the earth, and every tree which bears fruit yielding seed. It will be your food.",
+      "To every animal of the earth, and to every bird of the sky, and to everything that creeps on the earth, in which there is life, I have given every green herb for food;” and it was so.",
+      "God saw everything that he had made, and behold, it was very good. There was evening and there was morning, a sixth day."
+    ],
+
+    "Genesis-2": [
+      "The heavens, the earth, and all their vast array were finished.",
+      "On the seventh day God finished his work which he had done; and he rested on the seventh day from all his work which he had done.",
+      "God blessed the seventh day, and made it holy, because he rested in it from all his work of creation which he had done.",
+      "This is the history of the generations of the heavens and of the earth when they were created, in the day that the LORD God made the earth and the heavens.",
+      "No plant of the field was yet in the earth, and no herb of the field had yet sprung up; for the LORD God had not caused it to rain on the earth. There was not a man to till the ground,",
+      "but a mist went up from the earth, and watered the whole surface of the ground.",
+      "The LORD God formed man from the dust of the ground, and breathed into his nostrils the breath of life; and man became a living soul.",
+      "The LORD God planted a garden eastward, in Eden, and there he put the man whom he had formed.",
+      "Out of the ground the LORD God made every tree to grow that is pleasant to the sight, and good for food, including the tree of life in the middle of the garden and the tree of the knowledge of good and evil.",
+      "A river went out of Eden to water the garden; and from there it was parted, and became the source of four rivers.",
+      "The name of the first is Pishon: it flows through the whole land of Havilah, where there is gold;",
+      "and the gold of that land is good. Bdellium and onyx stone are also there.",
+      "The name of the second river is Gihon. It is the same river that flows through the whole land of Cush.",
+      "The name of the third river is Hiddekel. This is the one which flows in front of Assyria. The fourth river is the Euphrates.",
+      "The LORD God took the man, and put him into the garden of Eden to cultivate and keep it.",
+      "The LORD God commanded the man, saying, “You may freely eat of every tree of the garden;",
+      "but you shall not eat of the tree of the knowledge of good and evil; for in the day that you eat of it, you will surely die.”",
+      "The LORD God said, “It is not good for the man to be alone. I will make him a helper comparable to him.”",
+      "Out of the ground the LORD God formed every animal of the field, and every bird of the sky, and brought them to the man to see what he would call them. Whatever the man called every living creature became its name.",
+      "The man gave names to all livestock, and to the birds of the sky, and to every animal of the field; but for man there was not found a helper comparable to him.",
+      "The LORD God caused the man to fall into a deep sleep. As the man slept, he took one of his ribs, and closed up the flesh in its place.",
+      "The LORD God made a woman from the rib which he had taken from the man, and brought her to the man.",
+      "The man said, “This is now bone of my bones, and flesh of my flesh. She will be called ‘woman,’ because she was taken out of Man.”",
+      "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh.",
+      "The man and his wife were both naked, and they were not ashamed."
+    ]
+  },
+
+  ASV: {
+    "Genesis-1": [
+      "In the beginning God created the heavens and the earth.",
+      "And the earth was waste and void; and darkness was upon the face of the deep: and the Spirit of God moved upon the face of the waters.",
+      "And God said, Let there be light: and there was light.",
+      "And God saw the light, that it was good: and God divided the light from the darkness.",
+      "And God called the light Day, and the darkness he called Night. And there was evening and there was morning, one day.",
+      "And God said, Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.",
+      "And God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament: and it was so.",
+      "And God called the firmament Heaven. And there was evening and there was morning, a second day.",
+      "And God said, Let the waters under the heavens be gathered together unto one place, and let the dry land appear: and it was so.",
+      "And God called the dry land Earth; and the gathering together of the waters called he Seas: and God saw that it was good.",
+      "And God said, Let the earth put forth grass, herbs yielding seed, and fruit-trees bearing fruit after their kind, wherein is the seed thereof, upon the earth: and it was so.",
+      "And the earth brought forth grass, herbs yielding seed after their kind, and trees bearing fruit, wherein is the seed thereof, after their kind: and God saw that it was good.",
+      "And there was evening and there was morning, a third day.",
+      "And God said, Let there be lights in the firmament of heaven to divide the day from the night; and let them be for signs, and for seasons, and for days and years:",
+      "and let them be for lights in the firmament of heaven to give light upon the earth: and it was so.",
+      "And God made the two great lights; the greater light to rule the day, and the lesser light to rule the night: he made the stars also.",
+      "And God set them in the firmament of heaven to give light upon the earth,",
+      "and to rule over the day and over the night, and to divide the light from the darkness: and God saw that it was good.",
+      "And there was evening and there was morning, a fourth day.",
+      "And God said, Let the waters swarm with swarms of living creatures, and let birds fly above the earth in the open firmament of heaven.",
+      "And God created the great sea-monsters, and every living creature that moveth, wherewith the waters swarmed, after their kind, and every winged bird after its kind: and God saw that it was good.",
+      "And God blessed them, saying, Be fruitful, and multiply, and fill the waters in the seas, and let birds multiply on the earth.",
+      "And there was evening and there was morning, a fifth day.",
+      "And God said, Let the earth bring forth living creatures after their kind, cattle, and creeping things, and beasts of the earth after their kind: and it was so.",
+      "And God made the beasts of the earth after their kind, and the cattle after their kind, and everything that creepeth upon the ground after its kind: and God saw that it was good.",
+      "And God said, Let us make man in our image, after our likeness: and let them have dominion over the fish of the sea, over the birds of the heavens, and over the cattle, and over all the earth, and over every creeping thing that creepeth upon the earth.",
+      "And God created man in his own image, in the image of God created he him; male and female created he them.",
+      "And God blessed them: and God said unto them, Be fruitful, and multiply, and fill the earth, and subdue it; and have dominion over the fish of the sea, and over the birds of the heavens, and over every living thing that moveth upon the earth.",
+      "And God said, Behold, I have given you every herb yielding seed, which is upon the face of all the earth, and every tree, in which is the fruit of a tree yielding seed; to you it shall be for food:",
+      "and to every beast of the earth, and to every bird of the heavens, and to everything that creepeth upon the earth, wherein there is life, I have given every green herb for food: and it was so.",
+      "And God saw everything that he had made, and, behold, it was very good. And there was evening and there was morning, the sixth day."
+    ],
+
+    "Genesis-2": [
+      "And the heavens and the earth were finished, and all the host of them.",
+      "And on the seventh day God finished his work which he had made; and he rested on the seventh day from all his work which he had made.",
+      "And God blessed the seventh day, and hallowed it; because that in it he rested from all his work which God had created and made.",
+      "These are the generations of the heavens and of the earth when they were created, in the day that Jehovah God made earth and heaven.",
+      "And no plant of the field was yet in the earth, and no herb of the field had yet sprung up; for Jehovah God had not caused it to rain upon the earth: and there was not a man to till the ground;",
+      "but there went up a mist from the earth, and watered the whole face of the ground.",
+      "And Jehovah God formed man of the dust of the ground, and breathed into his nostrils the breath of life; and man became a living soul.",
+      "And Jehovah God planted a garden eastward, in Eden; and there he put the man whom he had formed.",
+      "And out of the ground made Jehovah God to grow every tree that is pleasant to the sight, and good for food; the tree of life also in the midst of the garden, and the tree of the knowledge of good and evil.",
+      "And a river went out of Eden to water the garden; and from thence it was parted, and became four heads.",
+      "The name of the first is Pishon: that is it which compasseth the whole land of Havilah, where there is gold;",
+      "and the gold of that land is good: there is bdellium and the onyx stone.",
+      "And the name of the second river is Gihon: the same is it that compasseth the whole land of Cush.",
+      "And the name of the third river is Hiddekel: that is it which goeth in front of Assyria. And the fourth river is the Euphrates.",
+      "And Jehovah God took the man, and put him into the garden of Eden to dress it and to keep it.",
+      "And Jehovah God commanded the man, saying, Of every tree of the garden thou mayest freely eat:",
+      "but of the tree of the knowledge of good and evil, thou shalt not eat of it: for in the day that thou eatest thereof thou shalt surely die.",
+      "And Jehovah God said, It is not good that the man should be alone; I will make him a help meet for him.",
+      "And out of the ground Jehovah God formed every beast of the field, and every bird of the heavens; and brought them unto the man to see what he would call them: and whatsoever the man called every living creature, that was the name thereof.",
+      "And the man gave names to all cattle, and to the birds of the heavens, and to every beast of the field; but for man there was not found a help meet for him.",
+      "And Jehovah God caused a deep sleep to fall upon the man, and he slept; and he took one of his ribs, and closed up the flesh instead thereof:",
+      "and the rib, which Jehovah God had taken from the man, made he a woman, and brought her unto the man.",
+      "And the man said, This is now bone of my bones, and flesh of my flesh: she shall be called Woman, because she was taken out of Man.",
+      "Therefore shall a man leave his father and his mother, and shall cleave unto his wife: and they shall be one flesh.",
+      "And they were both naked, the man and his wife, and were not ashamed."
+    ]
+  }
+};
+
+const verseHelp = {
+  "Genesis-1": {
+    1: "Genesis begins with God as Creator. Before people, gardens, animals, and history, Scripture opens with God bringing heaven and earth into being.",
+    2: "The earth is described as unformed and empty. God’s Spirit is present over the waters, showing that creation is not abandoned or chaotic to Him.",
+    3: "God creates by speaking. Light appears by His command, showing His authority and power.",
+    4: "God sees the light as good. This begins the repeated pattern of God ordering creation and calling it good.",
+    5: "The first day introduces the rhythm of evening and morning. The story moves in ordered days.",
+    6: "The firmament or expanse separates waters. This describes God making ordered space in creation.",
+    7: "God divides the waters above and below. Separation and order are major themes in Genesis 1.",
+    8: "The second day names the sky or heaven. Naming shows order, purpose, and authority.",
+    9: "God gathers waters so dry land appears. The earth becomes a place where life can grow.",
+    10: "God names the dry land Earth and the waters Seas, then sees that it is good.",
+    11: "Plants, seed, and fruit trees appear. Creation is made to continue, grow, and bear fruit.",
+    12: "Plants reproduce after their kind. This shows design, order, and abundance.",
+    13: "The third day closes with evening and morning, continuing the creation pattern.",
+    14: "God appoints lights for days, years, signs, and seasons. Time itself becomes ordered.",
+    15: "The heavenly lights give light on the earth. They serve creation; they are not gods.",
+    16: "The greater and lesser lights rule day and night. The stars are also made by God.",
+    17: "God places the lights in the sky to give light to the earth.",
+    18: "The lights separate day and night, continuing the theme of order from darkness.",
+    19: "The fourth day closes after the creation of sun, moon, and stars.",
+    20: "The waters fill with living creatures and the skies with birds. Creation becomes lively and moving.",
+    21: "Sea creatures and birds are created after their kind, and God sees that it is good.",
+    22: "God blesses living creatures and tells them to multiply. This is the first blessing spoken in Scripture.",
+    23: "The fifth day closes with living creatures filling sea and sky.",
+    24: "God commands the earth to bring forth animals: livestock, creeping things, and beasts.",
+    25: "Land animals are made after their kind, and God sees that it is good.",
+    26: "Human beings are made in God’s image. This gives people special dignity, purpose, and responsibility.",
+    27: "Male and female are both created in God’s image. This verse is foundational for the value of every person.",
+    28: "God blesses people and gives them stewardship over creation. Dominion means responsible care, not cruelty.",
+    29: "God provides food from the plants and trees. Creation is shown as generous and sustaining.",
+    30: "Animals are also provided for. God’s care extends across living creation.",
+    31: "God sees everything He made, and it is very good. Genesis 1 ends with creation whole, ordered, blessed, and good."
+  },
+
+  "Genesis-2": {
+    1: "Genesis 2 opens by saying creation was finished. The world is complete, ordered, and filled.",
+    2: "God rests on the seventh day. This does not mean God was tired; it shows completion, peace, and a holy rhythm.",
+    3: "God blesses and sanctifies the seventh day. Rest becomes part of the goodness of creation.",
+    4: "This verse begins a closer view of creation, focusing on earth, Eden, and humanity’s place in the garden.",
+    5: "The chapter shows the world before cultivated field life. There is not yet a man to work the ground.",
+    6: "The mist watering the ground shows provision before rain is mentioned.",
+    7: "God forms man from dust and gives breath of life. Humanity is both earthly and personally given life by God.",
+    8: "God plants Eden and places the man there. The garden is a prepared home and sacred place of care.",
+    9: "The trees are pleasant and good for food. The tree of life and the tree of knowledge are introduced here.",
+    10: "A river waters Eden and divides into four rivers, showing abundance and life flowing outward.",
+    11: "Pishon and Havilah are named with gold. This gives Eden a sense of place and richness.",
+    12: "Gold, bdellium, and onyx are mentioned as beautiful resources of the land.",
+    13: "The Gihon river is named. Genesis gives geographical details that connect the garden scene to the wider world.",
+    14: "Hiddekel and Euphrates are named. The Euphrates becomes an important river in later biblical lands.",
+    15: "Adam is placed in the garden to dress and keep it. Work is part of God’s good design before sin enters the story.",
+    16: "God gives generous permission first: Adam may freely eat of every tree of the garden.",
+    17: "God gives one boundary. The command teaches trust, obedience, and the seriousness of choosing against God.",
+    18: "God says it is not good for man to be alone. Human companionship and relationship are part of God’s good design.",
+    19: "God brings animals to Adam to name. Naming shows Adam’s role and responsibility within creation.",
+    20: "Adam names the animals, but none is a fitting companion like himself.",
+    21: "God causes Adam to sleep and prepares to create woman. The story is tender and purposeful.",
+    22: "Woman is made from man and brought to him. She is not an afterthought; she is a fitting partner.",
+    23: "Adam recognizes her as bone of his bones and flesh of his flesh. This is a joyful recognition of shared humanity.",
+    24: "This verse describes the marriage bond: leaving, cleaving, and becoming one flesh.",
+    25: "Before sin, there is no shame. Genesis 2 ends with innocence, trust, and harmony."
+  }
+};
+
+let currentBook = "Genesis";
+let currentChapter = 1;
+let currentTranslation = "KJV";
+let fontSize = 20;
+
+const bookSelect = document.getElementById("bookSelect");
+const chapterSelect = document.getElementById("chapterSelect");
+const translationSelect = document.getElementById("translationSelect");
+const fontSelect = document.getElementById("fontSelect");
+const scriptureBox = document.getElementById("scriptureBox");
+const chapterTitle = document.getElementById("chapterTitle");
+const translationLabel = document.getElementById("translationLabel");
+const chapterNote = document.getElementById("chapterNote");
+const artKicker = document.getElementById("artKicker");
+const artTitle = document.getElementById("artTitle");
+const artText = document.getElementById("artText");
+const dayBadges = document.getElementById("dayBadges");
+const bookDrawer = document.getElementById("bookDrawer");
+const drawerTitle = document.getElementById("drawerTitle");
+const bookGrid = document.getElementById("bookGrid");
+const helpPopup = document.getElementById("helpPopup");
+const helpTitle = document.getElementById("helpTitle");
+const helpText = document.getElementById("helpText");
+
+function getAllBooks(){
+  return Object.values(bibleSections).flatMap(section => section.books);
+}
+
+function fillBookSelect(){
+  bookSelect.innerHTML = "";
+  getAllBooks().forEach(book => {
+    const option = document.createElement("option");
+    option.value = book;
+    option.textContent = book;
+    bookSelect.appendChild(option);
+  });
+  bookSelect.value = currentBook;
+}
+
+function fillChapterSelect(){
+  chapterSelect.innerHTML = "";
+  const total = chapterCounts[currentBook] || 1;
+
+  for(let i = 1; i <= total; i++){
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = i;
+    chapterSelect.appendChild(option);
+  }
+
+  chapterSelect.value = currentChapter;
+}
+
+function closeDrawer(){
+  bookDrawer.classList.remove("open");
+  document.querySelectorAll(".tab-btn").forEach(tab => {
+    tab.classList.remove("active");
+  });
+}
+
+function updateArtwork(){
+  if(currentBook === "Genesis" && currentChapter === 1){
+    artKicker.textContent = "The Beginning";
+    artTitle.textContent = "Genesis 1";
+    artText.textContent = "Creation begins with God’s word, light breaking through darkness, and the world blooming into order and life.";
+    chapterNote.textContent = "Creation: light, sky, land, seas, plants, sun, moon, stars, sea creatures, birds, animals, and people made in God’s image.";
+    dayBadges.innerHTML = `
+      <span>Light</span>
+      <span>Sky</span>
+      <span>Land</span>
+      <span>Plants</span>
+      <span>Lights</span>
+      <span>Creatures</span>
+      <span>People</span>
+    `;
+  } else if(currentBook === "Genesis" && currentChapter === 2){
+    artKicker.textContent = "The Garden";
+    artTitle.textContent = "Genesis 2";
+    artText.textContent = "God rests, plants Eden, forms Adam, gives him the garden to tend, brings the animals, and creates Eve as a fitting companion.";
+    chapterNote.textContent = "Eden: seventh-day rest, Adam formed from dust, the garden, rivers, trees, naming animals, and Eve created.";
+    dayBadges.innerHTML = `
+      <span>Rest</span>
+      <span>Eden</span>
+      <span>Adam</span>
+      <span>Rivers</span>
+      <span>Trees</span>
+      <span>Animals</span>
+      <span>Eve</span>
+    `;
+  } else {
+    artKicker.textContent = "Coming Chapter";
+    artTitle.textContent = `${currentBook} ${currentChapter}`;
+    artText.textContent = "This page is ready. Next we will add the Scripture, chapter study, journal notes, and artwork for this chapter.";
+    chapterNote.textContent = "This chapter space is prepared and waiting for its full Bible text and study helps.";
+    dayBadges.innerHTML = `
+      <span>Study</span>
+      <span>Journal</span>
+      <span>Color</span>
+      <span>Pray</span>
+    `;
+  }
+}
+
+function renderScripture(){
+  const key = `${currentBook}-${currentChapter}`;
+  const verses = bibleText[currentTranslation] && bibleText[currentTranslation][key];
+
+  chapterTitle.textContent = `${currentBook} ${currentChapter}`;
+  translationLabel.textContent = translationNames[currentTranslation];
+  scriptureBox.style.fontSize = fontSize + "px";
+  scriptureBox.style.fontFamily = fontSelect.value;
+
+  updateArtwork();
+
+  if(!verses){
+    scriptureBox.innerHTML = `
+      <p class="verse">
+        <span class="verse-num">♡</span>
+        This chapter space is ready. Next we will add the full Scripture text volume by volume.
+      </p>
+      <p class="verse">
+        <span class="verse-num">+</span>
+        Current open page: <strong>${currentBook} ${currentChapter}</strong> in <strong>${translationNames[currentTranslation]}</strong>.
+      </p>
+    `;
+    return;
+  }
+
+  scriptureBox.innerHTML = verses.map((verse, index) => `
+    <p class="verse">
+      <span class="verse-num" data-verse="${index + 1}">${index + 1}</span>
+      ${verse}
+    </p>
+  `).join("");
+
+  document.querySelectorAll(".verse-num").forEach(num => {
+    num.addEventListener("click", () => openVerseHelp(num.dataset.verse));
+    num.addEventListener("dblclick", () => openVerseHelp(num.dataset.verse));
+  });
+}
+
+function setBook(book){
+  currentBook = book;
+  currentChapter = 1;
+  bookSelect.value = currentBook;
+  fillChapterSelect();
+  renderScripture();
+  closeDrawer();
+}
+
+function openDrawer(sectionKey){
+  const section = bibleSections[sectionKey];
+  drawerTitle.textContent = section.title;
+  bookGrid.innerHTML = "";
+
+  document.querySelectorAll(".tab-btn").forEach(tab => {
+    tab.classList.toggle("active", tab.dataset.section === sectionKey);
+  });
+
+  section.books.forEach(book => {
+    const btn = document.createElement("button");
+    btn.className = "book-item";
+    if(book === currentBook){
+      btn.classList.add("active-book");
+    }
+    btn.textContent = book;
+    btn.addEventListener("click", () => setBook(book));
+    bookGrid.appendChild(btn);
+  });
+
+  bookDrawer.classList.add("open");
+}
+
+function openVerseHelp(verseNumber){
+  const key = `${currentBook}-${currentChapter}`;
+  const help = verseHelp[key] && verseHelp[key][verseNumber];
+
+  helpTitle.textContent = `${currentBook} ${currentChapter}:${verseNumber} Help`;
+
+  if(help){
+    helpText.textContent = help;
+  } else {
+    helpText.textContent = "This is where the gentle owl helper will explain difficult words, Hebrew meaning, people, places, context, and study questions for this verse.";
+  }
+
+  helpPopup.classList.add("open");
+}
+
+function saveBookmark(){
+  const bookmark = {
+    book: currentBook,
+    chapter: currentChapter,
+    translation: currentTranslation,
+    font: fontSelect.value,
+    fontSize: fontSize
+  };
+
+  localStorage.setItem("bloomBibleBookmark", JSON.stringify(bookmark));
+  document.getElementById("bookmarkBtn").textContent = "✓ Saved";
+
+  setTimeout(() => {
+    document.getElementById("bookmarkBtn").textContent = "🔖 Bookmark";
+  }, 1300);
+}
+
+function loadBookmark(){
+  const saved = localStorage.getItem("bloomBibleBookmark");
+  if(!saved) return;
+
+  try{
+    const bookmark = JSON.parse(saved);
+    if(bookmark.book && chapterCounts[bookmark.book]){
+      currentBook = bookmark.book;
+      currentChapter = bookmark.chapter || 1;
+      currentTranslation = bookmark.translation || "KJV";
+      fontSize = bookmark.fontSize || 20;
+
+      if(bookmark.font){
+        fontSelect.value = bookmark.font;
+      }
+    }
+  }catch(error){
+    console.log("No bookmark loaded.");
+  }
+}
+
+function goPrevious(){
+  if(currentChapter > 1){
+    currentChapter--;
+  } else {
+    const books = getAllBooks();
+    const index = books.indexOf(currentBook);
+    if(index > 0){
+      currentBook = books[index - 1];
+      currentChapter = chapterCounts[currentBook] || 1;
+    }
+  }
+
+  bookSelect.value = currentBook;
+  fillChapterSelect();
+  chapterSelect.value = currentChapter;
+  renderScripture();
+}
+
+function goNext(){
+  const total = chapterCounts[currentBook] || 1;
+
+  if(currentChapter < total){
+    currentChapter++;
+  } else {
+    const books = getAllBooks();
+    const index = books.indexOf(currentBook);
+    if(index < books.length - 1){
+      currentBook = books[index + 1];
+      currentChapter = 1;
+    }
+  }
+
+  bookSelect.value = currentBook;
+  fillChapterSelect();
+  chapterSelect.value = currentChapter;
+  renderScripture();
+}
+
+translationSelect.addEventListener("change", () => {
+  currentTranslation = translationSelect.value;
+  renderScripture();
+});
+
+bookSelect.addEventListener("change", () => {
+  currentBook = bookSelect.value;
+  currentChapter = 1;
+  fillChapterSelect();
+  renderScripture();
+});
+
+chapterSelect.addEventListener("change", () => {
+  currentChapter = Number(chapterSelect.value);
+  renderScripture();
+});
+
+fontSelect.addEventListener("change", renderScripture);
+
+document.getElementById("fontMinus").addEventListener("click", () => {
+  fontSize = Math.max(14, fontSize - 1);
+  renderScripture();
+});
+
+document.getElementById("fontPlus").addEventListener("click", () => {
+  fontSize = Math.min(34, fontSize + 1);
+  renderScripture();
+});
+
+document.getElementById("prevBtn").addEventListener("click", goPrevious);
+document.getElementById("nextBtn").addEventListener("click", goNext);
+document.getElementById("bookmarkBtn").addEventListener("click", saveBookmark);
+document.getElementById("closeHelp").addEventListener("click", () => helpPopup.classList.remove("open"));
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => openDrawer(btn.dataset.section));
+});
+
+document.addEventListener("click", event => {
+  const clickedDrawer = bookDrawer.contains(event.target);
+  const clickedTab = event.target.closest(".tab-btn");
+
+  if(!clickedDrawer && !clickedTab){
+    closeDrawer();
+  }
+});
+
+fillBookSelect();
+fillChapterSelect();
+loadBookmark();
+translationSelect.value = currentTranslation;
+bookSelect.value = currentBook;
+fillChapterSelect();
+chapterSelect.value = currentChapter;
+renderScripture();
+</script>
+
+</body>
+</html>
