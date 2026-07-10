@@ -6,7 +6,7 @@
 <title>Blooming in His Garden Bible Reader</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Great+Vibes&family=Parisienne&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Great+Vibes&family=Handlee&family=Indie+Flower&family=Kalam:wght@300;400;700&family=Parisienne&family=Patrick+Hand&family=Sacramento&family=Satisfy&display=swap');
 
 :root{
   --cream:#fff7e8;
@@ -245,8 +245,8 @@ select{
 .art-inner h2{
   margin:0 0 8px;
   color:#5b4029;
-  font-family:'Parisienne', cursive;
-  font-size:42px;
+  font-family:'Allura', cursive;
+  font-size:48px;
   font-weight:400;
 }
 
@@ -263,9 +263,9 @@ select{
 
 .scripture-top h2{
   margin:4px 0 3px;
-  font-size:42px;
+  font-size:46px;
   color:#4d3624;
-  font-family:'Parisienne', cursive;
+  font-family:'Allura', cursive;
   font-weight:400;
 }
 
@@ -432,8 +432,8 @@ select{
 .drawer-title{
   margin:0 0 10px;
   color:#513820;
-  font-size:28px;
-  font-family:'Parisienne', cursive;
+  font-size:34px;
+  font-family:'Allura', cursive;
   font-weight:400;
 }
 
@@ -512,8 +512,8 @@ select{
 
 .help-popup h3{
   margin:0 0 8px;
-  font-family:'Parisienne', cursive;
-  font-size:34px;
+  font-family:'Allura', cursive;
+  font-size:38px;
   font-weight:400;
 }
 
@@ -618,14 +618,42 @@ select{
     <div class="control-group">
       <label for="fontSelect">Font</label>
       <select id="fontSelect">
-        <option value="'Cormorant Garamond', Georgia, serif">Elegant Bible</option>
-        <option value="Georgia, 'Times New Roman', serif">Georgia</option>
-        <option value="'Times New Roman', serif">Classic Bible</option>
-        <option value="'Trebuchet MS', sans-serif">Easy Read</option>
-        <option value="'Dancing Script', cursive">Soft Pretty Script</option>
-        <option value="'Parisienne', cursive">Fancy Script</option>
-        <option value="'Great Vibes', cursive">Flowy Script</option>
-        <option value="'Sacramento', cursive">Thin Handwritten Script</option>
+        <optgroup label="Best for Bible Reading">
+          <option value="'Cormorant Garamond', Georgia, serif">Elegant Bible</option>
+          <option value="Georgia, 'Times New Roman', serif">Georgia</option>
+          <option value="'Times New Roman', serif">Classic Bible</option>
+          <option value="'Trebuchet MS', sans-serif">Easy Read</option>
+        </optgroup>
+
+        <optgroup label="Printed Handwriting">
+          <option value="'Patrick Hand', cursive">Printed Handwriting</option>
+          <option value="'Handlee', cursive">Gentle Handwriting Print</option>
+          <option value="'Kalam', cursive">Notebook Print</option>
+          <option value="'Indie Flower', cursive">Playful Print</option>
+        </optgroup>
+
+        <optgroup label="Journal Handwriting">
+          <option value="'Caveat', cursive">Soft Journal Handwriting</option>
+          <option value="'Dancing Script', cursive">Soft Pretty Script</option>
+          <option value="'Satisfy', cursive">Smooth Journal Script</option>
+        </optgroup>
+
+        <optgroup label="Fancy Script">
+          <option value="'Allura', cursive">Allura</option>
+          <option value="'Alex Brush', cursive">Alex Brush</option>
+          <option value="'Sacramento', cursive">Sacramento</option>
+          <option value="'Parisienne', cursive">Parisienne</option>
+          <option value="'Great Vibes', cursive">Great Vibes</option>
+        </optgroup>
+
+        <optgroup label="Premium Fonts Later">
+          <option disabled>Daisy Girl Script - upload font file later</option>
+          <option disabled>Amoretti - upload font file later</option>
+          <option disabled>Pink Champagne - upload font file later</option>
+          <option disabled>Bravingthon - upload font file later</option>
+          <option disabled>Welinside - upload font file later</option>
+          <option disabled>Block Heads - upload font file later</option>
+        </optgroup>
       </select>
     </div>
 
@@ -650,6 +678,7 @@ select{
         </div>
 
         <div class="tool-links">
+          <a href="grand-library.html">🏛️ Library</a>
           <a href="study-binder.html">📖 Study Binder</a>
           <a href="journal.html">✍️ Journal</a>
           <a href="coloring.html">🎨 Coloring</a>
@@ -927,7 +956,9 @@ function saveBookmark(){
   const bookmark = {
     book: currentBook,
     chapter: currentChapter,
-    translation: currentTranslation
+    translation: currentTranslation,
+    font: fontSelect.value,
+    fontSize: fontSize
   };
 
   localStorage.setItem("bloomBibleBookmark", JSON.stringify(bookmark));
@@ -948,6 +979,11 @@ function loadBookmark(){
       currentBook = bookmark.book;
       currentChapter = bookmark.chapter || 1;
       currentTranslation = bookmark.translation || "KJV";
+      fontSize = bookmark.fontSize || 20;
+
+      if(bookmark.font){
+        fontSelect.value = bookmark.font;
+      }
     }
   }catch(error){
     console.log("No bookmark loaded.");
@@ -1039,10 +1075,13 @@ document.addEventListener("click", event => {
   }
 });
 
-loadBookmark();
 fillBookSelect();
-translationSelect.value = currentTranslation;
 fillChapterSelect();
+loadBookmark();
+translationSelect.value = currentTranslation;
+bookSelect.value = currentBook;
+fillChapterSelect();
+chapterSelect.value = currentChapter;
 renderScripture();
 </script>
 
