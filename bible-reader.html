@@ -2,114 +2,58 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Blooming in His Garden — Bible Reader</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Allura&family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@400;600&family=Great+Vibes&family=Handlee&family=Sacramento&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Handlee&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --ink:#4b382a;
-  --paper:#fff8e8;
-  --paper2:#f5e7c9;
-  --gold:#caa45e;
-  --gold2:#9e7535;
-  --rose:#c88f88;
-  --sage:#879b79;
-  --leather:#6e3f25;
-  --reader-font:'Cormorant Garamond',Georgia,serif;
+  --ink:#4b3829;
+  --paper:#fff8e7;
+  --paper-deep:#efddb7;
+  --sage:#7f9b78;
+  --sage-dark:#526b50;
+  --eucalyptus:#759184;
+  --gold:#c99d4f;
+  --gold-dark:#92672e;
+  --rose:#c58f86;
+  --peach:#e8b98e;
+  --leather:#6e4026;
+  --leather-dark:#472719;
   --reader-size:20px;
+  --reader-font:'Cormorant Garamond', Georgia, serif;
 }
 
-*{
-  box-sizing:border-box;
-}
-
-html,
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%}
 body{
-  width:100%;
-  height:100%;
-  margin:0;
-}
-
-body{
-  overflow:hidden;
   font-family:'Cormorant Garamond',Georgia,serif;
   color:var(--ink);
   background:
-    radial-gradient(
-      circle at 50% 2%,
-      rgba(255,249,224,.9),
-      transparent 25%
-    ),
-    linear-gradient(
-      180deg,
-      #dfe9d5 0%,
-      #cfdcc4 45%,
-      #b9a383 100%
-    );
+    radial-gradient(circle at 50% -10%,rgba(255,250,224,.95),transparent 28%),
+    linear-gradient(180deg,#dce7d2 0%,#c5d2b9 45%,#a78f70 100%);
+  overflow:hidden;
 }
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(
-      90deg,
-      transparent 0 7%,
-      rgba(255,255,255,.62) 7% 8.2%,
-      transparent 8.2% 16%
-    ),
-    linear-gradient(
-      90deg,
-      transparent 0 28%,
-      rgba(255,255,255,.52) 28% 29.2%,
-      transparent 29.2% 40%
-    ),
-    linear-gradient(
-      90deg,
-      transparent 0 66%,
-      rgba(255,255,255,.5) 66% 67.2%,
-      transparent 67.2% 80%
-    ),
-    linear-gradient(
-      90deg,
-      transparent 0 89%,
-      rgba(255,255,255,.55) 89% 90.2%,
-      transparent 90.2%
-    );
-  opacity:.62;
-}
-
-button,
-a{
-  -webkit-tap-highlight-color:transparent;
-}
+button,a{font:inherit}
+button{cursor:pointer}
 
 .app{
-  position:relative;
-  width:100%;
-  height:100%;
-  padding:10px 18px 16px;
+  height:100vh;
   display:grid;
   grid-template-rows:auto 1fr auto;
   gap:8px;
+  padding:10px 14px 14px;
 }
 
 .topbar{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  min-height:42px;
-  gap:10px;
+  align-items:center;
+  gap:12px;
   z-index:20;
 }
 
@@ -120,136 +64,85 @@ a{
   min-width:0;
 }
 
-.brand-mark{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  flex-shrink:0;
-  background:linear-gradient(145deg,#fff7df,#eac987);
-  border:1px solid var(--gold2);
-  box-shadow:0 4px 12px rgba(74,51,31,.2);
-  font-size:20px;
+.brand-seal{
+  width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;
+  background:radial-gradient(circle,#fff9df,#dcb66e);
+  border:1px solid var(--gold-dark);
+  box-shadow:0 4px 14px rgba(57,37,20,.2);
+  font-size:22px;
 }
 
-.brand-title{
-  font-family:'Great Vibes',cursive;
-  font-size:clamp(26px,3vw,40px);
-  line-height:1;
+.brand h1{
+  margin:0;
+  font:400 clamp(28px,3vw,42px)/.9 'Great Vibes',cursive;
   white-space:nowrap;
 }
+.brand small{font-family:'Handlee',cursive;color:#6e5a47}
 
-.brand-sub{
-  font-family:'Handlee',cursive;
-  font-size:12px;
-  color:#6c5b48;
-}
-
-.top-actions{
+.controls{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
   flex-wrap:wrap;
   justify-content:flex-end;
 }
 
 .pill{
-  border:1px solid rgba(121,84,41,.35);
-  color:#4a3526;
-  background:rgba(255,249,234,.9);
-  padding:7px 11px;
+  border:1px solid rgba(112,76,36,.32);
+  color:#4a3525;
+  background:rgba(255,249,234,.92);
   border-radius:999px;
-  font:600 14px 'Cormorant Garamond',serif;
-  box-shadow:0 4px 12px rgba(70,43,23,.1);
-  cursor:pointer;
-}
-
-.pill:hover{
-  transform:translateY(-1px);
+  padding:7px 12px;
+  box-shadow:0 4px 12px rgba(64,41,22,.11);
+  font-weight:700;
 }
 
 .reader-stage{
   min-height:0;
+  position:relative;
   display:grid;
   place-items:center;
-  position:relative;
-  z-index:5;
 }
 
-.book-shell{
-  position:relative;
-  width:min(1180px,calc(100vw - 92px));
-  height:min(690px,calc(100vh - 122px));
-  min-height:460px;
-  border-radius:28px 28px 22px 22px;
+.book{
+  width:min(1240px,calc(100vw - 92px));
+  height:min(760px,calc(100vh - 118px));
+  min-height:470px;
+  padding:14px 18px 20px;
+  border-radius:30px 30px 24px 24px;
   background:
-    linear-gradient(
-      90deg,
-      #5b321e 0 1.6%,
-      #8a5a39 1.6% 2.4%,
-      transparent 2.4% 97.6%,
-      #8a5a39 97.6% 98.4%,
-      #5b321e 98.4%
-    ),
-    linear-gradient(180deg,#7b4b2f,#4c2c1d);
-  padding:13px 17px 18px;
-  box-shadow:
-    0 26px 60px rgba(39,26,16,.38),
-    0 5px 0 #342016,
-    inset 0 0 0 2px rgba(220,176,91,.35);
-  transition:width .28s ease;
+    linear-gradient(90deg,#4b291a 0 1.3%,#845437 1.3% 2.2%,transparent 2.2% 97.8%,#845437 97.8% 98.7%,#4b291a 98.7%),
+    linear-gradient(180deg,#7a4a2f,#4b2a1a);
+  box-shadow:0 30px 70px rgba(39,25,15,.42),0 6px 0 #342016,inset 0 0 0 2px rgba(219,177,91,.3);
+  position:relative;
+  transition:.28s ease;
 }
 
-.book-shell.wide{
-  width:min(1260px,calc(100vw - 36px));
-}
-
-.book-shell::before{
+.book::after{
   content:"";
   position:absolute;
-  left:50%;
-  top:14px;
-  bottom:18px;
-  width:32px;
-  transform:translateX(-50%);
-  background:
-    linear-gradient(
-      90deg,
-      rgba(67,42,27,.18),
-      rgba(255,255,255,.4),
-      rgba(67,42,27,.22)
-    );
-  filter:blur(5px);
-  z-index:5;
-  pointer-events:none;
+  left:5%;right:5%;bottom:7px;height:9px;border-radius:999px;
+  background:linear-gradient(90deg,var(--rose),var(--gold),var(--rose));
+  opacity:.78;
 }
 
-.book-shell::after{
-  content:"";
-  position:absolute;
-  left:4%;
-  right:4%;
-  bottom:7px;
-  height:10px;
-  border-radius:50%;
-  background:
-    linear-gradient(
-      90deg,
-      #c88f88,
-      #e5bd78,
-      #c88f88
-    );
-  opacity:.75;
-}
+.book.tabs-hidden{width:min(1320px,calc(100vw - 28px))}
 
 .spread{
-  width:100%;
   height:100%;
+  border-radius:20px 20px 14px 14px;
+  overflow:hidden;
   display:grid;
   grid-template-columns:1fr 1fr;
-  overflow:hidden;
-  border-radius:20px 20px 14px 14px;
+  position:relative;
+}
+
+.spread::after{
+  content:"";
+  position:absolute;left:50%;top:0;bottom:0;width:34px;transform:translateX(-50%);
+  background:linear-gradient(90deg,rgba(73,47,28,.12),rgba(255,255,255,.38),rgba(73,47,28,.18));
+  filter:blur(5px);pointer-events:none;z-index:6;
 }
 
 .page{
@@ -258,1959 +151,839 @@ a{
   min-height:0;
   overflow:hidden;
   background:
-    radial-gradient(
-      circle at 48% 5%,
-      rgba(255,255,255,.88),
-      transparent 28%
-    ),
-    linear-gradient(180deg,var(--paper),var(--paper2));
-  border:1px solid rgba(154,111,54,.28);
-  box-shadow:inset 0 0 28px rgba(120,81,39,.12);
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.9),transparent 28%),
+    linear-gradient(180deg,var(--paper),var(--paper-deep));
+  border:1px solid rgba(147,104,49,.26);
+  box-shadow:inset 0 0 30px rgba(110,76,37,.11);
 }
 
-.page.left{
-  border-radius:17px 3px 3px 12px;
-  border-right:0;
+.page.left{border-radius:18px 4px 4px 12px;border-right:0}
+.page.right{border-radius:4px 18px 12px 4px;border-left:0}
+
+.page-inner{
+  position:absolute;inset:0;
+  padding:24px 30px 48px;
+  display:flex;flex-direction:column;
+  gap:9px;
+  overflow:hidden;
 }
 
-.page.right{
-  border-radius:3px 17px 12px 3px;
-  border-left:0;
-}
-
-.page::after{
+.page-inner::before{
   content:"";
-  position:absolute;
-  inset:11px;
-  border:1px solid rgba(199,154,66,.28);
+  position:absolute;inset:11px;
+  border:1px solid rgba(199,157,79,.27);
   border-radius:14px;
   pointer-events:none;
 }
 
-.page-content{
-  position:absolute;
-  inset:0;
-  padding:27px 34px 52px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.corner{position:absolute;font-size:25px;opacity:.9;z-index:2}
+.c1{top:7px;left:10px}.c2{top:7px;right:10px}.c3{bottom:7px;left:10px}.c4{bottom:7px;right:10px}
+
+.kicker{
+  text-align:center;
+  font:700 13px/1.2 'Handlee',cursive;
+  letter-spacing:.13em;text-transform:uppercase;color:#77614b;
+}
+.title{
+  margin:0;text-align:center;color:#5c3f2b;
+  font:400 clamp(44px,4.6vw,72px)/.95 'Great Vibes',cursive;
+}
+.subtitle{
+  margin:0 auto;text-align:center;max-width:90%;
+  font-size:18px;color:#6e5845;line-height:1.3;
+}
+.rule{height:1px;width:60%;margin:1px auto 5px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+.art-card{
+  flex:1;
+  min-height:0;
+  border:2px solid rgba(164,119,53,.42);
+  border-radius:24px;
   overflow:hidden;
-}
-
-.floral-corner{
-  position:absolute;
-  font-size:26px;
-  opacity:.86;
-}
-
-.fc-tl{
-  top:8px;
-  left:12px;
-}
-
-.fc-tr{
-  top:8px;
-  right:12px;
-}
-
-.fc-bl{
-  bottom:8px;
-  left:12px;
-}
-
-.fc-br{
-  bottom:8px;
-  right:12px;
-}
-
-.page-kicker{
-  font:600 13px 'Handlee',cursive;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:#7c664b;
-  text-align:center;
-}
-
-.page-title{
-  margin:0;
-  font-family:'Great Vibes',cursive;
-  font-size:clamp(42px,4.6vw,72px);
-  line-height:.98;
-  text-align:center;
-  font-weight:400;
-  color:#5f422e;
-}
-
-.page-subtitle{
-  text-align:center;
-  margin:0 auto;
-  max-width:90%;
-  font-size:18px;
-  color:#725c49;
-}
-
-.rule{
-  width:58%;
-  height:1px;
-  margin:2px auto 4px;
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      var(--gold),
-      transparent
-    );
-}
-
-.chapter-opening{
-  flex:1;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  padding:10px;
-}
-
-.chapter-opening h2{
-  margin:0;
-  font:400 52px 'Great Vibes',cursive;
-}
-
-.chapter-opening p{
-  max-width:420px;
-  margin:6px auto;
-  font-size:18px;
-}
-
-.chapter-number{
-  width:112px;
-  height:112px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  margin:0 auto 8px;
-  font-family:'Great Vibes',cursive;
-  font-size:72px;
-  color:#6c4a31;
-  background:
-    radial-gradient(circle,#fff7dc,#e8c486);
-  border:2px solid var(--gold2);
-  box-shadow:
-    0 8px 18px rgba(79,51,26,.17),
-    inset 0 0 0 7px rgba(255,255,255,.45);
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  min-height:0;
-}
-
-.card{
-  border:1px solid rgba(159,112,54,.3);
-  background:rgba(255,250,237,.67);
-  border-radius:16px;
-  padding:11px;
-}
-
-.card h3{
-  margin:0 0 3px;
-  font:400 26px 'Allura',cursive;
-}
-
-.card p{
-  margin:0;
-  font-size:15px;
-  line-height:1.3;
-}
-
-.art-frame{
-  flex:1;
-  min-height:0;
-  border:1px solid rgba(155,108,50,.42);
-  border-radius:22px;
   position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(
-      circle at 50% 12%,
-      rgba(255,251,218,.98),
-      rgba(248,208,120,.45) 16%,
-      transparent 34%
-    ),
-    linear-gradient(
-      180deg,
-      #a9cad7 0%,
-      #efd7a8 38%,
-      #98b57c 69%,
-      #658455 100%
-    );
-  box-shadow:
-    inset 0 0 28px rgba(255,255,255,.36),
-    0 8px 18px rgba(71,47,25,.12);
+  box-shadow:0 10px 24px rgba(72,46,25,.15),inset 0 0 26px rgba(255,255,255,.28);
+  background:#d8c38e;
 }
-
-.glory{
-  position:absolute;
-  left:50%;
-  top:-16%;
-  transform:translateX(-50%);
-  width:70%;
-  height:45%;
-  border-radius:50%;
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,255,237,.98),
-      rgba(255,221,126,.44),
-      transparent 70%
-    );
-}
-
-.hills{
-  position:absolute;
-  left:-8%;
-  right:-8%;
-  bottom:-8%;
-  height:46%;
-  background:linear-gradient(180deg,#9ab775,#557b48);
-  clip-path:ellipse(68% 62% at 50% 45%);
-}
-
-.water{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:8%;
-  height:29%;
-  background:linear-gradient(180deg,#76a7b7,#3d738a);
-  clip-path:ellipse(74% 46% at 50% 80%);
-}
-
-.flora{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:8px;
-  text-align:center;
-  font-size:28px;
-  letter-spacing:7px;
-}
-
-.animals{
-  position:absolute;
-  left:50%;
-  bottom:21%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:24px;
-  font-size:40px;
-}
-
+.art-card svg{width:100%;height:100%;display:block}
 .art-caption{
   position:absolute;
-  left:8%;
-  right:8%;
-  bottom:16px;
+  left:8%;right:8%;bottom:14px;
+  background:rgba(255,249,234,.88);
+  border:1px solid rgba(144,97,45,.34);
+  border-radius:16px;
+  padding:8px 13px;
   text-align:center;
-  padding:8px 12px;
-  border-radius:15px;
-  background:rgba(255,249,234,.84);
-  border:1px solid rgba(145,98,50,.3);
-  font-family:'Allura',cursive;
-  font-size:29px;
+  font:400 28px/1 'Allura',cursive;
+  color:#503520;
+  box-shadow:0 6px 16px rgba(60,38,20,.15);
 }
 
 .scripture-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  border-bottom:1px solid rgba(164,120,60,.35);
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  border-bottom:1px solid rgba(154,111,55,.34);
   padding-bottom:6px;
 }
-
-.scripture-head h2{
-  margin:0;
-  font-family:'Great Vibes',cursive;
-  font-weight:400;
-  font-size:38px;
-  color:#60412d;
-}
-
-.page-count{
-  font:600 12px 'Handlee',cursive;
-  color:#806a54;
-}
+.scripture-head h2{margin:0;font:400 40px/1 'Great Vibes',cursive;color:#5e402c}
+.scripture-head span{font:700 12px 'Handlee',cursive;color:#7d6752}
 
 .scripture{
+  min-height:0;overflow:auto;padding-right:5px;
   font-family:var(--reader-font);
   font-size:var(--reader-size);
-  line-height:1.43;
-  min-height:0;
-  overflow:hidden;
-  padding-right:3px;
+  line-height:1.5;
+  scrollbar-width:thin;
+}
+.verse{display:block;margin-bottom:.58em}
+.vnum{color:#9b6a34;font-weight:700;font-size:.78em;vertical-align:.16em;display:inline-block;min-width:1.45em}
+
+.intro-grid,.study-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;min-height:0;
+}
+.card{
+  border:1px solid rgba(149,102,50,.28);
+  background:rgba(255,250,238,.72);
+  border-radius:16px;
+  padding:11px;
+  box-shadow:0 6px 15px rgba(62,39,20,.08);
+}
+.card h3{margin:0 0 4px;font:400 27px 'Allura',cursive;color:#573a26}
+.card p{margin:0;font-size:15px;line-height:1.3}
+.full-card{grid-column:1/-1}
+
+.storybook .spread{grid-template-columns:1fr;max-width:760px;margin:auto}
+.storybook .page{border-radius:18px}
+.storybook .page.left{display:none}
+.storybook.show-art .page.left{display:block}
+.storybook.show-art .page.right{display:none}
+.storybook.show-text .page.left{display:none}
+.storybook.show-text .page.right{display:block}
+.storybook .spread::after{display:none}
+.storybook .page-inner{padding:28px 38px 50px}
+.storybook .art-caption{font-size:34px}
+.storybook .scripture{font-size:calc(var(--reader-size) + 2px)}
+
+.side-tools{
+  position:absolute;right:0;top:50%;transform:translateY(-50%);
+  z-index:30;display:flex;
+}
+.panel{
+  width:0;overflow:hidden;transition:width .24s ease;
+  background:rgba(255,248,232,.97);
+  border-radius:18px 0 0 18px;
+  box-shadow:-12px 12px 28px rgba(57,36,20,.22);
+  border-left:1px solid rgba(124,83,39,.28);
+}
+.panel.open{width:270px}
+.panel-inner{width:270px;padding:14px}
+.panel-inner h3{margin:0 0 8px;font:400 34px 'Great Vibes',cursive}
+.panel-inner p{font-size:14px;line-height:1.35}
+.tool-button{
+  width:100%;text-align:left;margin:4px 0;padding:9px 10px;
+  border:1px solid rgba(132,89,42,.27);
+  background:#fffaf0;border-radius:11px;color:#4b3828;font-weight:700;
 }
 
-.verse{
-  display:block;
-  margin:0 0 .52em;
-}
-
-.vnum{
-  display:inline-block;
-  min-width:1.3em;
-  color:#9a6b37;
-  font-weight:700;
-  font-size:.78em;
-  cursor:pointer;
-  vertical-align:.15em;
-}
-
-.bottom-note{
-  margin-top:auto;
-  padding:8px 10px;
-  border-radius:12px;
-  border:1px solid rgba(166,119,58,.28);
-  background:rgba(255,250,237,.65);
-  font:14px 'Handlee',cursive;
-  color:#705943;
-}
-
-.side-tabs{
-  position:absolute;
-  right:0;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:30;
-  display:flex;
-}
-
-.tab-rail{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-}
-
-.tab-btn{
-  width:42px;
-  height:42px;
-  border-radius:12px 0 0 12px;
-  background:linear-gradient(145deg,#f7ebce,#dcbf86);
-  color:#4c3527;
-  cursor:pointer;
-  box-shadow:-4px 4px 11px rgba(62,41,24,.16);
-  border:1px solid rgba(128,88,43,.28);
+.rail{display:flex;flex-direction:column;gap:5px}
+.tab{
+  width:42px;height:42px;border-radius:12px 0 0 12px;
+  border:1px solid rgba(126,85,40,.28);
+  background:linear-gradient(145deg,#f8edcf,#dbbd82);
+  box-shadow:-4px 4px 11px rgba(60,38,22,.16);
   font-size:18px;
 }
 
-.tool-panel{
-  width:0;
-  overflow:hidden;
-  transition:width .25s ease;
-  background:rgba(255,248,231,.96);
-  border-left:1px solid rgba(124,84,40,.3);
-  border-radius:18px 0 0 18px;
-  box-shadow:-12px 10px 28px rgba(64,42,24,.2);
-}
-
-.tool-panel.open{
-  width:250px;
-}
-
-.tool-inner{
-  width:250px;
-  padding:14px;
-}
-
-.tool-inner h3{
-  margin:0 0 8px;
-  font:400 34px 'Great Vibes',cursive;
-}
-
-.tool-btn{
-  width:100%;
-  text-align:left;
-  margin:4px 0;
-  padding:9px 10px;
-  border-radius:11px;
-  border:1px solid rgba(137,95,46,.27);
-  background:#fffaf0;
-  color:#4b382a;
-  cursor:pointer;
-  font:600 15px 'Cormorant Garamond',serif;
-}
-
-.tool-small{
-  font-size:13px;
-  line-height:1.35;
-  color:#715d4b;
-}
-
 .ribbons{
-  position:absolute;
-  left:50%;
-  bottom:-17px;
-  transform:translateX(-50%);
-  width:52%;
-  display:flex;
-  justify-content:space-between;
-  z-index:12;
-  pointer-events:none;
+  position:absolute;left:50%;bottom:-17px;transform:translateX(-50%);
+  width:54%;display:flex;justify-content:space-between;z-index:12;pointer-events:none;
 }
-
 .ribbon{
-  pointer-events:auto;
-  min-width:128px;
-  border:0;
-  cursor:pointer;
-  color:#fff8ec;
-  font:600 15px 'Handlee',cursive;
-  padding:11px 18px 18px;
-  background:linear-gradient(180deg,#8b5534,#5f3420);
-  clip-path:
-    polygon(
-      0 0,
-      100% 0,
-      100% 78%,
-      50% 100%,
-      0 78%
-    );
-  filter:drop-shadow(0 5px 5px rgba(54,34,19,.3));
+  pointer-events:auto;min-width:138px;border:0;color:#fff8ed;
+  padding:11px 18px 19px;
+  background:linear-gradient(180deg,#8b5535,#5f341f);
+  clip-path:polygon(0 0,100% 0,100% 77%,50% 100%,0 77%);
+  filter:drop-shadow(0 5px 5px rgba(50,31,18,.3));
+  font:700 15px 'Handlee',cursive;
 }
+.ribbon:disabled{opacity:.38;cursor:default}
 
-.ribbon:disabled{
-  opacity:.4;
-  cursor:default;
+.status{
+  display:flex;justify-content:center;align-items:center;gap:12px;
+  min-height:24px;font:14px 'Handlee',cursive;color:#584735;
 }
+.progress{width:min(430px,48vw);height:7px;border-radius:999px;background:rgba(255,255,255,.52);overflow:hidden;border:1px solid rgba(110,76,36,.24)}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rose),var(--gold))}
 
-.statusbar{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:12px;
-  min-height:24px;
-  font:14px 'Handlee',cursive;
-  color:#584837;
-  z-index:15;
+.choice-overlay,.modal{
+  position:fixed;inset:0;display:none;place-items:center;padding:18px;
+  background:rgba(36,24,16,.58);z-index:100;
 }
-
-.progress{
-  width:min(420px,48vw);
-  height:7px;
-  border-radius:999px;
-  background:rgba(255,255,255,.5);
-  overflow:hidden;
-  border:1px solid rgba(111,78,39,.25);
+.choice-overlay.show,.modal.show{display:grid}
+.choice-card,.modal-card{
+  width:min(650px,94vw);
+  background:linear-gradient(180deg,#fffaf0,#efddb8);
+  border:2px solid var(--gold-dark);
+  border-radius:24px;padding:22px;
+  box-shadow:0 28px 58px rgba(34,21,13,.42);
 }
-
-.progress span{
-  display:block;
-  height:100%;
-  background:linear-gradient(90deg,var(--rose),var(--gold));
-  width:0;
+.choice-card h2,.modal-card h2{margin:0;text-align:center;font:400 46px 'Great Vibes',cursive}
+.mode-options{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.mode-card{
+  border:1px solid rgba(137,94,45,.34);
+  border-radius:18px;background:rgba(255,250,239,.8);
+  padding:16px;text-align:center;
 }
-
-.modal-backdrop{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:none;
-  place-items:center;
-  padding:18px;
-  background:rgba(38,25,17,.55);
-}
-
-.modal-backdrop.show{
-  display:grid;
-}
-
-.modal{
-  width:min(520px,94vw);
-  background:linear-gradient(180deg,#fffaf0,#f2dfbc);
-  border:2px solid var(--gold2);
-  border-radius:22px;
-  padding:20px;
-  box-shadow:0 24px 50px rgba(35,22,14,.38);
-}
-
-.modal h3{
-  margin:0 0 8px;
-  font:400 38px 'Great Vibes',cursive;
-}
-
-.modal-close{
-  float:right;
-}
-
-body.font-allura{
-  --reader-font:'Allura',cursive;
-}
-
-body.font-handlee{
-  --reader-font:'Handlee',cursive;
-}
-
-body.font-dancing{
-  --reader-font:'Dancing Script',cursive;
-}
-
-body.font-sacramento{
-  --reader-font:'Sacramento',cursive;
-}
-
-body.font-gentle{
-  --reader-font:'Gentle Handwriting Print','Handlee',cursive;
-}
-
-.page-content.compact{
-  gap:7px;
-  padding-top:20px;
-  padding-bottom:46px;
-}
-
-.page-content.compact .page-title{
-  font-size:clamp(38px,4vw,58px);
-}
-
-.page-content.compact .page-subtitle{
-  font-size:16px;
-}
-
-.page-content.compact .scripture{
-  line-height:1.32;
-}
-
-.page-content.compact .verse{
-  margin-bottom:.34em;
-}
-
-.page-content.compact .card{
-  padding:8px;
-}
-
-.page-content.compact .card h3{
-  font-size:23px;
-}
-
-.page-content.compact .card p{
-  font-size:14px;
-}
-
-.page-content.compact .bottom-note{
-  padding:6px 8px;
-  font-size:12px;
-}
-
-.page-content.ultra-compact{
-  gap:5px;
-  padding-top:16px;
-  padding-bottom:43px;
-}
-
-.page-content.ultra-compact .scripture{
-  font-size:calc(var(--reader-size) - 3px);
-  line-height:1.24;
-}
-
-.page-content.ultra-compact .verse{
-  margin-bottom:.22em;
-}
-
-.page-content.ultra-compact .page-title{
-  font-size:42px;
-}
-
-.page-content.ultra-compact .page-subtitle{
-  font-size:14px;
-}
+.mode-card h3{margin:5px 0;font:400 30px 'Allura',cursive}
+.mode-card p{margin:0 0 12px;font-size:15px}
+.mode-card button{width:100%}
+.remember{display:flex;justify-content:center;gap:8px;margin-top:14px;font-family:'Handlee',cursive}
 
 @media(max-width:900px){
-  .app{
-    padding:8px 8px 12px;
-  }
-
-  .brand-sub{
-    display:none;
-  }
-
-  .book-shell{
-    width:calc(100vw - 58px);
-    height:calc(100vh - 110px);
-    min-height:430px;
-    padding:9px 11px 15px;
-  }
-
-  .page-content{
-    padding:22px 22px 34px;
-  }
-
-  .page-title{
-    font-size:48px;
-  }
-
-  .scripture{
-    font-size:calc(var(--reader-size) - 2px);
-  }
-
-  .ribbons{
-    width:68%;
-  }
-
-  .tool-panel.open{
-    width:220px;
-  }
-
-  .tool-inner{
-    width:220px;
-  }
+  .app{padding:8px}
+  .brand small{display:none}
+  .book{width:calc(100vw - 58px);height:calc(100vh - 106px);min-height:430px;padding:10px 12px 16px}
+  .page-inner{padding:20px 21px 39px}
+  .ribbons{width:70%}
+  .panel.open{width:230px}.panel-inner{width:230px}
 }
-
 @media(max-width:680px){
-  .top-actions .hide-mobile{
-    display:none;
-  }
-
-  .brand-title{
-    font-size:27px;
-  }
-
-  .book-shell{
-    width:calc(100vw - 44px);
-    height:calc(100vh - 102px);
-    min-height:390px;
-  }
-
-  .spread{
-    grid-template-columns:1fr;
-  }
-
-  .page.left{
-    display:none;
-  }
-
-  .page.right{
-    border-radius:16px;
-  }
-
-  .page-content{
-    padding:18px 21px 34px;
-  }
-
-  .scripture{
-    font-size:calc(var(--reader-size) - 1px);
-  }
-
-  .ribbons{
-    width:86%;
-    bottom:-13px;
-  }
-
-  .ribbon{
-    min-width:112px;
-    padding:9px 13px 16px;
-    font-size:13px;
-  }
-
-  .tab-btn{
-    width:38px;
-    height:38px;
-  }
-
-  .tool-panel.open{
-    width:min(250px,72vw);
-  }
-
-  .tool-inner{
-    width:min(250px,72vw);
-  }
+  .brand h1{font-size:27px}
+  .brand-seal{width:35px;height:35px}
+  .controls .desktop-only{display:none}
+  .book{width:calc(100vw - 44px);height:calc(100vh - 98px)}
+  .spread{grid-template-columns:1fr}
+  .page.left{display:none}
+  .page.right{border-radius:16px}
+  .book.open-bible .page.left{display:none}
+  .book.open-bible .page.right{display:block}
+  .page-inner{padding:18px 20px 36px}
+  .ribbons{width:88%;bottom:-13px}
+  .ribbon{min-width:112px;padding:9px 12px 16px;font-size:13px}
+  .mode-options{grid-template-columns:1fr}
+  .panel.open{width:min(250px,74vw)}.panel-inner{width:min(250px,74vw)}
 }
 </style>
 </head>
 
 <body>
-
 <div class="app">
-
-<header class="topbar">
-
-  <div class="brand">
-    <div class="brand-mark">🌸</div>
-
-    <div>
-      <div class="brand-title">
-        Blooming in His Garden
-      </div>
-
-      <div class="brand-sub">
-        Digital Heirloom Bible
-      </div>
-    </div>
-  </div>
-
-  <div class="top-actions">
-    <button class="pill hide-mobile" id="homeBtn">
-      Grand Library
-    </button>
-
-    <button class="pill" id="fontBtn">
-      Font
-    </button>
-
-    <button class="pill" id="smallerBtn">
-      A−
-    </button>
-
-    <button class="pill" id="largerBtn">
-      A+
-    </button>
-
-    <button class="pill" id="bookmarkBtn">
-      🔖
-    </button>
-
-    <button class="pill" id="tabsToggle">
-      Hide Tabs
-    </button>
-  </div>
-
-</header>
-
-<main class="reader-stage">
-
-  <section class="book-shell" id="bookShell">
-
-    <div class="spread">
-
-      <article class="page left">
-        <div class="page-content" id="leftPage"></div>
-      </article>
-
-      <article class="page right">
-        <div class="page-content" id="rightPage"></div>
-      </article>
-
-    </div>
-
-    <div class="ribbons">
-      <button
-        class="ribbon"
-        id="prevBtn"
-        aria-label="Previous Bible page">
-        ◀ Previous Page
-      </button>
-
-      <button
-        class="ribbon"
-        id="nextBtn"
-        aria-label="Next Bible page">
-        Next Page ▶
-      </button>
-    </div>
-
-  </section>
-
-  <aside class="side-tabs" id="sideTabs">
-
-    <div class="tool-panel" id="toolPanel">
-      <div class="tool-inner" id="toolInner">
-        <h3>Reader Tools</h3>
-        <p class="tool-small">
-          Choose a tab.
-        </p>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-seal">🌿</div>
+      <div>
+        <h1>Blooming in His Garden</h1>
+        <small>Digital Heirloom Bible</small>
       </div>
     </div>
 
-    <div class="tab-rail">
-
-      <button
-        class="tab-btn"
-        data-tool="bible"
-        title="Bible books">
-        📖
-      </button>
-
-      <button
-        class="tab-btn"
-        data-tool="music"
-        title="Music">
-        🎵
-      </button>
-
-      <button
-        class="tab-btn"
-        data-tool="study"
-        title="Study Binder">
-        📚
-      </button>
-
-      <button
-        class="tab-btn"
-        data-tool="journal"
-        title="Journal">
-        ✍️
-      </button>
-
-      <button
-        class="tab-btn"
-        data-tool="characters"
-        title="Characters">
-        👤
-      </button>
-
-      <button
-        class="tab-btn"
-        data-tool="maps"
-        title="Maps">
-        🗺️
-      </button>
-
-      <button
-        class="tab-btn"
-        data-tool="coloring"
-        title="Coloring pages">
-        🎨
-      </button>
-
+    <div class="controls">
+      <button class="pill desktop-only" onclick="location.href='grand-library.html'">Grand Library</button>
+      <button class="pill" id="modeBtn">Reading Mode</button>
+      <button class="pill" id="fontBtn">Font</button>
+      <button class="pill" id="smallerBtn">A−</button>
+      <button class="pill" id="largerBtn">A+</button>
+      <button class="pill" id="bookmarkBtn">🔖</button>
+      <button class="pill desktop-only" id="tabsBtn">Hide Tabs</button>
     </div>
+  </header>
 
-  </aside>
+  <main class="reader-stage">
+    <section class="book open-bible" id="book">
+      <div class="spread" id="spread">
+        <article class="page left"><div class="page-inner" id="leftPage"></div></article>
+        <article class="page right"><div class="page-inner" id="rightPage"></div></article>
+      </div>
 
-</main>
+      <div class="ribbons">
+        <button class="ribbon" id="prevBtn">◀ Previous</button>
+        <button class="ribbon" id="nextBtn">Next ▶</button>
+      </div>
+    </section>
 
-<footer class="statusbar">
+    <aside class="side-tools" id="sideTools">
+      <div class="panel" id="panel"><div class="panel-inner" id="panelInner"></div></div>
+      <div class="rail">
+        <button class="tab" data-tool="books" title="Books">📖</button>
+        <button class="tab" data-tool="music" title="Music">🎵</button>
+        <button class="tab" data-tool="study" title="Study">📚</button>
+        <button class="tab" data-tool="journal" title="Journal">✍️</button>
+        <button class="tab" data-tool="characters" title="Characters">👤</button>
+        <button class="tab" data-tool="maps" title="Maps">🗺️</button>
+        <button class="tab" data-tool="coloring" title="Coloring">🎨</button>
+      </div>
+    </aside>
+  </main>
 
-  <span id="statusText">
-    Welcome
-  </span>
-
-  <div class="progress">
-    <span id="progressBar"></span>
-  </div>
-
-  <span id="progressText">
-    1 / 5
-  </span>
-
-</footer>
-
+  <footer class="status">
+    <span id="statusLabel">Genesis Introduction</span>
+    <div class="progress"><span id="progressBar"></span></div>
+    <span id="progressText">1 / 9</span>
+  </footer>
 </div>
 
-<div class="modal-backdrop" id="modalBackdrop">
-
-  <div class="modal">
-
-    <button
-      class="pill modal-close"
-      id="modalClose">
-      Close
-    </button>
-
-    <h3 id="modalTitle">
-      Note
-    </h3>
-
-    <p id="modalBody"></p>
-
+<div class="choice-overlay" id="choiceOverlay">
+  <div class="choice-card">
+    <h2>How would you like to read today?</h2>
+    <div class="mode-options">
+      <div class="mode-card">
+        <div style="font-size:48px">📖</div>
+        <h3>Open Bible Mode</h3>
+        <p>Artwork on the left and Scripture on the right, like a traditional heirloom Bible.</p>
+        <button class="pill" data-mode-choice="open">Choose Open Bible</button>
+      </div>
+      <div class="mode-card">
+        <div style="font-size:48px">🌸</div>
+        <h3>Storybook Mode</h3>
+        <p>One large page at a time, with bigger artwork and a gentler page-by-page flow.</p>
+        <button class="pill" data-mode-choice="storybook">Choose Storybook</button>
+      </div>
+    </div>
+    <label class="remember"><input type="checkbox" id="rememberChoice" checked> Remember my choice</label>
   </div>
+</div>
 
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="pill" id="closeModal" style="float:right">Close</button>
+    <h2 id="modalTitle">Note</h2>
+    <p id="modalBody"></p>
+  </div>
 </div>
 
 <script>
+const art = {
+light: `
+<svg viewBox="0 0 800 600" role="img" aria-label="Light breaking through darkness">
+<defs>
+  <radialGradient id="g1" cx="50%" cy="18%" r="58%"><stop offset="0" stop-color="#fffde2"/><stop offset=".28" stop-color="#f6d88e"/><stop offset=".68" stop-color="#8fa6a2"/><stop offset="1" stop-color="#263845"/></radialGradient>
+  <linearGradient id="sea1" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#7aa7b3"/><stop offset="1" stop-color="#284f63"/></linearGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="800" height="600" fill="url(#g1)"/>
+<ellipse cx="400" cy="160" rx="170" ry="130" fill="#fff9bd" opacity=".75" filter="url(#soft)"/>
+<path d="M0 390 Q180 330 350 390 T800 380 V600 H0Z" fill="url(#sea1)"/>
+<path d="M0 465 Q150 410 300 460 T800 450 V600 H0Z" fill="#52744c"/>
+<g opacity=".62" stroke="#fff6c9" stroke-width="5">
+<path d="M400 30 L290 420"/><path d="M400 30 L390 450"/><path d="M400 30 L510 420"/>
+</g>
+</svg>`,
+sky: `
+<svg viewBox="0 0 800 600" role="img" aria-label="Sky and waters">
+<defs>
+  <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8eb8d0"/><stop offset=".55" stop-color="#e8d7a4"/><stop offset="1" stop-color="#6c93a2"/></linearGradient>
+  <filter id="cloud"><feGaussianBlur stdDeviation="7"/></filter>
+</defs>
+<rect width="800" height="600" fill="url(#sky2)"/>
+<g fill="#fff" opacity=".8" filter="url(#cloud)">
+<ellipse cx="180" cy="170" rx="115" ry="42"/><ellipse cx="250" cy="160" rx="92" ry="36"/>
+<ellipse cx="570" cy="190" rx="135" ry="48"/><ellipse cx="650" cy="175" rx="90" ry="34"/>
+</g>
+<path d="M0 430 Q140 390 275 430 T550 420 T800 425 V600 H0Z" fill="#4d8098"/>
+<path d="M0 500 Q160 455 320 500 T640 490 T800 495 V600 H0Z" fill="#315f78"/>
+<g stroke="#f5edd0" stroke-width="3" opacity=".5">
+<path d="M0 448 Q100 425 200 448 T400 448 T600 448 T800 448"/>
+<path d="M0 482 Q100 459 200 482 T400 482 T600 482 T800 482"/>
+</g>
+</svg>`,
+land: `
+<svg viewBox="0 0 800 600" role="img" aria-label="Dry land and plants">
+<defs>
+  <linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9dc6d2"/><stop offset=".7" stop-color="#f0d39a"/></linearGradient>
+  <linearGradient id="hill3" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9bb56d"/><stop offset="1" stop-color="#55754a"/></linearGradient>
+</defs>
+<rect width="800" height="600" fill="url(#sky3)"/>
+<circle cx="620" cy="110" r="55" fill="#ffe6a0" opacity=".85"/>
+<path d="M0 355 Q170 240 340 350 T680 340 T800 350 V600 H0Z" fill="#7d9c63"/>
+<path d="M0 425 Q170 330 340 420 T680 410 T800 420 V600 H0Z" fill="url(#hill3)"/>
+<g>
+<rect x="120" y="300" width="20" height="150" rx="8" fill="#6b4b31"/><circle cx="130" cy="270" r="75" fill="#6d965f"/><circle cx="88" cy="285" r="48" fill="#83a66f"/>
+<rect x="600" y="310" width="18" height="140" rx="8" fill="#6b4b31"/><circle cx="610" cy="285" r="70" fill="#6e955c"/><circle cx="650" cy="300" r="45" fill="#83a76e"/>
+</g>
+<g fill="#f3d46f"><circle cx="245" cy="470" r="8"/><circle cx="270" cy="492" r="7"/><circle cx="520" cy="468" r="8"/><circle cx="550" cy="500" r="7"/></g>
+<g stroke="#7c6a34" stroke-width="4"><path d="M245 470v45"/><path d="M270 492v34"/><path d="M520 468v48"/><path d="M550 500v27"/></g>
+</svg>`,
+lights: `
+<svg viewBox="0 0 800 600" role="img" aria-label="Sun moon and stars">
+<defs>
+  <linearGradient id="night4" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#1e2b52"/><stop offset=".5" stop-color="#6d7893"/><stop offset="1" stop-color="#d9a15e"/></linearGradient>
+  <radialGradient id="sun4"><stop stop-color="#fff7b7"/><stop offset=".55" stop-color="#f5c05e"/><stop offset="1" stop-color="#d88936"/></radialGradient>
+</defs>
+<rect width="800" height="600" fill="url(#night4)"/>
+<circle cx="610" cy="175" r="84" fill="url(#sun4)"/>
+<circle cx="190" cy="170" r="67" fill="#f7efd6"/><circle cx="218" cy="154" r="67" fill="#26365e"/>
+<g fill="#fff4b7">
+<circle cx="95" cy="90" r="4"/><circle cx="145" cy="255" r="5"/><circle cx="280" cy="90" r="4"/><circle cx="355" cy="185" r="5"/><circle cx="455" cy="80" r="4"/><circle cx="720" cy="90" r="5"/>
+</g>
+<path d="M0 420 Q170 330 340 420 T680 410 T800 420 V600 H0Z" fill="#425b48"/>
+<path d="M0 500 Q170 430 340 500 T680 490 T800 500 V600 H0Z" fill="#263e36"/>
+</svg>`,
+birds: `
+<svg viewBox="0 0 800 600" role="img" aria-label="Birds and sea creatures">
+<defs><linearGradient id="sky5" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8fc2d7"/><stop offset=".55" stop-color="#e9d7a0"/><stop offset="1" stop-color="#3f7996"/></linearGradient></defs>
+<rect width="800" height="600" fill="url(#sky5)"/>
+<path d="M0 350 Q170 300 340 350 T680 340 T800 350 V600 H0Z" fill="#4c89a5"/>
+<path d="M0 440 Q170 390 340 440 T680 430 T800 440 V600 H0Z" fill="#2d6885"/>
+<g fill="none" stroke="#4d4a3a" stroke-width="6" stroke-linecap="round">
+<path d="M140 150 q25-22 50 0 q25-22 50 0"/><path d="M500 130 q22-18 44 0 q22-18 44 0"/><path d="M320 205 q18-16 36 0 q18-16 36 0"/>
+</g>
+<g fill="#e0c475">
+<path d="M180 450 q45-28 90 0 q-45 40-90 0z"/><circle cx="265" cy="450" r="7" fill="#4b392b"/>
+<path d="M500 505 q55-30 110 0 q-55 45-110 0z"/><circle cx="603" cy="504" r="7" fill="#4b392b"/>
+<path d="M350 405 q40-24 80 0 q-40 34-80 0z"/><circle cx="424" cy="404" r="6" fill="#4b392b"/>
+</g>
+<g fill="#f4e8c7" opacity=".6"><circle cx="110" cy="510" r="7"/><circle cx="130" cy="535" r="5"/><circle cx="680" cy="470" r="7"/></g>
+</svg>`,
+animals: `
+<svg viewBox="0 0 800 600" role="img" aria-label="Land animals">
+<defs><linearGradient id="sky6" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a7cad5"/><stop offset=".65" stop-color="#efd29a"/></linearGradient></defs>
+<rect width="800" height="600" fill="url(#sky6)"/>
+<path d="M0 360 Q150 280 320 360 T660 350 T800 360 V600 H0Z" fill="#8ca66a"/>
+<path d="M0 450 Q170 370 340 450 T680 440 T800 450 V600 H0Z" fill="#5b7b4d"/>
+<g fill="#b87a4a">
+<ellipse cx="185" cy="430" rx="75" ry="40"/><rect x="140" y="450" width="14" height="70" rx="7"/><rect x="205" y="450" width="14" height="70" rx="7"/>
+<rect x="240" y="350" width="18" height="110" rx="9"/><ellipse cx="255" cy="340" rx="35" ry="25"/>
+</g>
+<g fill="#f2ead6">
+<ellipse cx="440" cy="445" rx="62" ry="38"/><circle cx="495" cy="418" r="28"/><rect x="410" y="470" width="12" height="55" rx="6"/><rect x="462" y="470" width="12" height="55" rx="6"/>
+</g>
+<g fill="#a97d5d">
+<ellipse cx="625" cy="470" rx="48" ry="30"/><circle cx="665" cy="452" r="24"/><path d="M682 431 l18-30 l-6 38z"/><path d="M654 430 l-10-32 l25 27z"/>
+</g>
+<g fill="#d8b889"><ellipse cx="300" cy="510" rx="30" ry="18"/><circle cx="327" cy="497" r="14"/></g>
+</svg>`,
+people: `
+<svg viewBox="0 0 800 600" role="img" aria-label="Adam and Eve in the garden">
+<defs>
+  <linearGradient id="sky7" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#acd2da"/><stop offset=".65" stop-color="#f0d49b"/></linearGradient>
+  <radialGradient id="glow7"><stop stop-color="#fff9ca" stop-opacity=".9"/><stop offset="1" stop-color="#fff9ca" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="800" height="600" fill="url(#sky7)"/>
+<circle cx="400" cy="120" r="120" fill="url(#glow7)"/>
+<path d="M0 350 Q160 250 320 350 T640 340 T800 350 V600 H0Z" fill="#86a66c"/>
+<path d="M0 440 Q160 340 320 440 T640 430 T800 440 V600 H0Z" fill="#5d7f51"/>
+<g>
+<rect x="100" y="260" width="22" height="220" rx="9" fill="#6b4a31"/><circle cx="112" cy="230" r="95" fill="#6f985e"/>
+<rect x="675" y="260" width="22" height="220" rx="9" fill="#6b4a31"/><circle cx="686" cy="230" r="95" fill="#739b60"/>
+</g>
+<g transform="translate(250 205)">
+  <circle cx="75" cy="75" r="48" fill="#b9784c"/><path d="M31 70 q12-58 48-58 q42 0 48 58 q-18-18-48-17 q-31 0-48 17z" fill="#5a3827"/>
+  <circle cx="59" cy="76" r="5" fill="#3c2a22"/><circle cx="91" cy="76" r="5" fill="#3c2a22"/>
+  <path d="M62 95 q14 11 28 0" fill="none" stroke="#6a3d2e" stroke-width="4" stroke-linecap="round"/>
+  <rect x="30" y="120" width="90" height="180" rx="42" fill="#b9784c"/>
+  <path d="M20 235 q55-80 110 0 v70 h-110z" fill="#4e7b42"/>
+</g>
+<g transform="translate(440 205)">
+  <circle cx="75" cy="75" r="48" fill="#c48355"/><path d="M25 83 q2-72 51-72 q51 0 51 75 q-18-26-52-25 q-30 0-50 22z" fill="#6a422b"/>
+  <circle cx="59" cy="78" r="5" fill="#3c2a22"/><circle cx="91" cy="78" r="5" fill="#3c2a22"/>
+  <path d="M62 97 q14 11 28 0" fill="none" stroke="#6a3d2e" stroke-width="4" stroke-linecap="round"/>
+  <rect x="30" y="120" width="90" height="180" rx="42" fill="#c48355"/>
+  <path d="M20 235 q55-80 110 0 v70 h-110z" fill="#5d874c"/>
+</g>
+<g fill="#f2d172"><circle cx="210" cy="500" r="8"/><circle cx="590" cy="510" r="8"/><circle cx="400" cy="520" r="7"/></g>
+</svg>`
+};
+
 const spreads = [
-
-  {
-    label:'Welcome',
-
-    left:`
-      <div class="floral-corner fc-tl">🌿</div>
-      <div class="floral-corner fc-br">🌸</div>
-
-      <div class="chapter-opening">
-        <div>
-          <div class="page-kicker">
-            The Grand Library Edition
-          </div>
-
-          <h1 class="page-title">
-            Welcome
-          </h1>
-
-          <div class="rule"></div>
-
-          <p class="page-subtitle">
-            Open the pages slowly. Read, listen, reflect,
-            write, and grow through God’s living Word.
-          </p>
-
-          <div style="font-size:60px;margin-top:18px">
-            📖
-          </div>
-
-          <p style="font-family:'Handlee',cursive">
-            Turn each page like a real heirloom Bible.
-          </p>
-        </div>
-      </div>
-    `,
-
-    right:`
-      <div class="floral-corner fc-tr">🌾</div>
-      <div class="floral-corner fc-bl">🧡</div>
-
-      <div class="chapter-opening">
-        <div>
-          <div class="page-kicker">
-            Blooming in His Garden
-          </div>
-
-          <h2>
-            Before You Begin
-          </h2>
-
-          <div class="rule"></div>
-
-          <p>
-            Use the leather ribbons below to turn pages.
-            Open the small side tabs for music, study,
-            journaling, maps, characters, and coloring.
-          </p>
-
-          <div class="cards" style="margin-top:18px">
-
-            <div class="card">
-              <h3>Read</h3>
-              <p>
-                Scripture remains on the right-hand page.
-              </p>
-            </div>
-
-            <div class="card">
-              <h3>See</h3>
-              <p>
-                Artwork and chapter openings live on the left.
-              </p>
-            </div>
-
-            <div class="card">
-              <h3>Listen</h3>
-              <p>
-                Chapter music opens from the music tab.
-              </p>
-            </div>
-
-            <div class="card">
-              <h3>Remember</h3>
-              <p>
-                Your place can be saved with the bookmark.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    `
-  },
-
-  {
-    label:'Genesis Introduction',
-
-    left:`
-      <div class="floral-corner fc-tl">🍎</div>
-      <div class="floral-corner fc-br">🌿</div>
-
-      <div class="chapter-opening">
-        <div>
-          <div class="page-kicker">
-            Book One
-          </div>
-
-          <div class="chapter-number">
-            1
-          </div>
-
-          <h2>
-            Genesis
-          </h2>
-
-          <div class="rule"></div>
-
-          <p>
-            The book of beginnings: creation, covenant,
-            family, failure, mercy, and the first unfolding
-            promises of redemption.
-          </p>
-        </div>
-      </div>
-    `,
-
-    right:`
-      <div class="floral-corner fc-tr">🌾</div>
-      <div class="floral-corner fc-bl">💜</div>
-
-      <div class="page-kicker">
-        Genesis Journey
-      </div>
-
-      <h1 class="page-title" style="font-size:54px">
-        In the Beginning
-      </h1>
-
-      <p class="page-subtitle">
-        The story opens with light breaking into darkness
-        and order blooming from emptiness.
-      </p>
-
-      <div class="rule"></div>
-
-      <div class="cards">
-
-        <div class="card">
-          <h3>Theme</h3>
-          <p>
-            God creates, speaks, blesses, and calls
-            His creation good.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Look For</h3>
-          <p>
-            Light, sky, sea, land, plants, stars,
-            animals, and people.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Remember</h3>
-          <p>
-            God is not shown visually. His presence is
-            represented through heavenly light and glory.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Music</h3>
-          <p>
-            Chapter songs and hymns open from the music tab.
-          </p>
-        </div>
-
-      </div>
-
-      <div class="bottom-note">
-        Genesis uses green, sage, eucalyptus,
-        apple-blossom blush, wheat gold,
-        and warm parchment.
-      </div>
-    `
-  },
-
-  {
-    label:'Genesis 1 — Artwork',
-
-    left:`
-      <div class="floral-corner fc-tl">🌸</div>
-      <div class="floral-corner fc-br">🌾</div>
-
-      <div class="page-kicker">
-        Genesis 1 • Chapter Opening
-      </div>
-
-      <h1 class="page-title">
-        In the Beginning
-      </h1>
-
-      <p class="page-subtitle">
-        God’s creation unfolds in beauty.
-      </p>
-
-      <div class="art-frame">
-
-        <div class="glory"></div>
-        <div class="hills"></div>
-        <div class="water"></div>
-
-        <div class="animals">
-          <span>🕊️</span>
-          <span>🐟</span>
-          <span>🦌</span>
-          <span>🐑</span>
-          <span>🐇</span>
-        </div>
-
-        <div class="flora">
-          🌿 🧡 🌾 🌻 🍎 🌿
-        </div>
-
-        <div class="art-caption">
-          And God saw that it was good.
-        </div>
-
-      </div>
-    `,
-
-    right:`
-      <div class="floral-corner fc-tr">🌿</div>
-      <div class="floral-corner fc-bl">🧡</div>
-
-      <div class="scripture-head">
-        <h2>Genesis 1</h2>
-        <span class="page-count">
-          Scripture • Page 1
-        </span>
-      </div>
-
-      <div class="scripture">
-
-        <span class="verse">
-          <span
-            class="vnum"
-            data-note="Genesis 1:1 introduces God as Creator before anything else exists.">
-            1
-          </span>
-          In the beginning God created the heaven
-          and the earth.
-        </span>
-
-        <span class="verse">
-          <span
-            class="vnum"
-            data-note="The earth is described as unformed and empty before God brings order.">
-            2
-          </span>
-          And the earth was without form, and void;
-          and darkness was upon the face of the deep.
-          And the Spirit of God moved upon the face
-          of the waters.
-        </span>
-
-        <span class="verse">
-          <span
-            class="vnum"
-            data-note="God creates by speaking. Light appears at His command.">
-            3
-          </span>
-          And God said, Let there be light:
-          and there was light.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">4</span>
-          And God saw the light, that it was good:
-          and God divided the light from the darkness.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">5</span>
-          And God called the light Day,
-          and the darkness he called Night.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">6</span>
-          And God said, Let there be a firmament
-          in the midst of the waters.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">7</span>
-          And God made the firmament.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">8</span>
-          And God called the firmament Heaven.
-        </span>
-
-      </div>
-
-      <div class="bottom-note">
-        Tap a highlighted verse number for a short study note.
-      </div>
-    `
-  },
-
-  {
-    label:'Genesis 1 — Scripture',
-
-    left:`
-      <div class="floral-corner fc-tl">🌿</div>
-      <div class="floral-corner fc-br">🌸</div>
-
-      <div class="page-kicker">
-        Today’s Journey
-      </div>
-
-      <h1 class="page-title" style="font-size:50px">
-        Creation Takes Shape
-      </h1>
-
-      <div class="rule"></div>
-
-      <div class="cards">
-
-        <div class="card">
-          <h3>Day One</h3>
-          <p>
-            Light is separated from darkness.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Day Two</h3>
-          <p>
-            The heavens divide the waters.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Day Three</h3>
-          <p>
-            Dry land, seas, plants, and trees appear.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Day Four</h3>
-          <p>
-            Sun, moon, and stars mark days and seasons.
-          </p>
-        </div>
-
-      </div>
-
-      <div class="bottom-note">
-        Artwork will use the approved warm,
-        painted storybook style.
-        God is represented only through heavenly light.
-      </div>
-    `,
-
-    right:`
-      <div class="floral-corner fc-tr">🌾</div>
-      <div class="floral-corner fc-bl">💜</div>
-
-      <div class="scripture-head">
-        <h2>Genesis 1</h2>
-        <span class="page-count">
-          Scripture • Page 2
-        </span>
-      </div>
-
-      <div class="scripture">
-
-        <span class="verse">
-          <span class="vnum">9</span>
-          And God said, Let the waters under the heaven
-          be gathered together unto one place,
-          and let the dry land appear.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">10</span>
-          And God called the dry land Earth;
-          and the gathering together of the waters
-          called he Seas.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">11</span>
-          And God said, Let the earth bring forth grass,
-          the herb yielding seed, and the fruit tree
-          yielding fruit.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">12</span>
-          And the earth brought forth grass,
-          and herb yielding seed after his kind.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">13</span>
-          And the evening and the morning
-          were the third day.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">14</span>
-          And God said, Let there be lights
-          in the firmament of the heaven
-          to divide the day from the night.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">16</span>
-          And God made two great lights;
-          the greater light to rule the day,
-          and the lesser light to rule the night.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">19</span>
-          And the evening and the morning
-          were the fourth day.
-        </span>
-
-      </div>
-    `
-  },
-
-  {
-    label:'Genesis 1 — Reflection',
-
-    left:`
-      <div class="floral-corner fc-tl">🍎</div>
-      <div class="floral-corner fc-br">🧡</div>
-
-      <div class="page-kicker">
-        Study and Reflection
-      </div>
-
-      <h1 class="page-title" style="font-size:50px">
-        Made with Purpose
-      </h1>
-
-      <div class="rule"></div>
-
-      <div class="cards">
-
-        <div class="card">
-          <h3>Key Verse</h3>
-          <p>
-            “In the beginning God created
-            the heaven and the earth.”
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Study Theme</h3>
-          <p>
-            Creation reveals order, goodness,
-            purpose, and blessing.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Reflection</h3>
-          <p>
-            The world is not forgotten or accidental.
-            God speaks, forms, fills, and blesses.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Journal Prompt</h3>
-          <p>
-            Where do you need God’s light to bring
-            order, hope, or a new beginning?
-          </p>
-        </div>
-
-      </div>
-
-      <div class="bottom-note">
-        Open the Study Binder or Journal
-        from the side tabs.
-      </div>
-    `,
-
-    right:`
-      <div class="floral-corner fc-tr">🌿</div>
-      <div class="floral-corner fc-bl">🌾</div>
-
-      <div class="scripture-head">
-        <h2>Genesis 1</h2>
-        <span class="page-count">
-          Scripture • Page 3
-        </span>
-      </div>
-
-      <div class="scripture">
-
-        <span class="verse">
-          <span class="vnum">20</span>
-          And God said, Let the waters bring forth
-          abundantly the moving creature that hath life.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">21</span>
-          And God created great whales,
-          and every living creature that moveth.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">22</span>
-          And God blessed them, saying,
-          Be fruitful, and multiply.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">24</span>
-          And God said, Let the earth bring forth
-          the living creature after his kind.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">26</span>
-          And God said, Let us make man in our image,
-          after our likeness.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">27</span>
-          So God created man in his own image;
-          male and female created he them.
-        </span>
-
-        <span class="verse">
-          <span class="vnum">31</span>
-          And God saw every thing that he had made,
-          and, behold, it was very good.
-        </span>
-
-      </div>
-
-      <div class="bottom-note">
-        End of the Genesis 1 reader sample.
-        Additional chapters will be added to this same Bible.
-      </div>
-    `
-  }
-
+{
+label:'Genesis Introduction',
+left:`
+<div class="corner c1">🌿</div><div class="corner c4">🌸</div>
+<div class="kicker">Book One</div>
+<h1 class="title">Genesis</h1>
+<p class="subtitle">The book of beginnings</p>
+<div class="rule"></div>
+<div class="art-card">
+${art.land}
+<div class="art-caption">In the beginning, God created.</div>
+</div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🍎</div>
+<div class="kicker">Welcome to Genesis</div>
+<h1 class="title" style="font-size:56px">Where the Story Begins</h1>
+<div class="rule"></div>
+<div class="intro-grid">
+<div class="card"><h3>Why It Matters</h3><p>Genesis introduces creation, humanity, sin, covenant, family, mercy, and the first promises of redemption.</p></div>
+<div class="card"><h3>Main Theme</h3><p>God creates with purpose, remains faithful, and continues His plan even when people fail.</p></div>
+<div class="card"><h3>Key People</h3><p>Adam, Eve, Noah, Abraham, Sarah, Isaac, Rebekah, Jacob, Leah, Rachel, Joseph, and their families.</p></div>
+<div class="card"><h3>What to Notice</h3><p>Blessing, covenant, family lines, repeated choices, consequences, and God’s patient faithfulness.</p></div>
+<div class="card full-card"><h3>Genesis Journey</h3><p>We begin with creation, move through Eden and the flood, and then follow the family through whom God’s promises continue.</p></div>
+</div>`
+},
+{
+label:'Genesis 1:1–5',
+left:`
+<div class="corner c1">🌿</div><div class="corner c4">🌸</div>
+<div class="kicker">Genesis 1 • The First Day</div>
+<h1 class="title">Let There Be Light</h1>
+<div class="art-card">${art.light}<div class="art-caption">“And God said, Let there be light.”</div></div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🧡</div>
+<div class="scripture-head"><h2>Genesis 1</h2><span>Verses 1–5</span></div>
+<div class="scripture">
+<span class="verse"><span class="vnum">1</span>In the beginning God created the heaven and the earth.</span>
+<span class="verse"><span class="vnum">2</span>And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.</span>
+<span class="verse"><span class="vnum">3</span>And God said, Let there be light: and there was light.</span>
+<span class="verse"><span class="vnum">4</span>And God saw the light, that it was good: and God divided the light from the darkness.</span>
+<span class="verse"><span class="vnum">5</span>And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day.</span>
+</div>`
+},
+{
+label:'Genesis 1:6–8',
+left:`
+<div class="corner c1">🌿</div><div class="corner c4">🌸</div>
+<div class="kicker">Genesis 1 • The Second Day</div>
+<h1 class="title">Sky Above the Waters</h1>
+<div class="art-card">${art.sky}<div class="art-caption">God set the heavens above the waters.</div></div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🧡</div>
+<div class="scripture-head"><h2>Genesis 1</h2><span>Verses 6–8</span></div>
+<div class="scripture">
+<span class="verse"><span class="vnum">6</span>And God said, Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.</span>
+<span class="verse"><span class="vnum">7</span>And God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament: and it was so.</span>
+<span class="verse"><span class="vnum">8</span>And God called the firmament Heaven. And the evening and the morning were the second day.</span>
+</div>`
+},
+{
+label:'Genesis 1:9–13',
+left:`
+<div class="corner c1">🍎</div><div class="corner c4">🌾</div>
+<div class="kicker">Genesis 1 • The Third Day</div>
+<h1 class="title">Land, Seed, and Blossom</h1>
+<div class="art-card">${art.land}<div class="art-caption">The earth brought forth grass, herbs, and trees.</div></div>`,
+right:`
+<div class="corner c2">🌿</div><div class="corner c3">🌸</div>
+<div class="scripture-head"><h2>Genesis 1</h2><span>Verses 9–13</span></div>
+<div class="scripture">
+<span class="verse"><span class="vnum">9</span>And God said, Let the waters under the heaven be gathered together unto one place, and let the dry land appear: and it was so.</span>
+<span class="verse"><span class="vnum">10</span>And God called the dry land Earth; and the gathering together of the waters called he Seas: and God saw that it was good.</span>
+<span class="verse"><span class="vnum">11</span>And God said, Let the earth bring forth grass, the herb yielding seed, and the fruit tree yielding fruit after his kind, whose seed is in itself, upon the earth: and it was so.</span>
+<span class="verse"><span class="vnum">12</span>And the earth brought forth grass, and herb yielding seed after his kind, and the tree yielding fruit, whose seed was in itself, after his kind: and God saw that it was good.</span>
+<span class="verse"><span class="vnum">13</span>And the evening and the morning were the third day.</span>
+</div>`
+},
+{
+label:'Genesis 1:14–19',
+left:`
+<div class="corner c1">🌙</div><div class="corner c4">✨</div>
+<div class="kicker">Genesis 1 • The Fourth Day</div>
+<h1 class="title">Sun, Moon, and Stars</h1>
+<div class="art-card">${art.lights}<div class="art-caption">Lights were set in the heavens for signs and seasons.</div></div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🌿</div>
+<div class="scripture-head"><h2>Genesis 1</h2><span>Verses 14–19</span></div>
+<div class="scripture">
+<span class="verse"><span class="vnum">14</span>And God said, Let there be lights in the firmament of the heaven to divide the day from the night; and let them be for signs, and for seasons, and for days, and years:</span>
+<span class="verse"><span class="vnum">15</span>And let them be for lights in the firmament of the heaven to give light upon the earth: and it was so.</span>
+<span class="verse"><span class="vnum">16</span>And God made two great lights; the greater light to rule the day, and the lesser light to rule the night: he made the stars also.</span>
+<span class="verse"><span class="vnum">17</span>And God set them in the firmament of the heaven to give light upon the earth,</span>
+<span class="verse"><span class="vnum">18</span>And to rule over the day and over the night, and to divide the light from the darkness: and God saw that it was good.</span>
+<span class="verse"><span class="vnum">19</span>And the evening and the morning were the fourth day.</span>
+</div>`
+},
+{
+label:'Genesis 1:20–23',
+left:`
+<div class="corner c1">🌿</div><div class="corner c4">🌸</div>
+<div class="kicker">Genesis 1 • The Fifth Day</div>
+<h1 class="title">Wings Above, Life Below</h1>
+<div class="art-card">${art.birds}<div class="art-caption">The waters filled with life, and birds crossed the sky.</div></div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🧡</div>
+<div class="scripture-head"><h2>Genesis 1</h2><span>Verses 20–23</span></div>
+<div class="scripture">
+<span class="verse"><span class="vnum">20</span>And God said, Let the waters bring forth abundantly the moving creature that hath life, and fowl that may fly above the earth in the open firmament of heaven.</span>
+<span class="verse"><span class="vnum">21</span>And God created great whales, and every living creature that moveth, which the waters brought forth abundantly, after their kind, and every winged fowl after his kind: and God saw that it was good.</span>
+<span class="verse"><span class="vnum">22</span>And God blessed them, saying, Be fruitful, and multiply, and fill the waters in the seas, and let fowl multiply in the earth.</span>
+<span class="verse"><span class="vnum">23</span>And the evening and the morning were the fifth day.</span>
+</div>`
+},
+{
+label:'Genesis 1:24–25',
+left:`
+<div class="corner c1">🌿</div><div class="corner c4">🌻</div>
+<div class="kicker">Genesis 1 • The Sixth Day</div>
+<h1 class="title">Creatures of the Earth</h1>
+<div class="art-card">${art.animals}<div class="art-caption">Every creature appeared after its kind.</div></div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🧡</div>
+<div class="scripture-head"><h2>Genesis 1</h2><span>Verses 24–25</span></div>
+<div class="scripture">
+<span class="verse"><span class="vnum">24</span>And God said, Let the earth bring forth the living creature after his kind, cattle, and creeping thing, and beast of the earth after his kind: and it was so.</span>
+<span class="verse"><span class="vnum">25</span>And God made the beast of the earth after his kind, and cattle after their kind, and every thing that creepeth upon the earth after his kind: and God saw that it was good.</span>
+</div>`
+},
+{
+label:'Genesis 1:26–31',
+left:`
+<div class="corner c1">🌿</div><div class="corner c4">🌸</div>
+<div class="kicker">Genesis 1 • Humanity</div>
+<h1 class="title">Made in His Image</h1>
+<div class="art-card">${art.people}<div class="art-caption">Male and female created He them.</div></div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🍎</div>
+<div class="scripture-head"><h2>Genesis 1</h2><span>Verses 26–31</span></div>
+<div class="scripture">
+<span class="verse"><span class="vnum">26</span>And God said, Let us make man in our image, after our likeness: and let them have dominion over the fish of the sea, and over the fowl of the air, and over the cattle, and over all the earth, and over every creeping thing that creepeth upon the earth.</span>
+<span class="verse"><span class="vnum">27</span>So God created man in his own image, in the image of God created he him; male and female created he them.</span>
+<span class="verse"><span class="vnum">28</span>And God blessed them, and God said unto them, Be fruitful, and multiply, and replenish the earth, and subdue it.</span>
+<span class="verse"><span class="vnum">29</span>And God said, Behold, I have given you every herb bearing seed, which is upon the face of all the earth, and every tree, in the which is the fruit of a tree yielding seed; to you it shall be for meat.</span>
+<span class="verse"><span class="vnum">30</span>And to every beast of the earth, and to every fowl of the air, and to every thing that creepeth upon the earth, wherein there is life, I have given every green herb for meat: and it was so.</span>
+<span class="verse"><span class="vnum">31</span>And God saw every thing that he had made, and, behold, it was very good. And the evening and the morning were the sixth day.</span>
+</div>`
+},
+{
+label:'Genesis 1 Study Garden',
+left:`
+<div class="corner c1">🌿</div><div class="corner c4">🌸</div>
+<div class="kicker">End of Chapter</div>
+<h1 class="title">And It Was Very Good</h1>
+<div class="rule"></div>
+<div class="study-grid">
+<div class="card"><h3>Today’s Journey</h3><p>God brings light, order, beauty, life, blessing, and purpose into creation.</p></div>
+<div class="card"><h3>What We Learned</h3><p>Creation is intentional. Humanity is made in God’s image and entrusted with care.</p></div>
+<div class="card"><h3>Journal Prompt</h3><p>Where do you need God’s light to bring hope, peace, or a new beginning?</p></div>
+<div class="card"><h3>Prayer</h3><p>Creator God, help me see Your goodness and care for what You have made.</p></div>
+<div class="card full-card"><h3>Study Cards</h3><p>Observe the repeated words: “God said,” “it was so,” and “it was good.” Notice the order from forming the world to filling it with life.</p></div>
+</div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🧡</div>
+<div class="kicker">Chapter Tools</div>
+<h1 class="title" style="font-size:52px">Continue Your Journey</h1>
+<div class="rule"></div>
+<div class="study-grid">
+<div class="card"><h3>Music</h3><p>Open the music tab for the chapter song and hymn.</p><button class="tool-button" onclick="openTool('music')">Open Record Player</button></div>
+<div class="card"><h3>Journal</h3><p>Write or draw your response to today’s prompt.</p><button class="tool-button" onclick="location.href='journal.html'">Open Journal</button></div>
+<div class="card"><h3>Study Binder</h3><p>Continue with observation, interpretation, and application.</p><button class="tool-button" onclick="location.href='study-binder.html'">Open Study Binder</button></div>
+<div class="card"><h3>Coloring Page</h3><p>Visit the chapter coloring activity from the side tab.</p><button class="tool-button" onclick="openTool('coloring')">Open Coloring</button></div>
+<div class="card full-card"><h3>Next Chapter</h3><p>Genesis 2 will continue with the garden, Adam, Eve, and the gift of rest.</p></div>
+</div>`
+}
 ];
 
-let currentSpread =
-  Number(localStorage.getItem('bihgSpread') || 0);
+let index = Number(localStorage.getItem('bihgSpread') || 0);
+if(index < 0 || index >= spreads.length) index = 0;
 
-if(
-  currentSpread < 0 ||
-  currentSpread >= spreads.length
-){
-  currentSpread = 0;
-}
-
+let mode = localStorage.getItem('bihgMode') || 'open';
+let storySide = localStorage.getItem('bihgStorySide') || 'art';
+let readerSize = Number(localStorage.getItem('bihgReaderSize') || 20);
+let fontIndex = Number(localStorage.getItem('bihgFontIndex') || 0);
 let tabsVisible = true;
 
-let readerSize =
-  Number(localStorage.getItem('bihgReaderSize') || 20);
+const fonts = [
+  ["Cormorant","'Cormorant Garamond',Georgia,serif"],
+  ["Gentle Print","'Handlee',cursive"],
+  ["Story Script","'Allura',cursive"]
+];
 
-document.documentElement.style.setProperty(
-  '--reader-size',
-  readerSize + 'px'
-);
+const book = document.getElementById('book');
+const leftPage = document.getElementById('leftPage');
+const rightPage = document.getElementById('rightPage');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const modeBtn = document.getElementById('modeBtn');
+const statusLabel = document.getElementById('statusLabel');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+const panel = document.getElementById('panel');
+const panelInner = document.getElementById('panelInner');
+const sideTools = document.getElementById('sideTools');
+const choiceOverlay = document.getElementById('choiceOverlay');
+const modal = document.getElementById('modal');
 
-const leftPage =
-  document.getElementById('leftPage');
+document.documentElement.style.setProperty('--reader-size', readerSize + 'px');
+document.documentElement.style.setProperty('--reader-font', fonts[fontIndex][1]);
+document.getElementById('fontBtn').textContent = fonts[fontIndex][0];
 
-const rightPage =
-  document.getElementById('rightPage');
-
-const prevBtn =
-  document.getElementById('prevBtn');
-
-const nextBtn =
-  document.getElementById('nextBtn');
-
-const statusText =
-  document.getElementById('statusText');
-
-const progressText =
-  document.getElementById('progressText');
-
-const progressBar =
-  document.getElementById('progressBar');
-
-const toolPanel =
-  document.getElementById('toolPanel');
-
-const toolInner =
-  document.getElementById('toolInner');
-
-const sideTabs =
-  document.getElementById('sideTabs');
-
-const bookShell =
-  document.getElementById('bookShell');
-
-const modalBackdrop =
-  document.getElementById('modalBackdrop');
-
-const modalTitle =
-  document.getElementById('modalTitle');
-
-const modalBody =
-  document.getElementById('modalBody');
-
-function pageIsOverflowing(page){
-  return page.scrollHeight > page.clientHeight + 2;
-}
-
-function fitOpenBiblePages(){
-
-  [leftPage,rightPage].forEach(page=>{
-
-    page.classList.remove(
-      'compact',
-      'ultra-compact'
-    );
-
-    page.style.fontSize = '';
-
-    requestAnimationFrame(()=>{
-
-      if(pageIsOverflowing(page)){
-        page.classList.add('compact');
-      }
-
-      requestAnimationFrame(()=>{
-
-        if(pageIsOverflowing(page)){
-          page.classList.add('ultra-compact');
-        }
-
-        requestAnimationFrame(()=>{
-
-          if(pageIsOverflowing(page)){
-
-            let currentPercent = 100;
-
-            while(
-              pageIsOverflowing(page) &&
-              currentPercent > 82
-            ){
-              currentPercent -= 2;
-              page.style.fontSize =
-                currentPercent + '%';
-            }
-          }
-
-        });
-
-      });
-
-    });
-
-  });
-}
-
-function bindVerseNotes(){
-
-  document
-    .querySelectorAll('.vnum[data-note]')
-    .forEach(number=>{
-
-      number.onclick = ()=>{
-
-        modalTitle.textContent =
-          'Verse ' + number.textContent.trim();
-
-        modalBody.textContent =
-          number.dataset.note;
-
-        modalBackdrop.classList.add('show');
-      };
-
-    });
+function applyMode(){
+  book.classList.remove('open-bible','storybook','show-art','show-text');
+  if(mode === 'storybook'){
+    book.classList.add('storybook', storySide === 'art' ? 'show-art' : 'show-text');
+    modeBtn.textContent = storySide === 'art' ? 'Storybook: Artwork' : 'Storybook: Scripture';
+  } else {
+    book.classList.add('open-bible');
+    modeBtn.textContent = 'Open Bible Mode';
+  }
 }
 
 function render(){
+  leftPage.innerHTML = spreads[index].left;
+  rightPage.innerHTML = spreads[index].right;
+  applyMode();
 
-  leftPage.innerHTML =
-    spreads[currentSpread].left;
+  prevBtn.disabled = index === 0 && !(mode === 'storybook' && storySide === 'text');
+  nextBtn.disabled = index === spreads.length - 1 && !(mode === 'storybook' && storySide === 'art');
 
-  rightPage.innerHTML =
-    spreads[currentSpread].right;
+  statusLabel.textContent = spreads[index].label;
+  progressText.textContent = (index + 1) + ' / ' + spreads.length;
+  progressBar.style.width = ((index + 1) / spreads.length * 100) + '%';
 
-  prevBtn.disabled =
-    currentSpread === 0;
-
-  nextBtn.disabled =
-    currentSpread === spreads.length - 1;
-
-  statusText.textContent =
-    spreads[currentSpread].label;
-
-  progressText.textContent =
-    (currentSpread + 1) +
-    ' / ' +
-    spreads.length;
-
-  progressBar.style.width =
-    (
-      (currentSpread + 1) /
-      spreads.length *
-      100
-    ) + '%';
-
-  localStorage.setItem(
-    'bihgSpread',
-    currentSpread
-  );
-
-  bindVerseNotes();
-  fitOpenBiblePages();
+  localStorage.setItem('bihgSpread', index);
+  localStorage.setItem('bihgStorySide', storySide);
 }
 
-prevBtn.onclick = ()=>{
-
-  if(currentSpread > 0){
-    currentSpread--;
-    render();
+function next(){
+  if(mode === 'storybook'){
+    if(storySide === 'art'){
+      storySide = 'text';
+    } else if(index < spreads.length - 1){
+      index++;
+      storySide = 'art';
+    }
+  } else if(index < spreads.length - 1){
+    index++;
   }
+  render();
+}
 
-};
-
-nextBtn.onclick = ()=>{
-
-  if(currentSpread < spreads.length - 1){
-    currentSpread++;
-    render();
+function prev(){
+  if(mode === 'storybook'){
+    if(storySide === 'text'){
+      storySide = 'art';
+    } else if(index > 0){
+      index--;
+      storySide = 'text';
+    }
+  } else if(index > 0){
+    index--;
   }
+  render();
+}
 
-};
+prevBtn.onclick = prev;
+nextBtn.onclick = next;
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft') prev();
+  if(e.key==='ArrowRight') next();
+});
 
-document.onkeydown = event=>{
-
-  if(event.key === 'ArrowLeft'){
-    prevBtn.click();
+modeBtn.onclick = ()=>{
+  if(mode === 'open'){
+    mode = 'storybook';
+    storySide = 'art';
+  } else {
+    mode = 'open';
   }
-
-  if(event.key === 'ArrowRight'){
-    nextBtn.click();
-  }
-
-};
-
-document.getElementById('homeBtn').onclick = ()=>{
-  window.location.href = 'grand-library.html';
-};
-
-document.getElementById('tabsToggle').onclick = ()=>{
-
-  tabsVisible = !tabsVisible;
-
-  sideTabs.style.display =
-    tabsVisible ? 'flex' : 'none';
-
-  bookShell.classList.toggle(
-    'wide',
-    !tabsVisible
-  );
-
-  document.getElementById('tabsToggle')
-    .textContent =
-      tabsVisible
-        ? 'Hide Tabs'
-        : 'Show Tabs';
-
-  setTimeout(fitOpenBiblePages,320);
-};
-
-document.getElementById('bookmarkBtn').onclick = ()=>{
-
-  localStorage.setItem(
-    'bihgBookmark',
-    currentSpread
-  );
-
-  modalTitle.textContent =
-    'Bookmark Saved';
-
-  modalBody.textContent =
-    'Your place was saved at ' +
-    spreads[currentSpread].label +
-    '.';
-
-  modalBackdrop.classList.add('show');
-};
-
-document.getElementById('smallerBtn').onclick = ()=>{
-
-  readerSize =
-    Math.max(15,readerSize - 1);
-
-  document.documentElement.style.setProperty(
-    '--reader-size',
-    readerSize + 'px'
-  );
-
-  localStorage.setItem(
-    'bihgReaderSize',
-    readerSize
-  );
-
-  fitOpenBiblePages();
-};
-
-document.getElementById('largerBtn').onclick = ()=>{
-
-  readerSize =
-    Math.min(29,readerSize + 1);
-
-  document.documentElement.style.setProperty(
-    '--reader-size',
-    readerSize + 'px'
-  );
-
-  localStorage.setItem(
-    'bihgReaderSize',
-    readerSize
-  );
-
-  fitOpenBiblePages();
-};
-
-const fonts = [
-  ['Cormorant Garamond',''],
-  ['Gentle Handwriting','font-gentle'],
-  ['Allura','font-allura'],
-  ['Handlee','font-handlee'],
-  ['Dancing Script','font-dancing'],
-  ['Sacramento','font-sacramento']
-];
-
-let fontIndex = 0;
-
-document.getElementById('fontBtn').onclick = ()=>{
-
-  fontIndex =
-    (fontIndex + 1) % fonts.length;
-
-  document.body.className =
-    fonts[fontIndex][1];
-
-  document.getElementById('fontBtn')
-    .textContent =
-      fonts[fontIndex][0];
-
-  fitOpenBiblePages();
-};
-
-const tools = {
-
-  bible:[
-    'Bible',
-    `
-      <button
-        class="tool-btn"
-        onclick="jumpTo(1)">
-        Genesis Introduction
-      </button>
-
-      <button
-        class="tool-btn"
-        onclick="jumpTo(2)">
-        Genesis 1
-      </button>
-
-      <p class="tool-small">
-        Additional Bible books and chapters
-        will fill this panel.
-      </p>
-    `
-  ],
-
-  music:[
-    'Record Player',
-    `
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Genesis 1 Music',
-          'Your original Genesis song and public-domain hymn will open here.'
-        )">
-        ▶ Chapter Music
-      </button>
-
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Original Song',
-          'Your original chapter song will be connected here.'
-        )">
-        ♫ Original Song
-      </button>
-
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Public-Domain Hymn',
-          'The selected public-domain hymn will be connected here.'
-        )">
-        ♬ Public-Domain Hymn
-      </button>
-    `
-  ],
-
-  study:[
-    'Study Binder',
-    `
-      <button
-        class="tool-btn"
-        onclick="location.href='study-binder.html'">
-        Open Study Binder
-      </button>
-
-      <button
-        class="tool-btn"
-        onclick="jumpTo(4)">
-        Genesis 1 Reflection
-      </button>
-    `
-  ],
-
-  journal:[
-    'Journal',
-    `
-      <button
-        class="tool-btn"
-        onclick="location.href='journal.html'">
-        Open Journal
-      </button>
-
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Journal Prompt',
-          'Where do you need God’s light to bring order, hope, or a new beginning?'
-        )">
-        Today’s Prompt
-      </button>
-    `
-  ],
-
-  characters:[
-    'Characters',
-    `
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Adam',
-          'Adam will use the approved warm Disney and Precious Moments-inspired storybook style.'
-        )">
-        Adam
-      </button>
-
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Eve',
-          'Eve will use the approved warm Disney and Precious Moments-inspired storybook style.'
-        )">
-        Eve
-      </button>
-
-      <p class="tool-small">
-        All characters will keep the locked
-        Blooming in His Garden design.
-      </p>
-    `
-  ],
-
-  maps:[
-    'Maps',
-    `
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Creation World',
-          'The Creation and Eden map will open here.'
-        )">
-        Creation World
-      </button>
-
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Ancient Near East',
-          'The Ancient Near East map will open here.'
-        )">
-        Ancient Near East
-      </button>
-    `
-  ],
-
-  coloring:[
-    'Coloring Pages',
-    `
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Genesis 1 Creation',
-          'The Genesis 1 Creation coloring page will open here.'
-        )">
-        Genesis 1 Creation
-      </button>
-
-      <button
-        class="tool-btn"
-        onclick="message(
-          'Animals of Creation',
-          'The approved Blooming in His Garden animals will be used.'
-        )">
-        Animals of Creation
-      </button>
-    `
-  ]
-
-};
-
-document
-  .querySelectorAll('.tab-btn')
-  .forEach(button=>{
-
-    button.onclick = ()=>{
-
-      const tool =
-        tools[button.dataset.tool];
-
-      toolInner.innerHTML =
-        '<h3>' +
-        tool[0] +
-        '</h3>' +
-        tool[1];
-
-      toolPanel.classList.add('open');
-    };
-
-  });
-
-window.jumpTo = pageNumber=>{
-
-  currentSpread = pageNumber;
-  toolPanel.classList.remove('open');
+  localStorage.setItem('bihgMode',mode);
   render();
 };
 
-window.message = (title,body)=>{
+document.querySelectorAll('[data-mode-choice]').forEach(btn=>{
+  btn.onclick = ()=>{
+    mode = btn.dataset.modeChoice === 'storybook' ? 'storybook' : 'open';
+    storySide = 'art';
+    if(document.getElementById('rememberChoice').checked){
+      localStorage.setItem('bihgMode',mode);
+      localStorage.setItem('bihgModeChosen','yes');
+    }
+    choiceOverlay.classList.remove('show');
+    render();
+  };
+});
 
-  modalTitle.textContent = title;
-  modalBody.textContent = body;
-  modalBackdrop.classList.add('show');
+if(!localStorage.getItem('bihgModeChosen')){
+  choiceOverlay.classList.add('show');
+}
+
+document.getElementById('fontBtn').onclick = ()=>{
+  fontIndex = (fontIndex + 1) % fonts.length;
+  document.documentElement.style.setProperty('--reader-font', fonts[fontIndex][1]);
+  document.getElementById('fontBtn').textContent = fonts[fontIndex][0];
+  localStorage.setItem('bihgFontIndex',fontIndex);
 };
 
-document.getElementById('modalClose').onclick = ()=>{
-  modalBackdrop.classList.remove('show');
+document.getElementById('smallerBtn').onclick = ()=>{
+  readerSize = Math.max(15,readerSize - 1);
+  document.documentElement.style.setProperty('--reader-size',readerSize+'px');
+  localStorage.setItem('bihgReaderSize',readerSize);
 };
 
-modalBackdrop.onclick = event=>{
-
-  if(event.target === modalBackdrop){
-    modalBackdrop.classList.remove('show');
-  }
-
+document.getElementById('largerBtn').onclick = ()=>{
+  readerSize = Math.min(30,readerSize + 1);
+  document.documentElement.style.setProperty('--reader-size',readerSize+'px');
+  localStorage.setItem('bihgReaderSize',readerSize);
 };
 
-window.addEventListener(
-  'resize',
-  ()=>setTimeout(fitOpenBiblePages,100)
-);
+document.getElementById('bookmarkBtn').onclick = ()=>{
+  localStorage.setItem('bihgBookmark',index);
+  showMessage('Bookmark Saved','Your place was saved at ' + spreads[index].label + '.');
+};
+
+document.getElementById('tabsBtn').onclick = ()=>{
+  tabsVisible = !tabsVisible;
+  sideTools.style.display = tabsVisible ? 'flex' : 'none';
+  book.classList.toggle('tabs-hidden',!tabsVisible);
+  document.getElementById('tabsBtn').textContent = tabsVisible ? 'Hide Tabs' : 'Show Tabs';
+};
+
+const tools = {
+books:{
+title:'Bible Books',
+body:`<button class="tool-button" onclick="jumpTo(0)">Genesis Introduction</button>
+<button class="tool-button" onclick="jumpTo(1)">Genesis 1</button>
+<p>Genesis is shown in its sage, eucalyptus, apple-blossom, wheat-gold color family. Each later Bible book can load its own palette without changing the reader layout.</p>`
+},
+music:{
+title:'Record Player',
+body:`<p>Chapter music belongs here without interrupting the Scripture pages.</p>
+<button class="tool-button" onclick="showMessage('Genesis 1 Music','Connect your original Genesis 1 song here when the audio file is ready.')">Original Chapter Song</button>
+<button class="tool-button" onclick="showMessage('Genesis 1 Hymn','Connect the selected public-domain hymn here.')">Public-Domain Hymn</button>`
+},
+study:{
+title:'Study Binder',
+body:`<p>The study cards appear after the chapter, and the full binder stays available here.</p>
+<button class="tool-button" onclick="jumpTo(8)">Genesis 1 Study Garden</button>
+<button class="tool-button" onclick="location.href='study-binder.html'">Open Full Study Binder</button>`
+},
+journal:{
+title:'Journal',
+body:`<p>Where do you need God’s light to bring hope, peace, or a new beginning?</p>
+<button class="tool-button" onclick="location.href='journal.html'">Open Journal</button>`
+},
+characters:{
+title:'Bible Characters',
+body:`<p>Adam and Eve use the approved warm storybook character direction. Future character artwork should remain consistent with the locked project references.</p>
+<button class="tool-button" onclick="jumpTo(7)">See Adam and Eve Page</button>`
+},
+maps:{
+title:'Maps',
+body:`<p>Genesis maps will open here as they are added: Creation world, Eden region, ancient Near East, journeys of Abraham, Jacob, and Joseph.</p>`
+},
+coloring:{
+title:'Coloring Pages',
+body:`<p>Chapter coloring pages remain optional and appear after the story, not between Scripture spreads.</p>
+<button class="tool-button" onclick="showMessage('Genesis 1 Coloring','The Genesis 1 creation coloring page will open here once connected.')">Genesis 1 Creation</button>`
+}
+};
+
+function openTool(name){
+  const tool = tools[name];
+  panelInner.innerHTML = `<h3>${tool.title}</h3>${tool.body}`;
+  panel.classList.add('open');
+}
+window.openTool = openTool;
+
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.onclick = ()=>openTool(btn.dataset.tool);
+});
+
+window.jumpTo = n=>{
+  index = n;
+  storySide = 'art';
+  panel.classList.remove('open');
+  render();
+};
+
+window.showMessage = (title,body)=>{
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').textContent = body;
+  modal.classList.add('show');
+};
+
+document.getElementById('closeModal').onclick = ()=>modal.classList.remove('show');
+modal.onclick = e=>{ if(e.target===modal) modal.classList.remove('show'); };
 
 render();
 </script>
-
 </body>
 </html>
+
+
