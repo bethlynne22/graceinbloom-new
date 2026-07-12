@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Blooming in His Garden — Genesis 1–2 Page-Flip Reader</title>
+<title>Blooming in His Garden — Heirloom Reader Genesis 1–2</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -405,6 +405,72 @@ button{cursor:pointer}
   .panel.open{width:min(250px,74vw)}.panel-inner{width:min(250px,74vw)}
 }
 
+
+/* ===== Heirloom beauty restoration ===== */
+body::before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 0 7%,rgba(255,255,255,.5) 7% 8.1%,transparent 8.1% 18%),
+    linear-gradient(90deg,transparent 0 31%,rgba(255,255,255,.42) 31% 32.1%,transparent 32.1% 45%),
+    linear-gradient(90deg,transparent 0 68%,rgba(255,255,255,.44) 68% 69.1%,transparent 69.1% 82%),
+    radial-gradient(circle at 50% 0%,rgba(255,250,223,.42),transparent 38%);
+  opacity:.76;
+}
+.book{
+  border:2px solid rgba(214,172,86,.48);
+  box-shadow:0 34px 80px rgba(42,27,16,.46),0 7px 0 #2f1c12,inset 0 0 0 3px rgba(244,211,140,.22);
+}
+.page{
+  background:
+    linear-gradient(90deg,rgba(112,145,104,.14),transparent 7%,transparent 93%,rgba(112,145,104,.14)),
+    radial-gradient(circle at 18% 12%,rgba(255,214,178,.24),transparent 20%),
+    radial-gradient(circle at 80% 84%,rgba(198,146,127,.18),transparent 23%),
+    repeating-linear-gradient(0deg,rgba(116,86,46,.025) 0 1px,transparent 1px 4px),
+    linear-gradient(180deg,#fffaf0 0%,#f6e8c9 100%);
+}
+.page::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  border-top:8px solid rgba(126,155,113,.18);
+  border-bottom:8px solid rgba(196,139,124,.16);
+  box-shadow:inset 14px 0 20px rgba(113,145,102,.08),inset -14px 0 20px rgba(201,152,117,.08);
+}
+.page-inner{z-index:2}
+.page-inner::before{
+  border:1px solid rgba(190,142,64,.42);
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.18);
+}
+.title{text-shadow:0 1px 0 #fff,0 3px 10px rgba(117,74,38,.12)}
+.title::first-letter{color:#8b6332}
+.art-card{
+  border:3px double rgba(174,126,51,.55);
+  box-shadow:0 12px 30px rgba(71,44,23,.19),inset 0 0 30px rgba(255,255,255,.35);
+}
+.art-card::after{
+  content:"";position:absolute;inset:9px;border:1px solid rgba(255,244,211,.55);border-radius:17px;pointer-events:none;
+}
+.card{background:linear-gradient(180deg,rgba(255,253,246,.88),rgba(249,235,203,.72));border-color:rgba(170,121,48,.34)}
+.ribbon{background:linear-gradient(180deg,#936142,#5b321f);border-top:1px solid rgba(255,224,169,.35)}
+.tab{background:linear-gradient(145deg,#fff4d6,#d5b06e)}
+
+.settings-popover{
+  position:fixed;top:68px;right:16px;z-index:80;width:min(360px,92vw);
+  display:none;padding:16px;border-radius:20px;
+  background:linear-gradient(180deg,#fffaf0,#edd9b5);
+  border:2px solid var(--gold-dark);box-shadow:0 22px 50px rgba(45,28,17,.34);
+}
+.settings-popover.show{display:block}
+.settings-popover h3{margin:0 0 10px;font:400 34px 'Great Vibes',cursive}
+.setting-row{display:grid;grid-template-columns:105px 1fr 44px;align-items:center;gap:9px;margin:10px 0}
+.setting-row label{font:700 14px 'Handlee',cursive}
+.setting-row output{text-align:right;font-weight:700}
+.setting-row input[type=range]{width:100%;accent-color:#8a6c43}
+.setting-row select{width:100%;padding:7px;border-radius:10px;border:1px solid rgba(125,85,40,.35);background:#fffaf0;color:#4b3829}
+.prayer-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.prayer-box{max-width:560px;margin:10px auto;padding:18px 22px;border-radius:20px;background:rgba(255,251,242,.78);border:1px solid rgba(174,126,51,.34);font-size:18px;line-height:1.5;text-align:center;box-shadow:0 8px 20px rgba(70,45,24,.1)}
+.prayer-box p{margin:.65em 0}
+@media(max-width:680px){.settings-popover{top:58px;right:7px}.prayer-actions{grid-template-columns:1fr}}
+
 </style>
 </head>
 
@@ -422,9 +488,7 @@ button{cursor:pointer}
     <div class="controls">
       <button class="pill desktop-only" onclick="location.href='grand-library.html'">Grand Library</button>
       <button class="pill" id="modeBtn">Reading Mode</button>
-      <button class="pill" id="fontBtn">Font</button>
-      <button class="pill" id="smallerBtn">A−</button>
-      <button class="pill" id="largerBtn">A+</button>
+      <button class="pill" id="settingsBtn">Aa Settings</button>
       <button class="pill" id="bookmarkBtn">🔖</button>
       <button class="pill desktop-only" id="tabsBtn">Hide Tabs</button>
     </div>
@@ -462,6 +526,31 @@ button{cursor:pointer}
     <div class="progress"><span id="progressBar"></span></div>
     <span id="progressText">1 / 9</span>
   </footer>
+</div>
+
+
+<div class="settings-popover" id="settingsPopover">
+  <h3>Reader Settings</h3>
+  <div class="setting-row">
+    <label for="fontSelect">Scripture Font</label>
+    <select id="fontSelect">
+      <option value="0">Cormorant Garamond</option>
+      <option value="1">Gentle Handwriting Print</option>
+      <option value="2">Allura Story Script</option>
+    </select>
+    <output id="fontOutput">Serif</output>
+  </div>
+  <div class="setting-row">
+    <label for="sizeSlider">Font Size</label>
+    <input id="sizeSlider" type="range" min="15" max="30" step="1" value="20">
+    <output id="sizeOutput">20</output>
+  </div>
+  <div class="setting-row">
+    <label for="pageSlider">Page Zoom</label>
+    <input id="pageSlider" type="range" min="88" max="112" step="2" value="100">
+    <output id="pageOutput">100%</output>
+  </div>
+  <button class="tool-button" id="resetSettings">Reset Reader Settings</button>
 </div>
 
 <div class="choice-overlay" id="choiceOverlay">
@@ -651,6 +740,11 @@ right:`
 <div class="card"><h3>What to Notice</h3><p>Blessing, covenant, family lines, repeated choices, consequences, and God’s patient faithfulness.</p></div>
 <div class="card full-card"><h3>Genesis Journey</h3><p>We begin with creation, move through Eden and the flood, and then follow the family through whom God’s promises continue.</p></div>
 </div>`
+},
+{
+label:'Genesis 1 • Prepare Your Heart',
+left:`<div class="corner c1">🌿</div><div class="corner c4">🌸</div><div class="kicker">Prepare Your Heart</div><h1 class="title">Before Creation</h1><div class="rule"></div><div class="prayer-box"><p><strong>Creator of heaven and earth,</strong></p><p>quiet my thoughts as I enter the beginning of Your story. Let me notice Your wisdom, goodness, and order. Shine Your light into the places in me that still feel empty or confused, and teach me to receive Your Word with wonder.</p><p>Amen.</p></div>`,
+right:`<div class="corner c2">🌾</div><div class="corner c3">🧡</div><div class="kicker">Choose Your Beginning</div><h1 class="title" style="font-size:52px">A Quiet Moment</h1><div class="rule"></div><div class="prayer-actions"><button class="tool-button" onclick="showMessage('Pray in Your Own Words','Take a quiet moment to speak honestly with God from your own heart. When you are ready, close this message and begin reading.')">🤍 Pray in Your Own Words</button><button class="tool-button" onclick="openTool('music')">🎵 Play Chapter Music</button><button class="tool-button" onclick="jumpTo(2)">📖 Begin Genesis 1</button><button class="tool-button" onclick="jumpTo(2)">⏭ Skip Prayer</button></div>`
 },
 {
 label:'Genesis 1:1–5',
@@ -862,6 +956,11 @@ right:`
 <button class="tool-button" onclick="showMessage('Genesis 2','Genesis 2 will open here when the next chapter is connected.')">Begin Genesis 2</button>`
 },
 {
+label:'Genesis 2 • Prepare Your Heart',
+left:`<div class="corner c1">🌿</div><div class="corner c4">🌸</div><div class="kicker">Prepare Your Heart</div><h1 class="title">Rest and Belonging</h1><div class="rule"></div><div class="prayer-box"><p><strong>Giver of life and every good gift,</strong></p><p>teach me through this chapter to value both faithful work and holy rest. Help me care gently for what You place in my hands, respect Your wisdom, and receive relationships as gifts rather than possessions.</p><p>Amen.</p></div>`,
+right:`<div class="corner c2">🌾</div><div class="corner c3">🧡</div><div class="kicker">Choose Your Beginning</div><h1 class="title" style="font-size:52px">Enter the Garden</h1><div class="rule"></div><div class="prayer-actions"><button class="tool-button" onclick="showMessage('Pray in Your Own Words','Pause and speak with God about work, rest, responsibility, and the relationships in your care.')">🤍 Pray in Your Own Words</button><button class="tool-button" onclick="openTool('music')">🎵 Play Chapter Music</button><button class="tool-button" onclick="jumpTo(15)">📖 Begin Genesis 2</button><button class="tool-button" onclick="jumpTo(15)">⏭ Skip Prayer</button></div>`
+},
+{
 label:'Genesis 2:1–3',
 left:`<div class="corner c1">🌿</div><div class="corner c4">🌸</div><div class="kicker">Genesis 2 • The Seventh Day</div><h1 class="title">A Day Set Apart</h1><div class="art-card">${art.land}<div class="art-caption">God rested from all His work.</div></div>`,
 right:`<div class="corner c2">🌾</div><div class="corner c3">🧡</div><div class="scripture-head"><h2>Genesis 2</h2><span>Verses 1–3</span></div><div class="scripture"><span class="verse"><span class="vnum">1</span>Thus the heavens and the earth were finished, and all the host of them.</span><span class="verse"><span class="vnum">2</span>And on the seventh day God ended his work which he had made; and he rested on the seventh day from all his work which he had made.</span><span class="verse"><span class="vnum">3</span>And God blessed the seventh day, and sanctified it: because that in it he had rested from all his work which God created and made.</span></div>`
@@ -917,6 +1016,7 @@ let storySide = localStorage.getItem('bihgStorySide') || 'art';
 let readerSize = Number(localStorage.getItem('bihgReaderSize') || 20);
 let fontIndex = Number(localStorage.getItem('bihgFontIndex') || 0);
 let tabsVisible = true;
+let pageZoom = Number(localStorage.getItem('bihgPageZoom') || 100);
 
 const fonts = [
   ["Cormorant","'Cormorant Garamond',Georgia,serif"],
@@ -941,7 +1041,12 @@ const modal = document.getElementById('modal');
 
 document.documentElement.style.setProperty('--reader-size', readerSize + 'px');
 document.documentElement.style.setProperty('--reader-font', fonts[fontIndex][1]);
-document.getElementById('fontBtn').textContent = fonts[fontIndex][0];
+document.getElementById('fontSelect').value = String(fontIndex);
+document.getElementById('sizeSlider').value = String(readerSize);
+document.getElementById('sizeOutput').textContent = String(readerSize);
+document.getElementById('pageSlider').value = String(pageZoom);
+document.getElementById('pageOutput').textContent = pageZoom + '%';
+book.style.transform = 'scale(' + (pageZoom/100) + ')';
 
 function applyMode(){
   book.classList.remove('open-bible','storybook','show-art','show-text');
@@ -1064,23 +1169,47 @@ if(!localStorage.getItem('bihgModeChosen')){
   choiceOverlay.classList.add('show');
 }
 
-document.getElementById('fontBtn').onclick = ()=>{
-  fontIndex = (fontIndex + 1) % fonts.length;
+const settingsPopover = document.getElementById('settingsPopover');
+document.getElementById('settingsBtn').onclick = ()=>settingsPopover.classList.toggle('show');
+
+document.getElementById('fontSelect').onchange = event=>{
+  fontIndex = Number(event.target.value);
   document.documentElement.style.setProperty('--reader-font', fonts[fontIndex][1]);
-  document.getElementById('fontBtn').textContent = fonts[fontIndex][0];
+  document.getElementById('fontOutput').textContent = fonts[fontIndex][0].split(' ')[0];
   localStorage.setItem('bihgFontIndex',fontIndex);
+  fitPages();
 };
 
-document.getElementById('smallerBtn').onclick = ()=>{
-  readerSize = Math.max(15,readerSize - 1);
+document.getElementById('sizeSlider').oninput = event=>{
+  readerSize = Number(event.target.value);
   document.documentElement.style.setProperty('--reader-size',readerSize+'px');
+  document.getElementById('sizeOutput').textContent = String(readerSize);
   localStorage.setItem('bihgReaderSize',readerSize);
+  fitPages();
 };
 
-document.getElementById('largerBtn').onclick = ()=>{
-  readerSize = Math.min(30,readerSize + 1);
-  document.documentElement.style.setProperty('--reader-size',readerSize+'px');
-  localStorage.setItem('bihgReaderSize',readerSize);
+document.getElementById('pageSlider').oninput = event=>{
+  pageZoom = Number(event.target.value);
+  book.style.transform = 'scale(' + (pageZoom/100) + ')';
+  document.getElementById('pageOutput').textContent = pageZoom + '%';
+  localStorage.setItem('bihgPageZoom',pageZoom);
+};
+
+document.getElementById('resetSettings').onclick = ()=>{
+  fontIndex = 0; readerSize = 20; pageZoom = 100;
+  document.documentElement.style.setProperty('--reader-font',fonts[0][1]);
+  document.documentElement.style.setProperty('--reader-size','20px');
+  book.style.transform = 'scale(1)';
+  document.getElementById('fontSelect').value='0';
+  document.getElementById('sizeSlider').value='20';
+  document.getElementById('pageSlider').value='100';
+  document.getElementById('sizeOutput').textContent='20';
+  document.getElementById('pageOutput').textContent='100%';
+  document.getElementById('fontOutput').textContent='Cormorant';
+  localStorage.removeItem('bihgFontIndex');
+  localStorage.removeItem('bihgReaderSize');
+  localStorage.removeItem('bihgPageZoom');
+  fitPages();
 };
 
 document.getElementById('bookmarkBtn').onclick = ()=>{
@@ -1099,8 +1228,8 @@ const tools = {
 books:{
 title:'Bible Books',
 body:`<button class="tool-button" onclick="jumpTo(0)">Genesis Introduction</button>
-<button class="tool-button" onclick="jumpTo(1)">Genesis 1</button>
-<button class="tool-button" onclick="jumpTo(14)">Genesis 2</button>
+<button class="tool-button" onclick="jumpTo(1)">Genesis 1 Prayer</button>
+<button class="tool-button" onclick="jumpTo(14)">Genesis 2 Prayer</button>
 <p>Genesis is shown in its sage, eucalyptus, apple-blossom, wheat-gold color family. Each later Bible book can load its own palette without changing the reader layout.</p>`
 },
 music:{
