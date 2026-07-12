@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Blooming in His Garden — Heirloom Reader Genesis 1–2</title>
+<title>Blooming in His Garden — Locked Ornate Heirloom Reader</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -471,6 +471,451 @@ body::before{
 .prayer-box p{margin:.65em 0}
 @media(max-width:680px){.settings-popover{top:58px;right:7px}.prayer-actions{grid-template-columns:1fr}}
 
+
+/* =========================================================
+   VISUAL MASTER UPDATE — ornate heirloom reader
+   Matches the approved carved-wood, floral, stained-page look
+   ========================================================= */
+
+:root{
+  --wood:#4a2f25;
+  --wood-mid:#6b4938;
+  --wood-light:#8a654b;
+  --antique:#d8bd84;
+  --antique-dark:#8f6c3d;
+  --parchment:#f4ead5;
+  --parchment-deep:#d9c4a2;
+  --genesis-green:#66745f;
+  --dusty-rose:#9a6f6c;
+  --muted-purple:#70667a;
+  --aged-blue:#66727d;
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% 18%,rgba(90,73,55,.22),transparent 30%),
+    linear-gradient(180deg,#1f1b18 0%,#2a211c 48%,#151210 100%);
+}
+
+.app{
+  padding:12px 20px 18px;
+  gap:6px;
+  grid-template-rows:66px 1fr 60px;
+}
+
+.topbar{
+  position:relative;
+  margin:0 auto;
+  width:min(1200px,calc(100vw - 30px));
+  padding:8px 18px;
+  border-radius:26px 26px 10px 10px;
+  background:
+    linear-gradient(rgba(255,255,255,.04),rgba(0,0,0,.08)),
+    repeating-linear-gradient(95deg,#5b4031 0 7px,#4c3328 7px 14px);
+  border:2px solid #2d1c16;
+  box-shadow:
+    inset 0 0 0 2px rgba(213,180,116,.22),
+    inset 0 8px 18px rgba(255,255,255,.06),
+    0 10px 24px rgba(0,0,0,.36);
+}
+
+.topbar::before,
+.topbar::after{
+  content:"❀  🌿  ✿";
+  position:absolute;
+  top:7px;
+  font-size:20px;
+  color:#d6c2a0;
+  opacity:.9;
+  letter-spacing:3px;
+}
+.topbar::before{left:245px}
+.topbar::after{right:245px;transform:scaleX(-1)}
+
+.brand{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  justify-content:center;
+  text-align:center;
+  min-width:390px;
+  padding:4px 38px 6px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.35),transparent 45%),
+    linear-gradient(180deg,#e5d3ad,#b99361);
+  border:2px solid #7b5935;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,249,224,.55),
+    0 4px 10px rgba(0,0,0,.25);
+}
+.brand-seal{display:none}
+.brand h1{
+  font-size:clamp(30px,3.5vw,48px);
+  color:#3e2a20;
+  text-shadow:0 1px rgba(255,255,255,.55);
+}
+.brand small{
+  display:block;
+  color:#4d3a2d;
+  font:600 12px 'Cormorant Garamond',serif;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.controls{
+  width:100%;
+  justify-content:space-between;
+  flex-wrap:nowrap;
+}
+.controls::before{
+  content:"←  BOOKSHELF     ⌂";
+  white-space:pre;
+  color:#f3e4c3;
+  font-size:14px;
+  letter-spacing:.04em;
+  padding:8px 14px;
+  border-radius:15px;
+  border:1px solid #2e1d16;
+  background:linear-gradient(180deg,#6f4e3c,#4a3025);
+  box-shadow:inset 0 0 0 1px rgba(229,197,137,.2);
+}
+
+.controls .pill{
+  color:#f1e5cf;
+  background:linear-gradient(180deg,#6d4b3a,#4a3025);
+  border:1px solid #2d1c16;
+  box-shadow:
+    inset 0 0 0 1px rgba(233,201,144,.2),
+    0 3px 7px rgba(0,0,0,.2);
+}
+.controls .pill:first-of-type{margin-left:auto}
+.controls .pill:nth-last-child(1){margin-right:0}
+
+.reader-stage{
+  align-items:stretch;
+  width:min(1240px,calc(100vw - 28px));
+  margin:0 auto;
+  padding:0 70px 0 0;
+}
+
+.book{
+  width:100%;
+  height:100%;
+  min-height:500px;
+  padding:22px 24px 28px;
+  border-radius:38px 30px 26px 38px;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.06),transparent 4% 96%,rgba(0,0,0,.18)),
+    repeating-linear-gradient(96deg,#6a4633 0 7px,#4b3025 7px 15px);
+  border:3px solid #2b1a13;
+  box-shadow:
+    inset 0 0 0 4px rgba(198,155,88,.22),
+    inset 0 0 44px rgba(0,0,0,.35),
+    0 20px 45px rgba(0,0,0,.55);
+}
+
+.book::before{
+  content:"";
+  position:absolute;
+  inset:9px;
+  border-radius:29px 22px 20px 29px;
+  border:2px solid rgba(199,160,101,.24);
+  pointer-events:none;
+}
+
+.spread{
+  border-radius:22px 18px 16px 22px;
+  box-shadow:
+    inset 0 0 0 2px rgba(124,89,46,.25),
+    0 12px 22px rgba(0,0,0,.28);
+}
+
+.page{
+  background:
+    radial-gradient(circle at 20% 10%,rgba(255,255,255,.34),transparent 26%),
+    radial-gradient(circle at 82% 75%,rgba(127,96,61,.12),transparent 32%),
+    linear-gradient(180deg,#f5eddd,#dfcfb5);
+}
+.page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(114,77,43,.26),transparent 7%,transparent 93%,rgba(114,77,43,.24)),
+    linear-gradient(180deg,rgba(255,255,255,.15),transparent 12%,transparent 88%,rgba(120,77,38,.16));
+  mix-blend-mode:multiply;
+}
+.page.left{
+  border:4px solid #7c5b39;
+  border-right:1px solid rgba(73,49,31,.18);
+}
+.page.right{
+  border:4px solid #7c5b39;
+  border-left:1px solid rgba(73,49,31,.18);
+}
+
+.page-inner{
+  padding:22px 30px 52px;
+}
+.page-inner::before{
+  inset:9px;
+  border:2px solid rgba(157,116,58,.34);
+  border-radius:12px;
+  box-shadow:inset 0 0 16px rgba(125,87,45,.08);
+}
+
+.art-card{
+  border:5px double #8a6439;
+  border-radius:8px;
+  box-shadow:
+    inset 0 0 0 3px rgba(236,214,168,.58),
+    0 8px 18px rgba(48,30,17,.22);
+}
+.art-caption{
+  left:16%;
+  right:16%;
+  bottom:12px;
+  border-radius:8px;
+  border:2px solid #8a6439;
+  background:
+    linear-gradient(180deg,rgba(237,220,180,.96),rgba(202,172,122,.95));
+  box-shadow:
+    inset 0 0 0 2px rgba(255,248,222,.6),
+    0 4px 12px rgba(0,0,0,.2);
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.title{
+  font-family:'Great Vibes',cursive;
+  color:#563823;
+}
+.kicker{
+  color:#71543c;
+}
+.scripture{
+  color:#3f3026;
+}
+.scripture-head h2{
+  color:#543723;
+}
+.vnum{
+  color:#8d6534;
+}
+.card,.prayer-box{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.28),transparent 50%),
+    linear-gradient(180deg,rgba(247,238,220,.94),rgba(222,202,169,.92));
+  border:1px solid rgba(128,91,47,.4);
+  box-shadow:inset 0 0 0 1px rgba(255,252,239,.45),0 4px 10px rgba(62,39,20,.1);
+}
+
+.side-tools{
+  right:1px;
+}
+.rail{
+  gap:4px;
+}
+.tab{
+  width:112px;
+  height:58px;
+  border-radius:8px 18px 18px 8px;
+  padding:0 12px;
+  color:#f5e9d1;
+  font-size:0;
+  text-align:left;
+  position:relative;
+  background:
+    linear-gradient(180deg,#7d5547,#5a3b31);
+  border:2px solid #342117;
+  box-shadow:
+    inset 0 0 0 2px rgba(219,182,116,.25),
+    0 4px 8px rgba(0,0,0,.25);
+}
+.tab:nth-child(2){background:linear-gradient(180deg,#6d7764,#4d5a4a)}
+.tab:nth-child(3){background:linear-gradient(180deg,#927064,#694b43)}
+.tab:nth-child(4){background:linear-gradient(180deg,#6e7f6c,#4f5e4d)}
+.tab:nth-child(5){background:linear-gradient(180deg,#8c706d,#654d4b)}
+.tab:nth-child(6){background:linear-gradient(180deg,#706b80,#514d5e)}
+.tab:nth-child(7){background:linear-gradient(180deg,#7f695b,#5d493e)}
+.tab::before{
+  font-size:25px;
+  vertical-align:middle;
+}
+.tab::after{
+  font-size:12px;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;
+  letter-spacing:.04em;
+  vertical-align:middle;
+}
+.tab[data-tool="books"]::before{content:"📚  "}
+.tab[data-tool="books"]::after{content:"ALL BOOKS"}
+.tab[data-tool="music"]::before{content:"♫  "}
+.tab[data-tool="music"]::after{content:"LISTEN"}
+.tab[data-tool="study"]::before{content:"📖  "}
+.tab[data-tool="study"]::after{content:"STUDY"}
+.tab[data-tool="journal"]::before{content:"✎  "}
+.tab[data-tool="journal"]::after{content:"JOURNAL"}
+.tab[data-tool="characters"]::before{content:"♙  "}
+.tab[data-tool="characters"]::after{content:"CHARACTER"}
+.tab[data-tool="maps"]::before{content:"🗺  "}
+.tab[data-tool="maps"]::after{content:"MAP"}
+.tab[data-tool="coloring"]::before{content:"❀  "}
+.tab[data-tool="coloring"]::after{content:"COLORING"}
+.tab[data-tool="stickers"]::before{content:"✿  "}
+.tab[data-tool="stickers"]::after{content:"STICKERS"}
+
+.panel{
+  border-radius:18px 0 0 18px;
+  background:linear-gradient(180deg,#efe2c9,#cdb18a);
+  border:2px solid #5f432d;
+}
+.panel.open{width:280px}
+.panel-inner{width:280px}
+
+.ribbons{
+  display:none;
+}
+
+.status{
+  width:min(1010px,calc(100vw - 150px));
+  margin:0 auto;
+  min-height:56px;
+  padding:6px 12px;
+  border-radius:8px 8px 22px 22px;
+  background:
+    repeating-linear-gradient(95deg,#5b4031 0 7px,#493126 7px 14px);
+  border:2px solid #2d1c16;
+  box-shadow:
+    inset 0 0 0 2px rgba(209,172,104,.2),
+    0 8px 20px rgba(0,0,0,.3);
+  color:#f3e3c8;
+}
+.status::before{
+  content:"STUDY BINDER     NOTES     FAVORITES     BOOKMARK     HIGHLIGHT     MAPS";
+  font:700 12px 'Cormorant Garamond',serif;
+  letter-spacing:.08em;
+  word-spacing:16px;
+}
+.status #statusLabel,
+.status .progress,
+.status #progressText{
+  display:none;
+}
+
+.bottom-nav{
+  position:absolute;
+  bottom:-66px;
+  right:40px;
+  display:flex;
+  gap:8px;
+  z-index:40;
+}
+.bottom-nav .nav-square{
+  min-width:90px;
+  min-height:52px;
+  padding:7px 10px;
+  color:#f4e8d2;
+  background:linear-gradient(180deg,#6e4b39,#4b3126);
+  border:2px solid #2d1c16;
+  border-radius:8px;
+  box-shadow:inset 0 0 0 1px rgba(227,190,122,.2),0 4px 8px rgba(0,0,0,.22);
+  font:700 12px 'Cormorant Garamond',serif;
+  text-transform:uppercase;
+}
+.bottom-nav .nav-square:disabled{opacity:.42}
+
+.settings-popover{
+  background:linear-gradient(180deg,#efe4cf,#cdb38d);
+  border:2px solid #5e412c;
+}
+
+@media(max-width:900px){
+  .app{grid-template-rows:58px 1fr 52px;padding:8px}
+  .topbar{width:100%;padding:7px 10px}
+  .brand{min-width:300px}
+  .topbar::before,.topbar::after{display:none}
+  .controls::before{content:"←  BOOKS"}
+  .reader-stage{width:100%;padding-right:58px}
+  .tab{width:64px;height:48px;padding:0 8px}
+  .tab::after{display:none}
+  .status::before{content:"NOTES   FAVORITES   BOOKMARK   HIGHLIGHT   MAPS";font-size:10px}
+}
+
+@media(max-width:680px){
+  .brand{position:static;transform:none;min-width:0;padding:3px 12px}
+  .brand h1{font-size:27px}
+  .controls::before{display:none}
+  .controls{justify-content:flex-end}
+  .reader-stage{padding-right:44px}
+  .tab{width:46px;height:44px}
+  .bottom-nav{right:5px}
+}
+
+
+/* Locked ornate heirloom enhancements */
+:root{
+  --page-brightness:1;
+}
+.page{
+  filter:brightness(var(--page-brightness));
+  background:
+    radial-gradient(circle at 18% 18%,rgba(151,102,47,.08),transparent 22%),
+    radial-gradient(circle at 82% 72%,rgba(102,74,45,.07),transparent 26%),
+    linear-gradient(90deg,rgba(128,75,41,.18),transparent 7%,transparent 93%,rgba(128,75,41,.18)),
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.84),transparent 26%),
+    linear-gradient(180deg,#fbf0d6,#ead3a9);
+}
+.page::before{
+  box-shadow:
+    inset 0 0 28px rgba(104,63,30,.14),
+    inset 12px 0 18px rgba(126,75,40,.08),
+    inset -12px 0 18px rgba(126,75,40,.08);
+}
+.sticker-tray{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+.sticker-chip{
+  min-height:74px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  border:1px solid rgba(130,88,41,.3);
+  border-radius:13px;
+  background:linear-gradient(180deg,#fffaf0,#ead3a8);
+  box-shadow:inset 0 0 10px rgba(132,86,40,.08),0 4px 9px rgba(55,35,19,.09);
+  padding:6px;
+  font-family:'Handlee',cursive;
+}
+.sticker-chip span{
+  display:block;
+  font-size:28px;
+  line-height:1;
+  margin-bottom:4px;
+}
+.sticker-chip small{
+  display:block;
+  font-size:11px;
+  color:#654c35;
+}
+.book-theme-note{
+  border:1px solid rgba(133,91,42,.28);
+  border-radius:12px;
+  padding:8px;
+  background:rgba(255,249,235,.7);
+  font-size:13px;
+  line-height:1.3;
+}
+
 </style>
 </head>
 
@@ -481,16 +926,17 @@ body::before{
       <div class="brand-seal">🌿</div>
       <div>
         <h1>Blooming in His Garden</h1>
-        <small>Digital Heirloom Bible</small>
+        <small>Interactive Heirloom Bible</small>
       </div>
     </div>
 
     <div class="controls">
-      <button class="pill desktop-only" onclick="location.href='grand-library.html'">Grand Library</button>
+      <button class="pill desktop-only" onclick="location.href='grand-library.html'">Bookshelf</button>
+      <button class="pill desktop-only" id="searchBtn">⌕ Search Bible</button>
       <button class="pill" id="modeBtn">Reading Mode</button>
-      <button class="pill" id="settingsBtn">Aa Settings</button>
+      <button class="pill" id="settingsBtn">⚙ Settings</button>
       <button class="pill" id="bookmarkBtn">🔖</button>
-      <button class="pill desktop-only" id="tabsBtn">Hide Tabs</button>
+      <button class="pill desktop-only" id="tabsBtn">Tabs</button>
     </div>
   </header>
 
@@ -501,9 +947,14 @@ body::before{
         <article class="page right"><div class="page-inner" id="rightPage"></div></article>
       </div>
 
-      <div class="ribbons">
-        <button class="ribbon" id="prevBtn">◀ Previous</button>
-        <button class="ribbon" id="nextBtn">Next ▶</button>
+      <div class="ribbons" aria-hidden="true">
+        <button class="ribbon" type="button">◀ Previous</button>
+        <button class="ribbon" type="button">Next ▶</button>
+      </div>
+
+      <div class="bottom-nav">
+        <button class="nav-square" id="prevBtn">← Prev<br>Page</button>
+        <button class="nav-square" id="nextBtn">Next<br>Page →</button>
       </div>
     </section>
 
@@ -517,6 +968,7 @@ body::before{
         <button class="tab" data-tool="characters" title="Characters">👤</button>
         <button class="tab" data-tool="maps" title="Maps">🗺️</button>
         <button class="tab" data-tool="coloring" title="Coloring">🎨</button>
+        <button class="tab" data-tool="stickers" title="Stickers">🌸</button>
       </div>
     </aside>
   </main>
@@ -549,6 +1001,12 @@ body::before{
     <label for="pageSlider">Page Zoom</label>
     <input id="pageSlider" type="range" min="88" max="112" step="2" value="100">
     <output id="pageOutput">100%</output>
+  </div>
+
+  <div class="setting-row">
+    <label for="brightnessSlider">Page Brightness</label>
+    <input id="brightnessSlider" type="range" min="82" max="112" step="2" value="100">
+    <output id="brightnessOutput">100%</output>
   </div>
   <button class="tool-button" id="resetSettings">Reset Reader Settings</button>
 </div>
@@ -1017,6 +1475,7 @@ let readerSize = Number(localStorage.getItem('bihgReaderSize') || 20);
 let fontIndex = Number(localStorage.getItem('bihgFontIndex') || 0);
 let tabsVisible = true;
 let pageZoom = Number(localStorage.getItem('bihgPageZoom') || 100);
+let pageBrightness = Number(localStorage.getItem('bihgPageBrightness') || 100);
 
 const fonts = [
   ["Cormorant","'Cormorant Garamond',Georgia,serif"],
@@ -1047,6 +1506,7 @@ document.getElementById('sizeOutput').textContent = String(readerSize);
 document.getElementById('pageSlider').value = String(pageZoom);
 document.getElementById('pageOutput').textContent = pageZoom + '%';
 book.style.transform = 'scale(' + (pageZoom/100) + ')';
+document.documentElement.style.setProperty('--page-brightness', pageBrightness/100);
 
 function applyMode(){
   book.classList.remove('open-bible','storybook','show-art','show-text');
@@ -1195,20 +1655,35 @@ document.getElementById('pageSlider').oninput = event=>{
   localStorage.setItem('bihgPageZoom',pageZoom);
 };
 
+
+document.getElementById('brightnessSlider').value = String(pageBrightness);
+document.getElementById('brightnessOutput').textContent = pageBrightness + '%';
+
+document.getElementById('brightnessSlider').oninput = event=>{
+  pageBrightness = Number(event.target.value);
+  document.documentElement.style.setProperty('--page-brightness',pageBrightness/100);
+  document.getElementById('brightnessOutput').textContent = pageBrightness + '%';
+  localStorage.setItem('bihgPageBrightness',pageBrightness);
+};
+
 document.getElementById('resetSettings').onclick = ()=>{
-  fontIndex = 0; readerSize = 20; pageZoom = 100;
+  fontIndex = 0; readerSize = 20; pageZoom = 100; pageBrightness = 100;
   document.documentElement.style.setProperty('--reader-font',fonts[0][1]);
   document.documentElement.style.setProperty('--reader-size','20px');
   book.style.transform = 'scale(1)';
+  document.documentElement.style.setProperty('--page-brightness',1);
   document.getElementById('fontSelect').value='0';
   document.getElementById('sizeSlider').value='20';
   document.getElementById('pageSlider').value='100';
+  document.getElementById('brightnessSlider').value='100';
   document.getElementById('sizeOutput').textContent='20';
   document.getElementById('pageOutput').textContent='100%';
+  document.getElementById('brightnessOutput').textContent='100%';
   document.getElementById('fontOutput').textContent='Cormorant';
   localStorage.removeItem('bihgFontIndex');
   localStorage.removeItem('bihgReaderSize');
   localStorage.removeItem('bihgPageZoom');
+  localStorage.removeItem('bihgPageBrightness');
   fitPages();
 };
 
@@ -1262,6 +1737,19 @@ coloring:{
 title:'Coloring Pages',
 body:`<p>Chapter coloring pages remain optional and appear after the story, not between Scripture spreads.</p>
 <button class="tool-button" onclick="showMessage('Genesis 1 Coloring','The Genesis 1 creation coloring page will open here once connected.')">Genesis 1 Creation</button>`
+},
+stickers:{
+title:'Sticker Garden',
+body:`<p>Collect and use the approved Blooming in His Garden sticker collections as you read.</p>
+<div class="sticker-tray">
+  <button class="sticker-chip" onclick="showMessage('Botanical Stickers','Apple blossoms, tiger lilies, eucalyptus, wheat, lavender, sunflowers, and seasonal flowers.')"><span>🌸</span><small>Botanicals</small></button>
+  <button class="sticker-chip" onclick="showMessage('Animal Stickers','Rye, doves, deer, lambs, rabbits, turtles, woodland animals, and approved Bible animals.')"><span>🦌</span><small>Animals</small></button>
+  <button class="sticker-chip" onclick="showMessage('Footprint Stickers','Collect footprints for every animal in the Blooming in His Garden world.')"><span>🐾</span><small>Footprints</small></button>
+  <button class="sticker-chip" onclick="showMessage('Mushroom Stickers','Gentle woodland mushroom sticker collection.')"><span>🍄</span><small>Mushrooms</small></button>
+  <button class="sticker-chip" onclick="showMessage('Woodland Snake Stickers','Peaceful, realistic woodland snake stickers in the approved storybook style.')"><span>🐍</span><small>Woodland Snakes</small></button>
+  <button class="sticker-chip" onclick="showMessage('Pond Wildlife Stickers','Ducks, geese, herons, frogs, turtles, dragonflies, and pond plants.')"><span>🦆</span><small>Pond Wildlife</small></button>
+</div>
+<div class="book-theme-note" style="margin-top:10px">Sticker borders and accents automatically follow each Bible book’s locked color and floral theme.</div>`
 }
 };
 
@@ -1295,6 +1783,25 @@ modal.onclick = e=>{ if(e.target===modal) modal.classList.remove('show'); };
 window.addEventListener('resize',()=>{
   window.clearTimeout(window.__bihgResizeTimer);
   window.__bihgResizeTimer = window.setTimeout(fitPages,120);
+});
+
+
+document.getElementById('searchBtn')?.addEventListener('click',()=>{
+  const term = window.prompt('Search the current Bible reader:');
+  if(!term) return;
+  const target = term.trim().toLowerCase();
+  const match = spreads.findIndex(item =>
+    item.label.toLowerCase().includes(target) ||
+    item.left.toLowerCase().includes(target) ||
+    item.right.toLowerCase().includes(target)
+  );
+  if(match >= 0){
+    index = match;
+    storySide = 'art';
+    render();
+  }else{
+    showMessage('Search Bible','No matching page was found in the chapters currently loaded.');
+  }
 });
 
 render();
