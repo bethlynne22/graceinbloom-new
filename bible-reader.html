@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Blooming in His Garden — Bible Reader</title>
+<title>Blooming in His Garden — Restored Page-Flip Reader v3</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -227,7 +227,7 @@ button{cursor:pointer}
 .scripture-head span{font:700 12px 'Handlee',cursive;color:#7d6752}
 
 .scripture{
-  min-height:0;overflow:auto;padding-right:5px;
+  min-height:0;overflow:hidden;padding-right:5px;
   font-family:var(--reader-font);
   font-size:var(--reader-size);
   line-height:1.5;
@@ -258,7 +258,50 @@ button{cursor:pointer}
 .storybook.show-text .page.left{display:none}
 .storybook.show-text .page.right{display:block}
 .storybook .spread::after{display:none}
-.storybook .page-inner{padding:28px 38px 50px}
+.storybook .page-inner{
+  padding:24px 34px 72px;
+  overflow:hidden;
+}
+
+/* True page fitting: content gets gently tightened instead of scrolling. */
+.page-inner.compact{
+  gap:6px;
+  padding-top:18px;
+  padding-bottom:66px;
+}
+.page-inner.compact .title{font-size:clamp(38px,4vw,56px)}
+.page-inner.compact .subtitle{font-size:16px}
+.page-inner.compact .card{padding:8px}
+.page-inner.compact .card h3{font-size:23px}
+.page-inner.compact .card p{font-size:14px;line-height:1.2}
+.page-inner.compact .study-grid,
+.page-inner.compact .intro-grid{gap:7px}
+.page-inner.compact .tool-button{padding:6px 8px;margin-top:4px}
+.page-inner.compact .scripture{font-size:calc(var(--reader-size) - 1px);line-height:1.38}
+
+.page-inner.tight{
+  gap:4px;
+  padding-top:13px;
+  padding-bottom:62px;
+}
+.page-inner.tight .kicker{font-size:11px}
+.page-inner.tight .title{font-size:40px !important;line-height:.9}
+.page-inner.tight .subtitle{font-size:14px}
+.page-inner.tight .rule{margin:0 auto 2px}
+.page-inner.tight .card{padding:6px 8px;border-radius:12px}
+.page-inner.tight .card h3{font-size:20px;line-height:1}
+.page-inner.tight .card p{font-size:12.5px;line-height:1.12}
+.page-inner.tight .study-grid,
+.page-inner.tight .intro-grid{gap:5px}
+.page-inner.tight .tool-button{padding:5px 7px;font-size:13px}
+.page-inner.tight .scripture{font-size:calc(var(--reader-size) - 3px);line-height:1.28}
+.page-inner.tight .verse{margin-bottom:.34em}
+
+@media(max-height:700px){
+  .storybook .page-inner{padding:16px 26px 64px}
+}
+.storybook .study-grid,
+.storybook .intro-grid{padding-bottom:18px}
 .storybook .art-caption{font-size:34px}
 .storybook .scripture{font-size:calc(var(--reader-size) + 2px)}
 
@@ -361,6 +404,7 @@ button{cursor:pointer}
   .mode-options{grid-template-columns:1fr}
   .panel.open{width:min(250px,74vw)}.panel-inner{width:min(250px,74vw)}
 }
+
 </style>
 </head>
 
@@ -731,31 +775,91 @@ right:`
 </div>`
 },
 {
-label:'Genesis 1 Study Garden',
+label:'Genesis 1 Reflection',
 left:`
 <div class="corner c1">🌿</div><div class="corner c4">🌸</div>
 <div class="kicker">End of Chapter</div>
 <h1 class="title">And It Was Very Good</h1>
 <div class="rule"></div>
-<div class="study-grid">
-<div class="card"><h3>Today’s Journey</h3><p>God brings light, order, beauty, life, blessing, and purpose into creation.</p></div>
-<div class="card"><h3>What We Learned</h3><p>Creation is intentional. Humanity is made in God’s image and entrusted with care.</p></div>
-<div class="card"><h3>Journal Prompt</h3><p>Where do you need God’s light to bring hope, peace, or a new beginning?</p></div>
-<div class="card"><h3>Prayer</h3><p>Creator God, help me see Your goodness and care for what You have made.</p></div>
-<div class="card full-card"><h3>Study Cards</h3><p>Observe the repeated words: “God said,” “it was so,” and “it was good.” Notice the order from forming the world to filling it with life.</p></div>
-</div>`,
+<div class="art-card">${art.light}<div class="art-caption">Creation rests beneath God’s blessing.</div></div>`,
 right:`
 <div class="corner c2">🌾</div><div class="corner c3">🧡</div>
-<div class="kicker">Chapter Tools</div>
-<h1 class="title" style="font-size:52px">Continue Your Journey</h1>
+<div class="kicker">Today’s Journey</div>
+<h1 class="title" style="font-size:52px">Creation with Purpose</h1>
 <div class="rule"></div>
 <div class="study-grid">
-<div class="card"><h3>Music</h3><p>Open the music tab for the chapter song and hymn.</p><button class="tool-button" onclick="openTool('music')">Open Record Player</button></div>
-<div class="card"><h3>Journal</h3><p>Write or draw your response to today’s prompt.</p><button class="tool-button" onclick="location.href='journal.html'">Open Journal</button></div>
-<div class="card"><h3>Study Binder</h3><p>Continue with observation, interpretation, and application.</p><button class="tool-button" onclick="location.href='study-binder.html'">Open Study Binder</button></div>
-<div class="card"><h3>Coloring Page</h3><p>Visit the chapter coloring activity from the side tab.</p><button class="tool-button" onclick="openTool('coloring')">Open Coloring</button></div>
-<div class="card full-card"><h3>Next Chapter</h3><p>Genesis 2 will continue with the garden, Adam, Eve, and the gift of rest.</p></div>
+<div class="card"><h3>What We Saw</h3><p>God brought light, order, beauty, life, blessing, and purpose into creation.</p></div>
+<div class="card"><h3>What We Learned</h3><p>Creation is intentional, and humanity is made in God’s image.</p></div>
+<div class="card full-card"><h3>Key Truth</h3><p>God looked upon everything He had made and declared it very good.</p></div>
 </div>`
+},
+{
+label:'Genesis 1 Study Cards',
+left:`
+<div class="corner c1">🌿</div><div class="corner c4">🌸</div>
+<div class="kicker">Study Garden</div>
+<h1 class="title">Look Closely</h1>
+<div class="rule"></div>
+<div class="study-grid">
+<div class="card"><h3>Observe</h3><p>Notice the repeated words: “God said,” “it was so,” and “it was good.”</p></div>
+<div class="card"><h3>Order</h3><p>God first forms the world and then fills it with life.</p></div>
+<div class="card"><h3>Blessing</h3><p>God blesses living creatures and gives humanity responsibility.</p></div>
+<div class="card"><h3>Image</h3><p>Male and female are created in God’s image and given dignity.</p></div>
+</div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🍎</div>
+<div class="kicker">Digging Deeper</div>
+<h1 class="title" style="font-size:52px">Study Cards</h1>
+<div class="rule"></div>
+<div class="study-grid">
+<div class="card"><h3>Interpret</h3><p>What does Genesis 1 teach about God’s character and authority?</p></div>
+<div class="card"><h3>Compare</h3><p>How does each day prepare for the life introduced afterward?</p></div>
+<div class="card"><h3>Apply</h3><p>How can you care faithfully for the people and world God created?</p></div>
+<div class="card"><h3>Remember</h3><p>Creation begins with God, depends upon His word, and reflects His goodness.</p></div>
+</div>`
+},
+{
+label:'Genesis 1 Journal and Prayer',
+left:`
+<div class="corner c1">🌸</div><div class="corner c4">🌿</div>
+<div class="kicker">Journal Page</div>
+<h1 class="title">A New Beginning</h1>
+<div class="rule"></div>
+<div class="study-grid">
+<div class="card full-card"><h3>Journal Prompt</h3><p>Where do you need God’s light to bring hope, peace, order, or a new beginning?</p></div>
+<div class="card full-card"><h3>Write or Draw</h3><p>Describe one part of creation that helps you notice God’s wisdom and goodness.</p></div>
+</div>
+<button class="tool-button" onclick="location.href='journal.html'">Open My Journal</button>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🧡</div>
+<div class="kicker">Closing Prayer</div>
+<h1 class="title">Creator God</h1>
+<div class="rule"></div>
+<div class="card full-card" style="margin-top:12px">
+<h3>Prayer</h3>
+<p style="font-size:18px;line-height:1.55">Creator God, thank You for the light, beauty, life, and purpose woven throughout Your creation. Help me recognize Your goodness, care faithfully for what You have made, and trust You with every new beginning. Amen.</p>
+</div>`
+},
+{
+label:'Genesis 1 Chapter Tools',
+left:`
+<div class="corner c1">🌿</div><div class="corner c4">🌸</div>
+<div class="kicker">Chapter Extras</div>
+<h1 class="title">Continue Your Journey</h1>
+<div class="rule"></div>
+<div class="study-grid">
+<div class="card"><h3>Music</h3><p>Listen to the chapter song and selected hymn.</p><button class="tool-button" onclick="openTool('music')">Open Record Player</button></div>
+<div class="card"><h3>Study Binder</h3><p>Continue with observation, interpretation, and application.</p><button class="tool-button" onclick="location.href='study-binder.html'">Open Study Binder</button></div>
+<div class="card"><h3>Coloring</h3><p>Open the Genesis 1 creation coloring page.</p><button class="tool-button" onclick="openTool('coloring')">Open Coloring Page</button></div>
+<div class="card"><h3>Characters</h3><p>Visit Adam and Eve’s character pages.</p><button class="tool-button" onclick="openTool('characters')">Open Characters</button></div>
+</div>`,
+right:`
+<div class="corner c2">🌾</div><div class="corner c3">🍎</div>
+<div class="kicker">The Journey Continues</div>
+<h1 class="title">Genesis 2</h1>
+<div class="rule"></div>
+<div class="art-card">${art.people}<div class="art-caption">The garden, the gift of rest, and the first family.</div></div>
+<button class="tool-button" onclick="showMessage('Genesis 2','Genesis 2 will open here when the next chapter is connected.')">Begin Genesis 2</button>`
 }
 ];
 
@@ -804,6 +908,35 @@ function applyMode(){
   }
 }
 
+function pageOverflows(page){
+  return page.scrollHeight > page.clientHeight + 2;
+}
+
+function fitPages(){
+  [leftPage,rightPage].forEach(page=>{
+    page.classList.remove('compact','tight');
+    page.style.fontSize = '';
+
+    requestAnimationFrame(()=>{
+      if(pageOverflows(page)) page.classList.add('compact');
+
+      requestAnimationFrame(()=>{
+        if(pageOverflows(page)) page.classList.add('tight');
+
+        requestAnimationFrame(()=>{
+          if(pageOverflows(page)){
+            let percent = 100;
+            while(pageOverflows(page) && percent > 82){
+              percent -= 2;
+              page.style.fontSize = percent + '%';
+            }
+          }
+        });
+      });
+    });
+  });
+}
+
 function render(){
   leftPage.innerHTML = spreads[index].left;
   rightPage.innerHTML = spreads[index].right;
@@ -818,6 +951,8 @@ function render(){
 
   localStorage.setItem('bihgSpread', index);
   localStorage.setItem('bihgStorySide', storySide);
+
+  fitPages();
 }
 
 function next(){
@@ -981,9 +1116,12 @@ window.showMessage = (title,body)=>{
 document.getElementById('closeModal').onclick = ()=>modal.classList.remove('show');
 modal.onclick = e=>{ if(e.target===modal) modal.classList.remove('show'); };
 
+window.addEventListener('resize',()=>{
+  window.clearTimeout(window.__bihgResizeTimer);
+  window.__bihgResizeTimer = window.setTimeout(fitPages,120);
+});
+
 render();
 </script>
 </body>
 </html>
-
-
